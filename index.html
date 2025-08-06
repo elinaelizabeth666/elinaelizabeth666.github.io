@@ -2033,13 +2033,14 @@ body {
                                                 <div id="app-grid">
                     <!-- 第一行：放2个图标 -->
                     <div class="app-row">
-                        <div class="app-icon" onclick="showScreen('world-book-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/7ZMsY3gP/IMG-7057.jpg" alt="世界书"></div><span class="label">世界书</span></div>
-                        <div class="app-icon" onclick="showScreen('chat-list-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/Bv2qvwmL/IMG-7063.jpg" alt="QQ"></div><span class="label">QQ</span></div>
+                        <div class="app-icon" onclick="showScreen('world-book-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/htP74QkL/1.jpg" alt="世界书"></div><span class="label">世界书</span></div>
+                        <div class="app-icon" onclick="showScreen('chat-list-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/gr2ndvPL/QQ.jpg" alt="QQ"></div><span class="label">QQ</span></div>
+                        <div class="app-icon" onclick="showScreen('chat-list-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/Bv2qvwmL/IMG-7063.jpg" alt="图标"></div><span class="label">图标</span></div>
                     </div>
                     <!-- 第二行：放3个图标 -->
                     <div class="app-row">
-                        <div class="app-icon" onclick="showScreen('api-settings-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/BbKNWHS0/IMG-7061.jpg" alt="API设置"></div><span class="label">API设置</span></div>
-                        <div class="app-icon" onclick="showScreen('wallpaper-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/rwrThPXn/IMG-7058.jpg" alt="壁纸"></div><span class="label">壁纸</span></div>
+                        <div class="app-icon" onclick="showScreen('api-settings-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/wy631NyP/settings.jpg" alt="API设置"></div><span class="label">API设置</span></div>
+                        <div class="app-icon" onclick="showScreen('wallpaper-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/q6qRLdGx/photo.jpg" alt="壁纸"></div><span class="label">壁纸</span></div>
                         <div class="app-icon" onclick="showScreen('font-settings-screen')">
                             <div class="icon-bg"><img src="https://i.postimg.cc/3rsnXS1J/IMG-7062.jpg" alt="字体"></div>
                             <span class="label">字体</span>
@@ -2372,7 +2373,42 @@ body {
     </div>
   
     <div id="chat-settings-modal" class="modal"><div class="modal-content"><div class="modal-header"><span>聊天设置</span></div><div class="modal-body"><div class="form-group" id="chat-name-group"><label for="chat-name-input">备注名 / 群名</label><input type="text" id="chat-name-input"></div>
-
+<div id="icon-settings-screen" class="screen">
+    <div class="header">
+        <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
+        <span>图标设置</span>
+        <span style="width: 30px;"></span>
+    </div>
+    <div class="form-container">
+        <div class="form-group">
+            <label for="app-select">选择应用</label>
+            <select id="app-select">
+                <option value="world-book-screen">世界书</option>
+                <option value="chat-list-screen">QQ</option>
+                <option value="api-settings-screen">API设置</option>
+                <option value="wallpaper-screen">壁纸</option>
+                <option value="font-settings-screen">字体</option>
+                <option value="icon-settings-screen">图标设置</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="icon-url-input">图标URL</label>
+            <input type="text" id="icon-url-input" placeholder="输入图标图片URL">
+        </div>
+        <div class="form-group">
+            <label>或上传图标</label>
+            <button class="form-button form-button-secondary" onclick="document.getElementById('icon-upload-input').click();">上传图标图片</button>
+            <input type="file" id="icon-upload-input" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label>预览</label>
+            <div id="icon-preview" style="width: 65px; height: 65px; border-radius: 18px; margin: 10px auto; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
+                <img id="icon-preview-img" src="" alt="预览" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px;">
+            </div>
+        </div>
+        <button class="form-button" id="save-icon-btn">保存图标</button>
+    </div>
+</div>
     <!-- ▼▼▼ 请将这段新代码粘贴到“备注名”输入框的 form-group 之后 ▼▼▼ -->
     <div class="form-group" id="assign-group-section" style="display: none;"> <!-- 默认隐藏，只对单聊显示 -->
         <label for="assign-group-select">好友分组</label>
@@ -2925,11 +2961,16 @@ db.version(17).stores({
         // 3. 所有功能函数定义
         // ===================================================================
 
-        function showScreen(screenId) {
+                function showScreen(screenId) {
             if (screenId === 'chat-list-screen') {
                 window.renderChatListProxy(); 
                 switchToChatListView('messages-view');
             }
+            // 添加图标设置屏幕的处理
+            if (screenId === 'icon-settings-screen') {
+                window.renderIconSettingsProxy();
+            }
+
             if (screenId === 'api-settings-screen') window.renderApiSettingsProxy();
             if (screenId === 'wallpaper-screen') window.renderWallpaperScreenProxy();
             if (screenId === 'world-book-screen') window.renderWorldBookScreenProxy();
@@ -5291,7 +5332,16 @@ async function copyPostContent() {
             if (state.globalSettings && state.globalSettings.fontUrl) {
                 applyCustomFont(state.globalSettings.fontUrl);
             }
-
+            // 初始化保存的图标设置
+            if (state.globalSettings && state.globalSettings.appIcons) {
+                const appIcons = state.globalSettings.appIcons;
+                for (const app in appIcons) {
+                    const appIcon = document.querySelector(`.app-icon[onclick="showScreen('${app}')"] img`);
+                    if (appIcon) {
+                        appIcon.src = appIcons[app];
+                    }
+                }
+            }
             updateClock();
             setInterval(updateClock, 1000 * 30);
             applyGlobalWallpaper();
@@ -5650,6 +5700,83 @@ document.getElementById('member-settings-modal').addEventListener('click', (e) =
             document.getElementById('reset-font-btn').addEventListener('click', resetToDefaultFont);
 
             document.querySelectorAll('#chat-list-bottom-nav .nav-item').forEach(item => { item.addEventListener('click', () => switchToChatListView(item.dataset.view)); });
+            // 图标设置功能
+            let currentIconPreview = '';
+            
+            // 显示图标设置屏幕时的初始化
+            window.renderIconSettingsProxy = () => {
+                const appSelect = document.getElementById('app-select');
+                const selectedApp = appSelect.value;
+                
+                // 查找当前应用的图标
+                const appIcon = document.querySelector(`.app-icon[onclick="showScreen('${selectedApp}')"] img`);
+                if (appIcon) {
+                    currentIconPreview = appIcon.src;
+                    document.getElementById('icon-preview-img').src = currentIconPreview;
+                    document.getElementById('icon-url-input').value = '';
+                }
+            };
+            
+            // 应用选择变化时更新预览
+            document.getElementById('app-select').addEventListener('change', () => {
+                window.renderIconSettingsProxy();
+            });
+            
+            // 图标URL输入变化时更新预览
+            document.getElementById('icon-url-input').addEventListener('input', (e) => {
+                const url = e.target.value.trim();
+                if (url) {
+                    document.getElementById('icon-preview-img').src = url;
+                    currentIconPreview = url;
+                }
+            });
+            
+            // 图标上传处理
+            document.getElementById('icon-upload-input').addEventListener('change', async (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const dataUrl = await new Promise((res, rej) => {
+                        const reader = new FileReader();
+                        reader.onload = () => res(reader.result);
+                        reader.onerror = () => rej(reader.error);
+                        reader.readAsDataURL(file);
+                    });
+                    document.getElementById('icon-preview-img').src = dataUrl;
+                    document.getElementById('icon-url-input').value = '';
+                    currentIconPreview = dataUrl;
+                }
+            });
+            
+            // 保存图标设置
+            document.getElementById('save-icon-btn').addEventListener('click', () => {
+                if (!currentIconPreview) return;
+                
+                const appSelect = document.getElementById('app-select');
+                const selectedApp = appSelect.value;
+                
+                // 更新应用图标
+                const appIcon = document.querySelector(`.app-icon[onclick="showScreen('${selectedApp}')"] img`);
+                if (appIcon) {
+                    appIcon.src = currentIconPreview;
+                    
+                    // 保存到本地存储
+                    if (!state.globalSettings.appIcons) {
+                        state.globalSettings.appIcons = {};
+                    }
+                    state.globalSettings.appIcons[selectedApp] = currentIconPreview;
+                    db.globalSettings.put(state.globalSettings);
+                    
+                    alert('图标已更新！');
+                }
+            });
+            
+            // 当显示图标设置屏幕时初始化
+            document.getElementById('icon-settings-screen').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('icon-settings-screen')) {
+                    window.renderIconSettingsProxy();
+                }
+            });
+
             document.getElementById('qzone-back-btn').addEventListener('click', () => switchToChatListView('messages-view'));
             document.getElementById('qzone-nickname').addEventListener('click', async () => { const newNickname = await showCustomPrompt("修改昵称", "请输入新的昵称", state.qzoneSettings.nickname); if (newNickname && newNickname.trim()) { state.qzoneSettings.nickname = newNickname.trim(); await saveQzoneSettings(); renderQzoneScreen(); } });
             document.getElementById('qzone-avatar-container').addEventListener('click', () => document.getElementById('qzone-avatar-input').click());
