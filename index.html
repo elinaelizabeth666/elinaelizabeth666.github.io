@@ -2373,10 +2373,10 @@ body {
     </div>
   
     <div id="chat-settings-modal" class="modal"><div class="modal-content"><div class="modal-header"><span>聊天设置</span></div><div class="modal-body"><div class="form-group" id="chat-name-group"><label for="chat-name-input">备注名 / 群名</label><input type="text" id="chat-name-input"></div>
-<div id="icon-settings-screen" class="screen">
+    <div id="icon-settings-screen" class="screen">
     <div class="header">
         <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
-        <span>图标设置</span>
+        <span>图标</span>
         <span style="width: 30px;"></span>
     </div>
     <div class="form-container">
@@ -2388,7 +2388,7 @@ body {
                 <option value="api-settings-screen">API设置</option>
                 <option value="wallpaper-screen">壁纸</option>
                 <option value="font-settings-screen">字体</option>
-                <option value="icon-settings-screen">图标设置</option>
+                <option value="icon-settings-screen">图标</option>
             </select>
         </div>
         <div class="form-group">
@@ -2966,7 +2966,7 @@ db.version(17).stores({
                 window.renderChatListProxy(); 
                 switchToChatListView('messages-view');
             }
-            // 添加图标设置屏幕的处理
+            // 添加图标屏幕的处理
             if (screenId === 'icon-settings-screen') {
                 window.renderIconSettingsProxy();
             }
@@ -5332,7 +5332,7 @@ async function copyPostContent() {
             if (state.globalSettings && state.globalSettings.fontUrl) {
                 applyCustomFont(state.globalSettings.fontUrl);
             }
-            // 初始化保存的图标设置
+            // 初始化保存的图标
             if (state.globalSettings && state.globalSettings.appIcons) {
                 const appIcons = state.globalSettings.appIcons;
                 for (const app in appIcons) {
@@ -5700,10 +5700,10 @@ document.getElementById('member-settings-modal').addEventListener('click', (e) =
             document.getElementById('reset-font-btn').addEventListener('click', resetToDefaultFont);
 
             document.querySelectorAll('#chat-list-bottom-nav .nav-item').forEach(item => { item.addEventListener('click', () => switchToChatListView(item.dataset.view)); });
-            // 图标设置功能
+            // 图标功能
             let currentIconPreview = '';
             
-            // 显示图标设置屏幕时的初始化
+            // 显示图标屏幕时的初始化
             window.renderIconSettingsProxy = () => {
                 const appSelect = document.getElementById('app-select');
                 const selectedApp = appSelect.value;
@@ -5747,7 +5747,7 @@ document.getElementById('member-settings-modal').addEventListener('click', (e) =
                 }
             });
             
-            // 保存图标设置
+            // 保存图标
             document.getElementById('save-icon-btn').addEventListener('click', () => {
                 if (!currentIconPreview) return;
                 
@@ -5770,7 +5770,7 @@ document.getElementById('member-settings-modal').addEventListener('click', (e) =
                 }
             });
             
-            // 当显示图标设置屏幕时初始化
+            // 当显示图标屏幕时初始化
             document.getElementById('icon-settings-screen').addEventListener('click', (e) => {
                 if (e.target === document.getElementById('icon-settings-screen')) {
                     window.renderIconSettingsProxy();
