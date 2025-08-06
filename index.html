@@ -2966,6 +2966,18 @@ db.version(17).stores({
                 window.renderChatListProxy(); 
                 switchToChatListView('messages-view');
             }
+    // 显示所有屏幕前先隐藏所有屏幕
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.style.display = 'none';
+    });
+    
+    // 然后显示选中的屏幕
+    document.getElementById(screenId).style.display = 'block';
+    
+    // 图标设置屏幕的特殊处理
+    if (screenId === 'icon-settings-screen') {
+        window.renderIconSettingsProxy();
+    }
             // 添加图标屏幕的处理
             if (screenId === 'icon-settings-screen') {
                 window.renderIconSettingsProxy();
@@ -6607,4 +6619,3 @@ myFrameTab.addEventListener('click', () => {
 </script>
 </body>
 </html>
-
