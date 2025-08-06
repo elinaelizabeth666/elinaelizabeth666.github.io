@@ -259,7 +259,41 @@ body {
         #notification-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
         #notification-content .name { font-weight: 600; font-size: 15px; color: #000; }
         #notification-content .message { font-size: 14px; color: #555; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
-        .sticker-image { max-width: 100px; max-height: 100px; display: block; object-fit: contain; }
+        .s/* 原有样式（保留不变） */
+.sticker-image { max-width: 100px; max-height: 100px; display: block; object-fit: contain; }
+.message-bubble.is-sticker .content, .message-bubble.is-voice-message .content { padding: 0; background-color: transparent; box-shadow: none; border: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+/* 新增：表情与说明样式（核心修改） */
+.message-text {
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.message-stickers {
+    display: flex;
+    flex-wrap: wrap; /* 自动换行 */
+    gap: 15px; /* 表情之间的间距 */
+    margin-top: 8px;
+    padding: 5px 0;
+}
+
+.sticker-with-caption {
+    display: flex;
+    flex-direction: column; /* 表情在上，文字在下 */
+    align-items: center; /* 水平居中 */
+    flex-shrink: 0; /* 防止被压缩 */
+}
+
+.sticker-caption {
+    font-size: 12px; /* 说明文字大小 */
+    color: var(--text-secondary); /* 说明文字颜色（复用现有变量） */
+    margin-top: 4px; /* 文字与表情的间距 */
+    text-align: center; /* 文字居中 */
+    max-width: 100px; /* 限制文字宽度 */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 超出隐藏 */
+    text-overflow: ellipsis; /* 超出显示省略号 */
+}
         .message-bubble.is-sticker .content, .message-bubble.is-voice-message .content { padding: 0; background-color: transparent; box-shadow: none; border: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
         #chat-input-actions-top { display: flex; gap: 8px; padding: 0 5px; }
         .chat-action-icon-btn { font-size: 24px; padding: 0; width: 38px; height: 38px; line-height: 38px; text-align: center; border-radius: 50%; background-color: rgba(255, 255, 255, 0.5); color: var(--text-primary); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(0,0,0,0.05); cursor: pointer; display:flex; justify-content:center; align-items:center; }
@@ -3882,32 +3916,55 @@ function createMessageElement(msg, chat) {
     // --- 核心修改结束 ---
 
 
-    let contentHtml;
-    if (msg.type === 'user_photo' || msg.type === 'ai_image') {
-        bubble.classList.add('is-ai-image');
-        const altText = msg.type === 'user_photo' ? "用户描述的照片" : "AI生成的图片";
-        contentHtml = `<img src="https://i.postimg.cc/KYr2qRCK/1.jpg" class="ai-generated-image" alt="${altText}" data-description="${msg.content}">`;
-    } else if (msg.type === 'voice_message') {
-        bubble.classList.add('is-voice-message');
-        const duration = Math.max(1, Math.round((msg.content || '').length / 5));
-        const durationFormatted = `0:${String(duration).padStart(2, '0')}''`;
-        const waveformHTML = '<div></div><div></div><div></div><div></div><div></div>';
-        contentHtml = `<div class="voice-message-body" data-text="${msg.content}"><div class="voice-waveform">${waveformHTML}</div><span class="voice-duration">${durationFormatted}</span></div>`;
-    } else if (msg.type === 'transfer') {
-        bubble.classList.add('is-transfer');
-        const titleText = isUser ? '转账给Ta' : '收到一笔转账';
-        const heartIcon = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="vertical-align: middle;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>`;
-        contentHtml = `<div class="transfer-card"><div class="transfer-title">${heartIcon} ${titleText}</div><div class="transfer-amount">¥ ${Number(msg.amount).toFixed(2)}</div><div class="transfer-note">${msg.note || '对方没有留下备注哦~'}</div></div>`;
-    } else if (typeof msg.content === 'string' && STICKER_REGEX.test(msg.content)) {
-        bubble.classList.add('is-sticker');
-        contentHtml = `<img src="${msg.content}" alt="${msg.meaning || 'Sticker'}" class="sticker-image">`;
-    } else if (Array.isArray(msg.content) && msg.content[0]?.type === 'image_url') {
-        bubble.classList.add('has-image');
-        const imageUrl = msg.content[0].image_url.url;
-        contentHtml = `<img src="${imageUrl}" class="chat-image" alt="User uploaded image">`;
-    } else {
-        contentHtml = String(msg.content || '').replace(/\n/g, '<br>');
+let contentHtml;
+
+// 新增：处理带多个表情的消息（核心修改）
+if (msg.stickers && msg.stickers.length > 0) {
+    let html = '';
+    // 显示文本内容（如果有）
+    if (msg.content) {
+        html += `<div class="message-text">${msg.content.replace(/\n/g, '<br>')}</div>`;
     }
+    // 显示表情及对应的说明文字
+    html += '<div class="message-stickers">';
+    msg.stickers.forEach(sticker => {
+        html += `
+            <div class="sticker-with-caption">
+                <img src="${sticker.url}" alt="${sticker.description}" class="sticker-image">
+                <span class="sticker-caption">${sticker.description}</span>
+            </div>
+        `;
+    });
+    html += '</div>';
+    contentHtml = html;
+} 
+// 保留原有的其他消息类型处理（不变）
+else if (msg.type === 'user_photo' || msg.type === 'ai_image') {
+    bubble.classList.add('is-ai-image');
+    const altText = msg.type === 'user_photo' ? "用户描述的照片" : "AI生成的图片";
+    contentHtml = `<img src="https://i.postimg.cc/KYr2qRCK/1.jpg" class="ai-generated-image" alt="${altText}" data-description="${msg.content}">`;
+} else if (msg.type === 'voice_message') {
+    bubble.classList.add('is-voice-message');
+    const duration = Math.max(1, Math.round((msg.content || '').length / 5));
+    const durationFormatted = `0:${String(duration).padStart(2, '0')}''`;
+    const waveformHTML = '<div></div><div></div><div></div><div></div><div></div>';
+    contentHtml = `<div class="voice-message-body" data-text="${msg.content}"><div class="voice-waveform">${waveformHTML}</div><span class="voice-duration">${durationFormatted}</span></div>`;
+} else if (msg.type === 'transfer') {
+    bubble.classList.add('is-transfer');
+    const titleText = isUser ? '转账给Ta' : '收到一笔转账';
+    const heartIcon = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="vertical-align: middle;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>`;
+    contentHtml = `<div class="transfer-card"><div class="transfer-title">${heartIcon} ${titleText}</div><div class="transfer-amount">¥ ${Number(msg.amount).toFixed(2)}</div><div class="transfer-note">${msg.note || '对方没有留下备注哦~'}</div></div>`;
+} else if (typeof msg.content === 'string' && STICKER_REGEX.test(msg.content)) {
+    bubble.classList.add('is-sticker');
+    contentHtml = `<img src="${msg.content}" alt="${msg.meaning || 'Sticker'}" class="sticker-image">`;
+} else if (Array.isArray(msg.content) && msg.content[0]?.type === 'image_url') {
+    bubble.classList.add('has-image');
+    const imageUrl = msg.content[0].image_url.url;
+    contentHtml = `<img src="${imageUrl}" class="chat-image" alt="User uploaded image">`;
+} else {
+    contentHtml = String(msg.content || '').replace(/\n/g, '<br>');
+}
+
 
     bubble.innerHTML = `
         ${avatarGroupHtml}
@@ -4056,21 +4113,35 @@ ${aiVoiceInstructions}
 
 现在，请根据以上的规则和下面的对话历史，继续进行对话。`;
         messagesPayload = historySlice.map(msg => {
-            if (msg.type === 'user_photo') return { role: 'user', content: `[你收到了一张用户描述的照片，照片内容是：'${msg.content}']` };
-            if (msg.type === 'ai_image') return { role: 'assistant', content: JSON.stringify({ type: 'ai_image', description: msg.content }) };
-            if (msg.type === 'voice_message') {
-                if (msg.role === 'user') return { role: 'user', content: `[用户发来一条语音消息，内容是：'${msg.content}']` };
-                else return { role: 'assistant', content: JSON.stringify({ type: 'voice_message', content: msg.content }) };
-            }
-            if (msg.type === 'transfer') {
-                if (msg.role === 'user') return { role: 'user', content: `[你收到了来自用户的转账: ${msg.amount}元, 备注: ${msg.note}]` };
-                else return { role: 'assistant', content: JSON.stringify({ type: 'transfer', amount: msg.amount, note: msg.note }) };
-            }
-            if (msg.role === 'user' && msg.meaning) return { role: 'user', content: `[用户发送了一个表情，意思是：'${msg.meaning}']` };
-            if (typeof msg.content === 'string' || Array.isArray(msg.content)) return { role: msg.role, content: msg.content };
-            return null;
-        }).filter(Boolean);
+    // 新增：处理带多个表情的消息（核心修改）
+    if (msg.role === 'user' && msg.stickers && msg.stickers.length > 0) {
+        let stickerContent = '';
+        // 为每个表情生成AI可理解的描述
+        msg.stickers.forEach(sticker => {
+            stickerContent += `[用户发送了表情: ${sticker.description} (URL: ${sticker.url})]\n`;
+        });
+        // 如果有文本内容，拼接在表情描述前面
+        if (msg.content) {
+            stickerContent = `${msg.content}\n${stickerContent}`;
+        }
+        return { role: 'user', content: stickerContent.trim() };
     }
+
+    // 保留原有的其他消息处理（不变）
+    if (msg.type === 'user_photo') return { role: 'user', content: `[你收到了一张用户描述的照片，照片内容是：'${msg.content}']` };
+    if (msg.type === 'ai_image') return { role: 'assistant', content: JSON.stringify({ type: 'ai_image', description: msg.content }) };
+    if (msg.type === 'voice_message') {
+        if (msg.role === 'user') return { role: 'user', content: `[用户发来一条语音消息，内容是：'${msg.content}']` };
+        else return { role: 'assistant', content: JSON.stringify({ type: 'voice_message', content: msg.content }) };
+    }
+    if (msg.type === 'transfer') {
+        if (msg.role === 'user') return { role: 'user', content: `[你收到了来自用户的转账: ${msg.amount}元, 备注: ${msg.note}]` };
+        else return { role: 'assistant', content: JSON.stringify({ type: 'transfer', amount: msg.amount, note: msg.note }) };
+    }
+    if (msg.role === 'user' && msg.meaning) return { role: 'user', content: `[用户发送了一个表情，意思是：'${msg.meaning}']` };
+    if (typeof msg.content === 'string' || Array.isArray(msg.content)) return { role: msg.role, content: msg.content };
+    return null;
+}).filter(Boolean);
 
     try {
         const recentPosts = await db.qzonePosts.orderBy('timestamp').reverse().limit(5).toArray();
@@ -5302,6 +5373,62 @@ async function copyPostContent() {
     
     hidePostActions();
 }
+function parseMessageWithStickers(content) {
+    // 支持逗号、换行、分号作为分隔符
+    const contentWithSpaces = content.replace(/[,;\n]/g, ' ');
+    
+    let text = contentWithSpaces;
+    const stickers = [];
+    
+    // 1. 先匹配完整URL
+    const urlRegex = /https?:\/\/[^\s]+/g;
+    let urlMatch;
+    while ((urlMatch = urlRegex.exec(contentWithSpaces)) !== null) {
+        const url = urlMatch[0];
+        // 提取URL前后的文本作为说明
+        const beforeText = contentWithSpaces.substring(0, urlMatch.index).trim();
+        const afterText = contentWithSpaces.substring(urlRegex.lastIndex).trim();
+        
+        // 查找表情
+        const sticker = state.userStickers.find(s => s.url === url);
+        const description = beforeText || (sticker ? sticker.name : '');
+        
+        stickers.push({
+            url: url,
+            description: description
+        });
+        
+        // 更新文本（移除URL和其前面的说明）
+        text = text.replace(beforeText + ' ' + url, '').trim();
+    }
+    
+    // 2. 再匹配文件名
+    const filenameRegex = /\b\w+\.(png|jpg|jpeg|gif|webp)\b/g;
+    let filenameMatch;
+    while ((filenameMatch = filenameRegex.exec(text)) !== null) {
+        const filename = filenameMatch[0];
+        // 提取文件名前后的文本作为说明
+        const beforeText = text.substring(0, filenameMatch.index).trim();
+        
+        // 查找表情
+        const sticker = state.userStickers.find(s => s.filename === filename || s.url.includes(filename));
+        if (sticker) {
+            stickers.push({
+                url: sticker.url,
+                description: beforeText || sticker.name
+            });
+            
+            // 更新文本（移除文件名和其前面的说明）
+            text = text.replace(beforeText + ' ' + filename, '').trim();
+        }
+    }
+    
+    return {
+        text: text.trim(),
+        stickers: stickers
+    };
+}
+
 
         // ===================================================================
         // 4. 初始化函数 init()
@@ -5430,7 +5557,28 @@ state.chats[newChatId] = newGroupChat; await db.chats.put(newGroupChat); renderC
             audioPlayer.addEventListener('play', () => { if(musicState.isActive) { musicState.isPlaying = true; updatePlayerUI(); } });
 
             const chatInput = document.getElementById('chat-input');
-            document.getElementById('send-btn').addEventListener('click', async () => { const content = chatInput.value.trim(); if (!content || !state.activeChatId) return; const chat = state.chats[state.activeChatId]; const msg = { role: 'user', content, timestamp: Date.now() }; chat.history.push(msg); await db.chats.put(chat); appendMessage(msg, chat); renderChatList(); chatInput.value = ''; chatInput.style.height = 'auto'; chatInput.focus(); });
+            document.getElementById('send-btn').addEventListener('click', async () => { 
+    const content = chatInput.value.trim(); 
+    if (!content || !state.activeChatId) return; 
+    const chat = state.chats[state.activeChatId]; 
+    
+    // 使用增强版解析函数
+    const parsedContent = parseMessageWithStickers(content);
+    const msg = { 
+        role: 'user', 
+        content: parsedContent.text,  // 纯文本内容
+        stickers: parsedContent.stickers,  // 提取的表情信息
+        timestamp: Date.now() 
+    }; 
+    
+    chat.history.push(msg); 
+    await db.chats.put(chat); 
+    appendMessage(msg, chat); 
+    renderChatList(); 
+    chatInput.value = ''; 
+    chatInput.style.height = 'auto'; 
+    chatInput.focus(); 
+});
             document.getElementById('wait-reply-btn').addEventListener('click', triggerAiResponse);
             chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); document.getElementById('send-btn').click(); } });
             chatInput.addEventListener('input', () => { chatInput.style.height = 'auto'; chatInput.style.height = (chatInput.scrollHeight) + 'px'; });
@@ -5641,7 +5789,65 @@ document.getElementById('save-chat-settings-btn').addEventListener('click', asyn
             const stickerPanel = document.getElementById('sticker-panel');
             document.getElementById('open-sticker-panel-btn').addEventListener('click', () => { renderStickerPanel(); stickerPanel.classList.add('visible'); });
             document.getElementById('close-sticker-panel-btn').addEventListener('click', () => stickerPanel.classList.remove('visible'));
-            document.getElementById('add-sticker-btn').addEventListener('click', async () => { const url = await showCustomPrompt("添加表情(URL)", "请输入表情包的图片URL"); if (!url || !url.trim().startsWith('http')) return url && alert("请输入有效的URL (以http开头)"); const name = await showCustomPrompt("命名表情", "请为这个表情命名 (例如：开心、疑惑)"); if (name && name.trim()) { const newSticker = { id: 'sticker_' + Date.now(), url: url.trim(), name: name.trim() }; await db.userStickers.add(newSticker); state.userStickers.push(newSticker); renderStickerPanel(); } else if (name !== null) alert("表情名不能为空！"); });
+            document.getElementById('add-sticker-btn').addEventListener('click', async () => { 
+    const urlsText = await showCustomPrompt(
+        "批量添加表情", 
+        "请输入表情包信息，支持格式：\n1. 完整URL|表情含义（一行一个）\n2. 文件名|表情含义（一行一个）\n例如：\nhttps://files.catbox.moe/afuns1.png|来啦来啦\ndhp2gr.png|那咋了"
+    ); 
+    if (!urlsText) return;
+    
+    // 支持换行分隔
+    const lines = urlsText.split(/[\n,;]/).filter(line => line.trim() !== '');
+    if (lines.length === 0) {
+        alert("请输入有效的表情信息");
+        return;
+    }
+    
+    // 基础URL（用于补全相对路径）
+    const baseUrls = [
+        "https://files.catbox.moe/",
+        "https://i.postimg.cc/",
+        "https://i.imgur.com/"
+    ];
+    
+    let successCount = 0;
+    for (const line of lines) {
+        const [urlPart, name] = line.split('|').map(item => item.trim());
+        if (!urlPart || !name) continue;
+        
+        // 处理URL
+        let fullUrl = urlPart;
+        // 如果不是完整URL，尝试补全
+        if (!fullUrl.startsWith('http')) {
+            // 尝试匹配已知的图片主机
+            const matchedBase = baseUrls.find(base => {
+                // 检查是否有该文件的现有表情
+                return state.userStickers.some(s => s.url.startsWith(base) && s.url.includes(urlPart));
+            });
+            
+            if (matchedBase) {
+                fullUrl = matchedBase + urlPart;
+            } else {
+                // 默认使用第一个基础URL
+                fullUrl = baseUrls[0] + urlPart;
+            }
+        }
+        
+        // 添加表情
+        const newSticker = { 
+            id: 'sticker_' + Date.now() + '_' + successCount, 
+            url: fullUrl, 
+            name: name,
+            filename: urlPart // 存储文件名，用于匹配
+        }; 
+        await db.userStickers.add(newSticker); 
+        state.userStickers.push(newSticker); 
+        successCount++;
+    }
+    
+    renderStickerPanel();
+    alert(`成功添加 ${successCount} 个表情`);
+});
             document.getElementById('upload-sticker-btn').addEventListener('click', () => document.getElementById('sticker-upload-input').click());
             document.getElementById('sticker-upload-input').addEventListener('change', async (event) => { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.readAsDataURL(file); reader.onload = async () => { const base64Url = reader.result; const name = await showCustomPrompt("命名表情", "请为这个表情命名 (例如：好耶、疑惑)"); if (name && name.trim()) { const newSticker = { id: 'sticker_' + Date.now(), url: base64Url, name: name.trim() }; await db.userStickers.add(newSticker); state.userStickers.push(newSticker); renderStickerPanel(); } else if (name !== null) alert("表情名不能为空！"); }; event.target.value = null; });
 
