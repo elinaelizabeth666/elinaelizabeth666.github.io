@@ -3994,10 +3994,16 @@ async function triggerAiResponse() {
             else if (msg.type === 'transfer') content = `[${msg.senderName}向${msg.receiverName}转账 ${msg.amount}元, 备注: ${msg.note}]`;
             else if (msg.meaning) content = `${sender}: [发送了一个表情，意思是: '${msg.meaning}']`;
 // 新增：处理包含中文说明和表情包URL的消息
+            else if (msg.type === 'transfer') content = `[${msg.senderName}向${msg.receiverName}转账 ${msg.amount}元, 备注: ${msg.note}]`;
+            else if (msg.meaning) content = `${sender}: [发送了一个表情，意思是: '${msg.meaning}']`;
+// 修复后的贴纸处理逻辑
             else if (msg.stickers && msg.stickers.length > 0) {
-    // 拼接中文说明和所有表情包URL，格式为“发送者: 中文说明 [表情包1; 表情包2; ...]”
-    content = `${sender}: ${msg.content || ''} [包含表情包: ${msg.stickers.join('; ')}]`;
+    // 提取每个表情的URL作为标识
+        const stickerUrls = msg.stickers.map(sticker => sticker.url);
+    content = `${sender}: ${msg.content || ''} [包含表情包: ${stickerUrls.join('; ')}]`;
 }
+            else if (Array.isArray(msg.content)) content = [...msg.content, { type: 'text', text: `${sender}:` }];
+else content = `${sender}: ${msg.content}`;
             else if (Array.isArray(msg.content)) content = [...msg.content, { type: 'text', text: `${sender}:` }];
             else content = `${sender}: ${msg.content}`;
             return { role: 'user', content: content };
