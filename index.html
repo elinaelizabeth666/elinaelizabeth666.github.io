@@ -5468,7 +5468,7 @@ state.chats[newChatId] = newGroupChat; await db.chats.put(newGroupChat); renderC
     renderChatList(); 
     chatInput.value = ''; 
     chatInput.style.height = 'auto'; 
-    chatInput.focus(); 
+    chatInput.focus()
 });
             document.getElementById('wait-reply-btn').addEventListener('click', triggerAiResponse);
             chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); document.getElementById('send-btn').click(); } });
@@ -5720,7 +5720,7 @@ document.getElementById('save-chat-settings-btn').addEventListener('click', asyn
     }
 
     renderStickerPanel(); 
-    alert(`成功添加 ${urlList.length} 个表情！`);
+    alert(`成功添加 ${urlList.length} 个表情！`)
 });        
         const newSticker = { 
             id: 'sticker_' + Date.now() + Math.random().toString(36).substr(2, 5), 
