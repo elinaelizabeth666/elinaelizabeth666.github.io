@@ -3882,7 +3882,13 @@ function createMessageElement(msg, chat) {
     // --- 核心修改结束 ---
 
 
-    let contentHtml;
+let contentHtml;
+if (msg.stickers && msg.stickers.length > 0) { 
+// 先渲染中文说明 
+contentHtml = `<div class="text-content">${msg.content || ''}</div>`; 
+// 再渲染所有表情包 
+msg.stickers.forEach(url => { contentHtml += `<img src="${url}" alt="Sticker" class="sticker-image" style="margin: 5px 0;">`; }); } 
+else if (msg.type === 'user_photo' || msg.type === 'ai_image') { // 原有图片处理逻辑... } else if (typeof msg.content === 'string' && STICKER_REGEX.test(msg.content)) { // 原有单个表情包处理逻辑... }
     if (msg.type === 'user_photo' || msg.type === 'ai_image') {
         bubble.classList.add('is-ai-image');
         const altText = msg.type === 'user_photo' ? "用户描述的照片" : "AI生成的图片";
@@ -3904,7 +3910,7 @@ function createMessageElement(msg, chat) {
     } else if (Array.isArray(msg.content) && msg.content[0]?.type === 'image_url') {
         bubble.classList.add('has-image');
         const imageUrl = msg.content[0].image_url.url;
-        contentHtml = `<img src="${imageUrl}" class="chat-image" alt="User uploaded image">`;
+        contentHtml = `<img src="${imageUrl}" class="chat-image" alt="User uploaded 
     } else {
         contentHtml = String(msg.content || '').replace(/\n/g, '<br>');
     }
@@ -3987,6 +3993,11 @@ async function triggerAiResponse() {
             else if (msg.type === 'voice_message') content = `[${sender} 发送了一条语音，内容是：'${msg.content}']`;
             else if (msg.type === 'transfer') content = `[${msg.senderName}向${msg.receiverName}转账 ${msg.amount}元, 备注: ${msg.note}]`;
             else if (msg.meaning) content = `${sender}: [发送了一个表情，意思是: '${msg.meaning}']`;
+// 新增：处理包含中文说明和表情包URL的消息
+            else if (msg.stickers && msg.stickers.length > 0) {
+    // 拼接中文说明和所有表情包URL，格式为“发送者: 中文说明 [表情包1; 表情包2; ...]”
+    content = `${sender}: ${msg.content || ''} [包含表情包: ${msg.stickers.join('; ')}]`;
+}
             else if (Array.isArray(msg.content)) content = [...msg.content, { type: 'text', text: `${sender}:` }];
             else content = `${sender}: ${msg.content}`;
             return { role: 'user', content: content };
@@ -5430,7 +5441,7 @@ state.chats[newChatId] = newGroupChat; await db.chats.put(newGroupChat); renderC
             audioPlayer.addEventListener('play', () => { if(musicState.isActive) { musicState.isPlaying = true; updatePlayerUI(); } });
 
             const chatInput = document.getElementById('chat-input');
-            document.getElementById('send-btn').addEventListener('click', async () => { const content = chatInput.value.trim(); if (!content || !state.activeChatId) return; const chat = state.chats[state.activeChatId]; const msg = { role: 'user', content, timestamp: Date.now() }; chat.history.push(msg); await db.chats.put(chat); appendMessage(msg, chat); renderChatList(); chatInput.value = ''; chatInput.style.height = 'auto'; chatInput.focus(); });
+            document.getElementById('send-btn').addEventListener('click', async () => { const rawContent = chatInput.value.trim(); if (!rawContent || !state.activeChatId) return; // 正则匹配URL（支持http/https和常见图片格式） const urlRegex = /https?:\/\/\S+\.(png|jpg|jpeg|gif|webp)/gi; const urls = rawContent.match(urlRegex) || []; // 提取所有表情包URL const text = rawContent.replace(urlRegex, '').trim(); // 提取中文说明 const chat = state.chats[state.activeChatId]; // 构造消息对象，包含文本说明和表情包URL const msg = { role: 'user', content: text, // 中文说明 stickers: urls, // 表情包URL列表 timestamp: Date.now() }; chat.history.push(msg); await db.chats.put(chat); appendMessage(msg, chat); renderChatList(); chatInput.value = ''; chatInput.style.height = 'auto'; chatInput.focus(); });
             document.getElementById('wait-reply-btn').addEventListener('click', triggerAiResponse);
             chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); document.getElementById('send-btn').click(); } });
             chatInput.addEventListener('input', () => { chatInput.style.height = 'auto'; chatInput.style.height = (chatInput.scrollHeight) + 'px'; });
@@ -5641,7 +5652,7 @@ document.getElementById('save-chat-settings-btn').addEventListener('click', asyn
             const stickerPanel = document.getElementById('sticker-panel');
             document.getElementById('open-sticker-panel-btn').addEventListener('click', () => { renderStickerPanel(); stickerPanel.classList.add('visible'); });
             document.getElementById('close-sticker-panel-btn').addEventListener('click', () => stickerPanel.classList.remove('visible'));
-            document.getElementById('add-sticker-btn').addEventListener('click', async () => { const url = await showCustomPrompt("添加表情(URL)", "请输入表情包的图片URL"); if (!url || !url.trim().startsWith('http')) return url && alert("请输入有效的URL (以http开头)"); const name = await showCustomPrompt("命名表情", "请为这个表情命名 (例如：开心、疑惑)"); if (name && name.trim()) { const newSticker = { id: 'sticker_' + Date.now(), url: url.trim(), name: name.trim() }; await db.userStickers.add(newSticker); state.userStickers.push(newSticker); renderStickerPanel(); } else if (name !== null) alert("表情名不能为空！"); });
+            document.getElementById('add-sticker-btn').addEventListener('click', async () => { // 使用textarea让用户输入多个URL（每行一个） const urlsText = await showCustomPrompt( "批量添加表情(URL)", "请输入表情包的图片URL，每行一个", "", "textarea" // 关键：使用多行输入框 ); if (!urlsText) return; // 按换行分割URL并过滤空行 const urls = urlsText.trim().split('\n').filter(url => url.trim().startsWith('http')); if (urls.length === 0) { alert("请输入有效的URL (以http开头)"); return; } // 统一命名（或单独命名，这里简化为批量命名） const name = await showCustomPrompt("批量命名表情", "请为这批表情统一命名（例如：默认表情）"); if (!name || !name.trim()) { alert("表情名不能为空！"); return; } // 批量添加到数据库 const newStickers = urls.map((url, index) => ({ id: `sticker_${Date.now()}_${index}`, // 避免ID重复 url: url.trim(), name: `${name.trim()}_${index + 1}` // 区分序号 })); await db.userStickers.bulkAdd(newStickers); // 批量添加 state.userStickers.push(...newStickers); renderStickerPanel(); alert(`成功添加 ${newStickers.length} 个表情！`); });
             document.getElementById('upload-sticker-btn').addEventListener('click', () => document.getElementById('sticker-upload-input').click());
             document.getElementById('sticker-upload-input').addEventListener('change', async (event) => { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.readAsDataURL(file); reader.onload = async () => { const base64Url = reader.result; const name = await showCustomPrompt("命名表情", "请为这个表情命名 (例如：好耶、疑惑)"); if (name && name.trim()) { const newSticker = { id: 'sticker_' + Date.now(), url: base64Url, name: name.trim() }; await db.userStickers.add(newSticker); state.userStickers.push(newSticker); renderStickerPanel(); } else if (name !== null) alert("表情名不能为空！"); }; event.target.value = null; });
 
