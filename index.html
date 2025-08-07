@@ -5692,10 +5692,10 @@ document.getElementById('save-chat-settings-btn').addEventListener('click', asyn
     if (!urls || !urls.trim()) return;
     
     // 分割多个URL
-    const urlList = urls.split(',').map(url => url.trim()).filter(url => url.startsWith('http'));
+    const urlList = urls.split(',').map(url => url.trim()).filter(url => url.startsWith('https'));
     
     if (urlList.length === 0) {
-        alert("请输入有效的URL (以http开头)");
+        alert("请输入有效的URL (以https开头)");
         return;
     }
     
@@ -6748,4 +6748,6 @@ myFrameTab.addEventListener('click', () => {
 </script>
 </body>
 </html>
+
+
 
