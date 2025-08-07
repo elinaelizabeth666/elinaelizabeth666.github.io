@@ -9,9 +9,9 @@
         @font-face { font-family: 'bulangni'; src: url('https://files.catbx.moe/yzfk0h.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
         :root { --screen-width: 350px; --screen-height: 650px; --secondary-bg: #ffffff; --border-color: #e0e0e0; --text-primary: #1f1f1f; --text-secondary: #8a8a8a; --accent-color: #007bff; }
         html { height: 100%; overflow: hidden; }
- 
+
 /* ▼▼▼ 请用下面这【一整块】全新的代码，替换掉所有旧的 body, phone-frame, phone-screen 等样式 ▼▼▼ */
- 
+
 /* 1. 重置 body，使其成为一个干净的画布 */
 body {
     height: 100%;
@@ -22,7 +22,7 @@ body {
     /* 背景色可以根据喜好设定，这里用一个柔和的颜色 */
     background-color: #f0f2f5; 
 }
- 
+
 /* 2. 让 #phone-screen 成为新的“根”容器，撑满整个浏览器窗口 */
 #phone-screen {
     width: 100%;
@@ -33,34 +33,34 @@ body {
     flex-direction: column;
     background-color: #000; /* 保留一个默认的黑色背景 */
 }
- 
+
 /* 3. 【核心】隐藏掉模拟器的状态栏 */
 #status-bar {
     display: none;
 }
- 
+
 /* 4. 【核心】让所有页面的头部自动适应iPhone的“刘海”安全区 */
 .header, .qzone-header {
     /* 使用 env(safe-area-inset-top) 自动获取顶部安全距离 */
     padding-top: calc(15px + env(safe-area-inset-top));
 }
- 
+
 /* 5. 【核心】让聊天输入框和底部导航栏自动适应iPhone底部的“小黑条”安全区 */
 #chat-input-area {
     padding-bottom: calc(8px + env(safe-area-inset-bottom));
 }
- 
+
 #chat-list-bottom-nav {
      padding-bottom: env(safe-area-inset-bottom);
 }
- 
+
 /* 6. 修正模态框的 z-index，确保它在最顶层 */
 .modal {
     z-index: 1000; /* 提高 z-index 以确保它覆盖所有内容 */
 }
- 
+
 /* ▲▲▲ 替换结束 ▲▲▲ */
- 
+
         #status-bar { position: absolute; top: 0; left: 0; width: 100%; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; color: white; z-index: 10; font-size: 14px; box-sizing: border-box; pointer-events: none; }
         #status-bar-time { font-weight: 600; }
         .battery-container { display: flex; align-items: center; gap: 5px; }
@@ -70,19 +70,19 @@ body {
         .battery-container.charging .battery-level { background-color: #4cd964; animation: charge-breath 2s infinite; }
         .battery-container.charging .battery-text { color: #4cd964; }
         @keyframes charge-breath { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
- 
+
         @keyframes charge-breath { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
         .screen { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; flex-direction: column; overflow: hidden; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
         .screen.active { opacity: 1; visibility: visible; z-index: 1; }
         .header { position: relative; z-index: 15; flex-shrink: 0; padding: 15px 20px; padding-top: 45px; background-color: rgba(247, 247, 247, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-size: 18px; font-weight: 600; }
         .header .header-actions { display: flex; align-items: center; gap: 15px; }
         .header .back-btn, .header .action-btn { font-size: 24px; cursor: pointer; width: 30px; text-align: center; color: var(--accent-color); display: flex; align-items: center; justify-content: center; }
- 
+
 .header .action-btn {
     font-size: 16px; /* 专门为“上传”、“+”等文字按钮缩小字号 */
     font-weight: 600; /* 可以加粗一点让它更清晰 */
 }
- 
+
         .header .action-btn img { height: 26px; }
         .header .save-btn { font-size: 16px; color: var(--accent-color); font-weight: 600; cursor: pointer; }
         #home-screen { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 20px; padding-top: 80px; padding-bottom: 50px; box-sizing: border-box; background-size: cover; background-position: center; }
@@ -115,7 +115,7 @@ body {
     padding-top: 80px;
     margin-top: -80px;
 }
- 
+
 /* 修改后的 #chat-list 样式，去掉了 padding 和 margin */
 #chat-list {
     flex-grow: 1;
@@ -124,7 +124,7 @@ body {
     padding-bottom: 50px; /* 为底部导航栏留出空间 */
     box-sizing: border-box;
 }
- 
+
         .list-item { display: flex; flex-direction: column; padding: 12px 20px; cursor: pointer; border-bottom: 1px solid var(--border-color); }
         .list-item:hover { background-color: #f5f5f5; }
         .list-item .item-title { font-weight: 500; font-size: 16px; margin-bottom: 5px; }
@@ -156,12 +156,12 @@ body {
 /* ▲▲▲ 替换结束 ▲▲▲ */
         #load-more-btn { text-align: center; padding: 10px; color: var(--accent-color); font-size: 14px; cursor: pointer; background-color: transparent; border: none; width: 100%; }
         #load-more-btn:hover { text-decoration: underline; }
- 
+
         .sender-name { font-size: 11px; color: #666; margin-bottom: 3px; }
         .message-wrapper.ai .sender-name { margin-left: 60px; }
- 
+
 /* ▼▼▼ 请用下面这整块代码，替换掉所有旧的 message-wrapper 和 message-bubble 相关样式 ▼▼▼ */
- 
+
 /* 消息单元的总容器 */
 .message-wrapper {
     display: flex; /* 关键：使其成为Flex容器，这样内部的对齐才会生效 */
@@ -170,19 +170,19 @@ body {
     margin-bottom: 18px;
     max-width: 85%; /* 核心：限制消息单元最大宽度，确保边缘总有空间 */
 }
- 
+
 /* AI消息单元靠左 */
 .message-wrapper.ai {
     align-self: flex-start; /* 让整个单元在聊天界面中靠左 */
     align-items: flex-start; /* 让单元内的元素（如气泡）也靠左 */
 }
- 
+
 /* 用户消息单元靠右 */
 .message-wrapper.user {
     align-self: flex-end; /* 让整个单元在聊天界面中靠右 */
     align-items: flex-end; /* 让单元内的元素（如气泡）也靠右 */
 }
- 
+
 /* 气泡和头像的直接容器 */
 .message-bubble {
     display: flex;
@@ -190,14 +190,14 @@ body {
     gap: 12px; /* 确保头像和气泡之间有舒适的间距 */
     max-width: 100%; /* 气泡宽度不能超过其父容器(message-wrapper) */
 }
- 
+
 /* ▲▲▲ 替换结束 ▲▲▲ */
- 
+
         .message-bubble.selected::after { content: '✔'; position: absolute; left: -10px; top: 50%; transform: translateY(-50%); background-color: var(--accent-color); color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; }
         .message-bubble.user.selected::after { left: auto; right: -10px; }
- 
+
 /* ▼▼▼ 用下面这两条新规则，完整替换掉上面那一条 ▼▼▼ */
- 
+
 /* 默认时间戳样式 (用于对方/AI) */
 .message-bubble.ai + .timestamp {
     position: absolute;
@@ -207,7 +207,7 @@ body {
     color: #888;
     text-shadow: 0 0 3px rgba(255,255,255,0.6);
 }
- 
+
 /* 用户的时间戳样式 */
 .message-bubble.user + .timestamp {
     position: absolute;
@@ -217,9 +217,9 @@ body {
     color: #888;
     text-shadow: 0 0 3px rgba(255,255,255,0.6);
 }
- 
+
 /* ▲▲▲ 替换结束 ▲▲▲ */
- 
+
         .message-bubble.user { flex-direction: row-reverse; }
         #typing-indicator { align-self: flex-start; display: none; margin: 0 10px 10px; color: var(--text-secondary); }
         #chat-input-area { flex-shrink: 0; padding: 8px; background-color: rgba(247, 247, 247, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 5px; }
@@ -299,7 +299,7 @@ body {
         .select-box .selected-options-text { flex-grow: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
         .select-box .arrow-down { margin-left: auto; font-size: 10px; color: var(--text-secondary); transition: transform 0.2s; }
         .select-box.expanded .arrow-down { transform: rotate(180deg); }
- 
+
 .checkboxes-container {
     display: none;
     position: absolute;
@@ -316,10 +316,10 @@ body {
     z-index: 101;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
- 
+
         .checkboxes-container.visible { display: block; }
         .checkboxes-container label { display: block; padding: 10px 12px; cursor: pointer; font-weight: normal; color: var(--text-primary); }
- 
+
 .checkboxes-container label {
     display: block;
     padding: 12px 15px; /* <-- 修改：增加了上下和左右的内边距，让每一行更高更宽 */
@@ -328,7 +328,7 @@ body {
     color: var(--text-primary);
     font-size: 15px; /* <-- 新增：将字体大小从默认值放大到15px */
 }
- 
+
         .checkboxes-container input { margin-right: 10px; vertical-align: middle; }
         .bg-upload-container { display: flex; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
         .bg-preview-img { max-width: 120px; max-height: 80px; border-radius: 8px; border: 1px solid var(--border-color); object-fit: cover; display: none; }
@@ -351,7 +351,7 @@ body {
     color: var(--text-secondary);
 }
         .message-bubble.user .voice-duration { color: #3e6224; }
- 
+
 /* ▼▼▼ 用这块代码替换掉你原来的 .message-bubble .content 样式 ▼▼▼ */
 /* 通用内容区样式，为时间戳和字体大小做准备 */
 .message-bubble .content {
@@ -362,7 +362,7 @@ body {
     word-break: break-word; /* 核心修正: 强制长单词或URL换行，防止撑破气泡 */
 }
 /* ▲▲▲ 替换结束 ▲▲▲ */
- 
+
         /* === 气泡主题样式 === */
         .message-bubble.user .content { background-color: rgba(255, 255, 255, 0.75); color: #585858; border-radius: 8px 2px 8px 8px; }
         .message-bubble.ai .content { background-color: rgba(255, 255, 255, 0.7); color: #585858; border-radius: 2px 8px 8px 8px; }
@@ -408,7 +408,7 @@ body {
         #chat-messages[data-theme="pink_green"] .message-bubble.ai .content { background-color: #C8E6C9; color: #1B5E20; }
         #chat-messages[data-theme="green_black"] .message-bubble.user .content { background-color: #d4edda; color: #155724; }
         #chat-messages[data-theme="green_black"] .message-bubble.ai .content { background-color: #343a40; color: #f8f9fa; }
- 
+
         #transfer-btn { font-weight: bold; }
         #transfer-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1001; }
         #transfer-modal.visible { display: flex; }
@@ -461,7 +461,7 @@ body {
         .playlist-item-info .title { font-weight: 500; font-size: 15px; }
         .playlist-item-info .artist { font-size: 12px; color: #666; }
         .playlist-item .delete-track-btn { color: #ff3b30; font-size: 20px; padding: 5px; }
- 
+
         /* Persona Library Styles */
         #persona-library-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 10px; }
         .persona-preset-item { aspect-ratio: 1 / 1; border-radius: 12px; background-size: cover; background-position: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid rgba(0,0,0,0.1); }
@@ -475,7 +475,7 @@ body {
         #battery-alert-modal.visible .battery-alert-content { transform: scale(1); }
         #battery-alert-image { max-width: 100px; max-height: 100px; margin-bottom: 15px; }
         #battery-alert-text { font-size: 16px; font-weight: 500; color: #333; margin: 0; line-height: 1.4; }
- 
+
 /* === 头像框选择模态框样式 (这是新添加的) === */
 .change-frame-btn {
     padding: 6px 10px;
@@ -486,11 +486,11 @@ body {
     font-size: 13px;
     margin-left: 10px;
 }
- 
+
 #avatar-frame-modal .modal-content {
     height: 70%; /* 让窗口高一点 */
 }
- 
+
 #avatar-frame-modal .modal-body {
     padding: 0;
     display: flex;
@@ -502,7 +502,7 @@ body {
     border-bottom: 1px solid var(--border-color);
     flex-shrink: 0;
 }
- 
+
 .frame-tab {
     flex: 1;
     padding: 12px;
@@ -512,24 +512,24 @@ body {
     color: var(--text-secondary);
     border-bottom: 2px solid transparent;
 }
- 
+
 .frame-tab.active {
     color: var(--accent-color);
     border-bottom-color: var(--accent-color);
 }
- 
+
 .frame-content {
     flex-grow: 1;
     overflow-y: auto;
     padding: 15px;
 }
- 
+
 .frame-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); /* 每行自动填充，最小70px宽 */
     gap: 15px;
 }
- 
+
 .frame-item {
     aspect-ratio: 1 / 1; /* 保持正方形 */
     border: 2px solid transparent;
@@ -542,19 +542,19 @@ body {
     transition: all 0.2s ease;
     position: relative; /* 为预览图做准备 */
 }
- 
+
 .frame-item.selected {
     border-color: var(--accent-color);
     transform: scale(1.05);
 }
- 
+
 .frame-item .preview-avatar {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
 }
- 
+
 .frame-item .preview-frame {
     position: absolute;
     top: -7px;
@@ -562,15 +562,15 @@ body {
     width: 100%;
     height: 100%;
 }
- 
+
 /* 这是你要添加的新样式 */
 #font-preview {
     transition: font-family 0.3s ease;}
- 
+
 /* === 聊天列表界面新增样式 (这是新添加的) === */
 #chat-list-screen {
 }
- 
+
 .chat-list-view {
     position: absolute;
     top: 0;
@@ -589,11 +589,11 @@ body {
     visibility: visible;
     z-index: 2; 
 }
- 
+
 #messages-view {
     overflow-y: auto; 
 }
- 
+
 /* 底部导航栏样式 */
 #chat-list-bottom-nav {
     position: absolute; /* 让它固定在底部 */
@@ -607,7 +607,7 @@ body {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
- 
+
 .nav-item {
     flex: 1;
     text-align: center;
@@ -617,17 +617,17 @@ body {
     cursor: pointer;
     transition: color 0.2s;
 }
- 
+
 .nav-item.active {
     color: var(--accent-color);
     font-weight: 600;
 }
- 
+
 /* === 动态界面 (QZone) 样式 (这是新添加的) === */
 #qzone-screen {
     background-color: #f0f2f5;
 }
- 
+
 .qzone-header {
     /* position: absolute;  <-- 把这个改成 relative */
     position: relative;
@@ -646,42 +646,42 @@ body {
     font-weight: 600;
     text-align: center;
 }
- 
+
 .qzone-header .back-btn {
     font-size: 24px;
     cursor: pointer;
     color: var(--accent-color);
 }
- 
+
 .qzone-header span:nth-child(2) { /* "好友动态"文字 */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
- 
+
 .qzone-content {
     flex-grow: 1;
     overflow-y: auto;
     /* padding-top: 80px;  <-- 删除这个，因为header不再是absolute了 */
 }
- 
+
 .qzone-profile-header {
     position: relative;
     margin-bottom: 20px;
 }
- 
+
 .qzone-banner-container {
     width: 100%;
     height: 180px; /* 背景板高度 */
     position: relative;
 }
- 
+
 #qzone-banner-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
- 
+
 .qzone-user-info {
     position: absolute;
     bottom: -30px; /* 让头像和昵称区域向下偏移，一半在背景板内，一半在外 */
@@ -690,11 +690,11 @@ body {
     align-items: flex-end; /* 让昵称和头像底部对齐 */
     gap: 10px;
 }
- 
+
 .qzone-avatar-container {
     position: relative;
 }
- 
+
 #qzone-avatar-img {
     width: 70px;
     height: 70px;
@@ -703,7 +703,7 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     object-fit: cover;
 }
- 
+
 #qzone-nickname {
     font-size: 18px;
     font-weight: 600;
@@ -711,7 +711,7 @@ body {
     text-shadow: 0 1px 3px rgba(0,0,0,0.5);
     padding-bottom: 5px; /* 微调位置 */
 }
- 
+
 /* 编辑按钮的通用样式 */
 .qzone-edit-btn {
     position: absolute;
@@ -725,17 +725,17 @@ body {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
 }
- 
+
 #change-qzone-banner-btn {
     bottom: 10px;
     right: 10px;
 }
- 
+
 #change-qzone-avatar-btn {
     bottom: 5px;
     right: 5px;
 }
- 
+
 #change-qzone-nickname-btn {
     font-size: 14px;
     padding: 2px 6px;
@@ -746,7 +746,7 @@ body {
     position: relative; /* 脱离flex布局的对齐 */
     bottom: 5px; /* 微调垂直位置 */
 }
- 
+
 /* === 让编辑功能更“隐形” === */
 #qzone-banner-container,
 #qzone-avatar-container,
@@ -763,7 +763,7 @@ body {
 .qzone-edit-btn {
     display: none;
 }
- 
+
 /* === 控制 Header 和 Bottom Nav 的显隐 === */
 /* 默认隐藏动态界面的 Header */
 #qzone-screen .qzone-header {
@@ -773,22 +773,22 @@ body {
 #qzone-screen.active .qzone-header {
     display: flex;
 }
- 
+
 /* 当进入动态视图时，隐藏主Header和底部导航栏 */
 #chat-list-screen.in-qzone-view > .header,
 #chat-list-screen.in-qzone-view > #chat-list-bottom-nav {
     display: none;
 }
- 
+
 .chat-list-item:first-child,
 .chat-group-container:first-child {
     margin-top: 10px; 
 }
- 
+
 /* ▲▲▲ 新样式替换结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 把所有这些新样式粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* === 动态功能栏样式 === */
 .qzone-actions-bar {
     display: flex;
@@ -799,7 +799,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
- 
+
 .action-item {
     flex: 1;
     text-align: center;
@@ -810,7 +810,7 @@ body {
     padding: 8px 0;
     position: relative;
 }
- 
+
 /* 用伪元素创建分隔线 */
 .action-item:not(:last-child)::after {
     content: '';
@@ -822,7 +822,7 @@ body {
     height: 20px;
     background-color: var(--border-color);
 }
- 
+
 /* === 动态帖子列表样式 === */
 #qzone-posts-list {
     padding: 0 15px 20px 15px; /* 左右和底部留出边距 */
@@ -830,44 +830,44 @@ body {
     flex-direction: column;
     gap: 20px; /* 帖子之间的间距 */
 }
- 
+
 .qzone-post-item {
     background-color: var(--secondary-bg);
     border-radius: 12px;
     padding: 15px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
- 
+
 .post-header {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 12px;
 }
- 
+
 .post-header .post-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
 }
- 
+
 .post-info {
     display: flex;
     flex-direction: column;
 }
- 
+
 .post-info .post-nickname {
     font-weight: 600;
     font-size: 15px;
     color: var(--text-primary);
 }
- 
+
 .post-info .post-timestamp {
     font-size: 12px;
     color: var(--text-secondary);
 }
- 
+
 .post-content {
     font-size: 14px;
     line-height: 1.6;
@@ -875,17 +875,17 @@ body {
     white-space: pre-wrap; /* 让换行符生效 */
     word-break: break-word; /* 防止长单词溢出 */
 }
- 
+
 /* ▲▲▲ 新样式结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 新样式粘贴到末尾 ▼▼▼ */
- 
+
 /* === 发布动态模态框样式 === */
 #post-public-text {
     min-height: 80px; /* 确保文本域有足够的高度 */
     resize: vertical;
 }
- 
+
 .post-image-preview-container {
     position: relative;
     width: 100%;
@@ -901,14 +901,14 @@ body {
 .post-image-preview-container.visible {
     display: flex; /* 上传后显示 */
 }
- 
+
 #post-image-preview {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
     border-radius: 6px;
 }
- 
+
 #post-remove-image-btn {
     position: absolute;
     top: -10px;
@@ -925,21 +925,21 @@ body {
     cursor: pointer;
     box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
- 
+
 .post-image-upload-options {
     display: flex;
     gap: 10px;
 }
- 
+
 .post-image-upload-options button {
     flex: 1;
     margin-top: 0;
 }
- 
+
 /* ▲▲▲ 新样式结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 新样式 ▼▼▼ */
- 
+
 /* === 发布动态模态框 - 模式切换样式 === */
 .post-mode-switcher {
     display: flex;
@@ -948,7 +948,7 @@ body {
     border-radius: 8px;
     padding: 4px;
 }
- 
+
 .mode-btn {
     flex: 1;
     padding: 8px;
@@ -961,32 +961,32 @@ body {
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
- 
+
 .mode-btn.active {
     background-color: var(--secondary-bg);
     color: var(--text-primary);
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
- 
+
 .post-mode-content {
     display: none; /* 默认都隐藏 */
 }
- 
+
 .post-mode-content.active {
     display: block; /* 激活的才显示 */
 }
- 
+
 /* ▲▲▲ 新样式结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这些新样式粘贴到标签的末尾 ▼▼▼ */
- 
+
 /* 帖子的父容器，这是实现滑动的基础 */
 .qzone-post-container {
     position: relative;
     overflow: hidden; /* 关键：隐藏掉滑出屏幕外的删除按钮 */
     border-radius: 12px; /* 和 post-item 保持一致 */
 }
- 
+
 /* 让帖子本身可以被 JS 控制移动 */
 .qzone-post-item {
     position: relative; /* 确保它在最上层 */
@@ -994,7 +994,7 @@ body {
     transition: transform 0.3s ease; /* 用于“弹回”和“吸附”的动画 */
     background-color: var(--secondary-bg); /* 背景色移到这里 */
 }
- 
+
 /* 隐藏在帖子下面的删除按钮区域 */
 .qzone-post-delete-action {
     position: absolute;
@@ -1009,22 +1009,22 @@ body {
     z-index: 1; /* 在帖子下面 */
     cursor: pointer;
 }
- 
+
 .qzone-post-delete-action span {
     color: white;
     font-weight: 500;
 }
- 
+
 /* 当帖子被滑开时的样式 */
 .qzone-post-item.swiped {
     transform: translateX(-80px); /* 向左移动删除按钮的宽度 */
 }
- 
+
 /* === 相册页面背景色 === */
 #album-screen {
     background-color: #f0f2f5; /* 使用一个柔和的浅灰色，比纯白更护眼 */
 }
- 
+
 /* === 相册页面网格布局 === */
 #album-grid-page {
     padding: 15px;
@@ -1032,7 +1032,7 @@ body {
     grid-template-columns: repeat(2, 1fr); /* 每行显示2个相册 */
     gap: 15px;
 }
- 
+
 /* === 相册项目样式 (美化) === */
 .album-item {
     display: flex;
@@ -1041,12 +1041,12 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     border-radius: 8px; /* 给整个项目也加个圆角 */
 }
- 
+
 .album-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
- 
+
 .album-cover {
     aspect-ratio: 1 / 1; /* 保持封面为正方形 */
     background-size: cover;
@@ -1055,11 +1055,11 @@ body {
     margin-bottom: 8px;
     background-color: #f0f2f5; /* 封面加载前的占位颜色 */
 }
- 
+
 .album-info {
     text-align: center;
 }
- 
+
 .album-name {
     font-weight: 500;
     margin: 0 0 4px 0;
@@ -1068,22 +1068,22 @@ body {
     overflow: hidden;
     text-overflow: ellipsis; /* 防止长名字换行 */
 }
- 
+
 .album-count {
     font-size: 12px;
     color: var(--text-secondary);
     margin: 0;
 }
- 
+
 /* ▲▲▲ 新的 CSS 粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这些新样式粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* === 相册照片详情页 === */
 #album-photos-screen {
     background-color: #f0f2f5;
 }
- 
+
 #photos-grid-page {
     padding: 15px;
     display: grid;
@@ -1091,7 +1091,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 }
- 
+
 .photo-item {
     position: relative; /* 为了定位删除按钮 */
     aspect-ratio: 1 / 1; /* 保持照片为正方形 */
@@ -1099,14 +1099,14 @@ body {
     overflow: hidden; /* 防止图片溢出圆角 */
     background-color: #e9ecef; /* 图片加载前的占位符颜色 */
 }
- 
+
 .photo-item .photo-thumb {
     width: 100%;
     height: 100%;
     object-fit: cover; /* 保证图片填满容器且不变形 */
     cursor: pointer;
 }
- 
+
 /* 删除按钮的样式 */
 .photo-item .photo-delete-btn {
     position: absolute;
@@ -1125,14 +1125,14 @@ body {
     opacity: 0; /* 默认隐藏 */
     transition: opacity 0.2s ease;
 }
- 
+
 /* 鼠标悬停在照片上时显示删除按钮 */
 .photo-item:hover .photo-delete-btn {
     opacity: 1;
 }
- 
+
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
- 
+
 /* === 图片查看器模态框样式 === */
 #photo-viewer-modal {
     background-color: rgba(0, 0, 0, 0.85);
@@ -1140,7 +1140,7 @@ body {
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
 }
- 
+
 .photo-viewer-content {
     display: flex;
     justify-content: center;
@@ -1148,7 +1148,7 @@ body {
     width: 100%;
     height: 100%;
 }
- 
+
 #photo-viewer-image {
     max-width: 90vw;  /* 图片最大宽度为视口的90% */
     max-height: 85vh; /* 图片最大高度为视口的85% */
@@ -1158,7 +1158,7 @@ body {
     /* 为图片的切换添加一点平滑的淡入淡出效果 */
     transition: opacity 0.2s ease-in-out;
 }
- 
+
 /* 关闭按钮 */
 #photo-viewer-close-btn {
     position: absolute;
@@ -1173,7 +1173,7 @@ body {
     line-height: 1;
     text-shadow: 0 0 5px black;
 }
- 
+
 /* 左右导航箭头 */
 #photo-viewer-modal .nav-arrow {
     position: absolute; /* 现在我们用绝对定位来控制箭头 */
@@ -1190,37 +1190,37 @@ body {
     transition: color 0.2s;
     z-index: 1003; /* 确保箭头在最上层 */
 }
- 
+
 #photo-viewer-prev-btn {
     left: 5px; /* 定位左箭头 */
 }
- 
+
 #photo-viewer-next-btn {
     right: 5px; /* 定位右箭头 */
 }
- 
+
 #photo-viewer-modal .nav-arrow:hover {
     color: white;
 }
- 
+
 /* 当箭头被禁用时（比如第一张或最后一张） */
 #photo-viewer-modal .nav-arrow:disabled {
     color: rgba(255, 255, 255, 0.2);
     cursor: default;
 }
- 
+
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这些新样式粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* ▼▼▼ 请用这块新CSS替换掉上一版的交互区CSS ▼▼▼ */
- 
+
 /* === 帖子内容区 - 相对定位容器 === */
 /* === 帖子内容区 === */
 .post-main-content {
     /* 它现在只是一个普通的内容容器，不再需要特殊样式了 */
 }
- 
+
 /* === 帖子互动图标区 (新样式) === */
 .post-feedback-icons {
     display: flex;
@@ -1229,13 +1229,13 @@ body {
     gap: 12px;
     padding: 8px 0; /* 核心修改：给图标区域上下各8px的留白 */
 }
- 
+
 .action-icon {
     cursor: pointer;
     color: var(--text-secondary); /* 默认灰色 */
     transition: all 0.2s ease-in-out;
 }
- 
+
 .action-icon svg {
     width: 22px;
     height: 22px;
@@ -1245,26 +1245,26 @@ body {
     stroke-linecap: round;
     stroke-linejoin: round;
 }
- 
+
 /* 图标激活(点赞/收藏后)的样式 */
 .action-icon.active {
     color: #ff5252; /* 激活后变红色 */
     transform: scale(1.1); /* 轻微放大 */
 }
- 
+
 .action-icon.active.favorite {
     color: #ffc107; /* 收藏用黄色 */
 }
- 
+
 .action-icon.active svg {
     fill: currentColor; /* 激活后填充颜色 */
 }
- 
+
 /* 点击时的动画效果 */
 .animate-like {
     animation: like-bounce 0.4s ease-in-out;
 }
- 
+
 @keyframes like-bounce {
     0%   { transform: scale(1); }
     25%  { transform: scale(0.8); }
@@ -1272,8 +1272,8 @@ body {
     75%  { transform: scale(1.05); }
     100% { transform: scale(1.1); }
 }
- 
- 
+
+
 /* === 帖子底部评论区样式 (现在是独立部分) === */
 .post-footer {
     margin-top: 15px;
@@ -1283,7 +1283,7 @@ body {
     align-items: center;
     gap: 8px; /* 调整整体间距 */
 }
- 
+
 /* 评论区容器 */
 .comment-section {
     flex-grow: 1; /* 占据大部分空间 */
@@ -1291,7 +1291,7 @@ body {
     align-items: center;
     gap: 8px;
 }
- 
+
 .comment-section .comment-avatar {
     width: 28px;
     height: 28px;
@@ -1299,7 +1299,7 @@ body {
     object-fit: cover;
     flex-shrink: 0;
 }
- 
+
 .comment-section .comment-input {
     width: 100%;
     padding: 8px 12px;
@@ -1309,7 +1309,7 @@ body {
     font-size: 13px;
     outline: none;
 }
- 
+
 /* 新增的发送按钮样式 */
 .comment-send-btn {
     flex-shrink: 0; /* 防止被压缩 */
@@ -1322,11 +1322,11 @@ body {
     font-weight: 500;
     cursor: pointer;
 }
- 
+
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这段新样式粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* === 未读消息小红点通用样式 === */
 .unread-indicator {
     position: absolute;
@@ -1346,7 +1346,7 @@ body {
     display: none;
     z-index: 1;
 }
- 
+
 /* 聊天界面返回按钮上的小红点 (只显示点，不显示数字) */
 .back-btn-indicator {
     top: 0;
@@ -1357,11 +1357,11 @@ body {
     padding: 0;
     border-radius: 50%;
 }
- 
+
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这段新样式粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* === 评论列表容器 === */
 .post-comments-container {
     padding: 10px 0; /* 上下留白 */
@@ -1370,12 +1370,12 @@ body {
     gap: 8px; /* 评论之间的间距 */
     font-size: 13px; /* 统一评论区字体大小 */
 }
- 
+
 /* 每一条评论 */
 .comment-item {
     line-height: 1.5;
 }
- 
+
 /* 评论者的名字，加粗并使用主题色 */
 .comment-item .commenter-name {
     font-weight: 600;
@@ -1383,16 +1383,16 @@ body {
     cursor: pointer;
     margin-right: 5px; /* 和评论内容之间留点空隙 */
 }
- 
+
 /* 评论内容 */
 .comment-item .comment-text {
     color: var(--text-primary);
     word-break: break-word;
 }
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这段新样式粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* === 帖子点赞区域样式 === */
 .post-likes-section {
     display: flex;
@@ -1406,18 +1406,18 @@ body {
     border-bottom: 1px solid #e9eef3;
     margin-top: 5px; /* 和上方的图标保持一点距离 */
 }
- 
+
 .post-likes-section .like-icon {
     width: 16px;
     height: 16px;
     fill: currentColor; /* 让SVG图标继承父元素的颜色 */
     flex-shrink: 0; /* 防止图标被压缩 */
 }
- 
+
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这段新样式粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* === @提及 弹出菜单样式 === */
 .at-mention-popup {
     position: absolute; /* 相对于父元素定位 */
@@ -1433,7 +1433,7 @@ body {
     z-index: 10;
     display: none; /* 默认隐藏 */
 }
- 
+
 .at-mention-item {
     padding: 8px 12px;
     font-size: 14px;
@@ -1441,31 +1441,31 @@ body {
     color: var(--text-primary);
     border-bottom: 1px solid #f0f0f0;
 }
- 
+
 .at-mention-item:last-child {
     border-bottom: none;
 }
- 
+
 .at-mention-item:hover {
     background-color: #f5f5f5;
 }
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这段新样式粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* ▼▼▼ 请用下面这段【新样式】替换掉你现有的 #favorites-list 样式 ▼▼▼ */
- 
+
 /* 让收藏视图成为一个flex容器, 从上到下排列 */
 #favorites-view {
     display: flex;
     flex-direction: column;
 }
- 
+
 /* 确保收藏页的header高度固定，不被压缩 */
 #favorites-view > .header {
     flex-shrink: 0;
 }
- 
+
 /* === 收藏列表样式 (修正后) === */
 #favorites-list {
     flex-grow: 1; 
@@ -1476,9 +1476,9 @@ body {
     flex-direction: column;
     gap: 15px; 
 }
- 
+
 /* ▲▲▲ 替换结束 ▲▲▲ */
- 
+
 .favorite-item-card {
     background-color: var(--secondary-bg);
     border-radius: 12px;
@@ -1486,7 +1486,7 @@ body {
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     position: relative; /* 为了定位删除按钮 */
 }
- 
+
 /* 卡片头部，包含头像、名字和来源 */
 .fav-card-header {
     display: flex;
@@ -1494,28 +1494,28 @@ body {
     gap: 10px;
     margin-bottom: 12px;
 }
- 
+
 .fav-card-header .avatar {
     width: 36px;
     height: 36px;
     border-radius: 50%;
     object-fit: cover;
 }
- 
+
 .fav-card-header .info {
     flex-grow: 1;
 }
- 
+
 .fav-card-header .name {
     font-weight: 600;
     font-size: 15px;
 }
- 
+
 .fav-card-header .source {
     font-size: 12px;
     color: var(--text-secondary);
 }
- 
+
 /* 卡片内容 */
 .fav-card-content {
     font-size: 14px;
@@ -1524,11 +1524,11 @@ body {
     white-space: pre-wrap;
     word-break: break-word;
 }
- 
+
 .fav-card-content .chat-image {
     margin-top: 8px; /* 图片和文字的间距 */
 }
- 
+
 /* 删除按钮 */
 .fav-delete-btn {
     position: absolute;
@@ -1545,16 +1545,16 @@ body {
     line-height: 28px;
     text-align: center;
 }
- 
+
 .fav-delete-btn:hover {
     background-color: #e9ecef;
     color: #ff3b30;
 }
- 
+
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这段新样式粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* === 搜索栏样式 === */
 .search-bar-container {
     padding: 10px 15px;
@@ -1562,7 +1562,7 @@ body {
     position: relative; /* 为了定位清除按钮 */
     flex-shrink: 0;
 }
- 
+
 #favorites-search-input {
     width: 100%;
     padding: 10px 30px 10px 15px; /* 右侧留出清除按钮的位置 */
@@ -1576,7 +1576,7 @@ body {
 #favorites-search-input:focus {
     border-color: var(--accent-color);
 }
- 
+
 .search-clear-btn {
     position: absolute;
     right: 25px;
@@ -1593,9 +1593,9 @@ body {
     font-size: 16px;
     cursor: pointer;
 }
- 
+
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
- 
+
 /* === 聊天界面多选操作栏优化 === */
 #chat-interface-screen .header .selection-controls {
     display: flex;
@@ -1603,19 +1603,19 @@ body {
     align-items: center;
     width: 100%;
 }
- 
+
 #chat-interface-screen .selection-controls .action-btn {
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     padding: 5px;
 }
- 
+
 /* === 收藏页面多选模式样式 === */
 #favorites-view.selection-mode .favorite-item-card {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
- 
+
 /* 选择框的样式 */
 .favorite-item-card::before {
     content: '';
@@ -1631,7 +1631,7 @@ body {
     transition: all 0.2s ease;
     opacity: 0; /* 默认隐藏 */
 }
- 
+
 /* 进入选择模式时，卡片向右移动，露出选择框 */
 #favorites-view.selection-mode .favorite-item-card {
     transform: translateX(35px);
@@ -1639,7 +1639,7 @@ body {
 #favorites-view.selection-mode .favorite-item-card::before {
     opacity: 1;
 }
- 
+
 /* 选中后的样式 */
 #favorites-view.selection-mode .favorite-item-card.selected::before {
     background-color: var(--accent-color);
@@ -1650,7 +1650,7 @@ body {
     text-align: center;
     line-height: 20px;
 }
- 
+
 /* 底部操作栏 (终极修正版) */
 #favorites-action-bar {
     position: absolute; /* ★ 改为 absolute，相对于 #phone-screen 定位 */
@@ -1669,7 +1669,7 @@ body {
     display: none;
     /* max-width 已经不需要了，因为父元素已经限制了宽度 */
 }
- 
+
 #favorites-action-bar .action-bar-btn {
     width: 100%;
     padding: 12px;
@@ -1681,14 +1681,14 @@ body {
     background-color: #ff3b30;
     color: white;
 }
- 
+
 /* === 【修正】聊天界面头部控件切换逻辑 === */
- 
+
 /* 默认状态：隐藏多选控件 */
 #chat-interface-screen .header .selection-controls {
     display: none;
 }
- 
+
 /* 默认状态：显示默认控件，并让它撑满整个头部 */
 #chat-interface-screen .header .default-controls {
     display: flex;
@@ -1696,12 +1696,12 @@ body {
     align-items: center;
     width: 100%;
 }
- 
+
 /* 当进入多选模式时：隐藏默认控件 */
 #chat-interface-screen.selection-mode .header .default-controls {
     display: none;
 }
- 
+
 /* 当进入多选模式时：显示多选控件，并让它撑满整个头部 */
 #chat-interface-screen.selection-mode .header .selection-controls {
     display: flex;
@@ -1709,9 +1709,9 @@ body {
     align-items: center;
     width: 100%;
 }
- 
+
 /* ▼▼▼ 请将这段新样式粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* === 修正：放大所有主要的“+”号按钮 === */
 #add-chat-btn,
 #add-world-book-btn,
@@ -1721,11 +1721,11 @@ body {
     position: relative;/* 允许进行位置微调 */
     top: -1px;         /* 字体放大后，通常需要稍微向上移动一点，使其视觉上更居中 */
 }
- 
+
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这些新样式粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* 预览区容器样式 */
 #settings-preview-area {
     width: 100%;
@@ -1741,7 +1741,7 @@ body {
     border: 1px solid var(--border-color);
     position: relative; /* 为了定位背景 */
 }
- 
+
 /* 预览区的背景，可以和真实聊天界面同步 */
 #settings-preview-area::before {
     content: '';
@@ -1753,13 +1753,13 @@ body {
     z-index: 1;
     opacity: 0.8;
 }
- 
+
 /* 让预览气泡在背景之上 */
 #settings-preview-area .message-wrapper {
     position: relative;
     z-index: 2;
 }
- 
+
 /* 预览区内使用的头像要小一点 */
 #settings-preview-area .message-bubble .avatar {
     width: 30px;
@@ -1778,9 +1778,9 @@ body {
 #settings-preview-area .message-bubble .timestamp {
     display: none; /* 预览区不需要显示时间戳 */
 }
- 
+
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这段新CSS粘贴到 <style> 的末尾 ▼▼▼ */
 .existing-group-item {
     display: flex;
@@ -1791,11 +1791,11 @@ body {
     border-radius: 8px;
     border: 1px solid var(--border-color);
 }
- 
+
 .existing-group-item .group-name {
     font-weight: 500;
 }
- 
+
 .existing-group-item .delete-group-btn {
     color: #ff3b30;
     font-size: 20px;
@@ -1803,7 +1803,7 @@ body {
     padding: 5px;
 }
 /* ▲▲▲ 新CSS粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这段新CSS粘贴到 <style> 的末尾 ▼▼▼ */
 .chat-group-container {
     border-bottom: 1px solid var(--border-color);
@@ -1811,7 +1811,7 @@ body {
 .chat-group-container:first-child {
     border-top: 1px solid var(--border-color);
 }
- 
+
 .chat-group-header {
     display: flex;
     align-items: center;
@@ -1819,35 +1819,35 @@ body {
     cursor: pointer;
     background-color: #f7f7f7;
 }
- 
+
 .chat-group-header .arrow {
     font-size: 14px;
     margin-right: 8px;
     transition: transform 0.2s ease;
 }
- 
+
 .chat-group-header.collapsed .arrow {
     transform: rotate(-90deg);
 }
- 
+
 .chat-group-header .group-name {
     font-weight: 600;
     font-size: 15px;
 }
- 
+
 .chat-group-content {
     max-height: 1000px; /* 一个足够大的值 */
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 }
- 
+
 .chat-group-content.collapsed {
     max-height: 0;
 }
 /* ▲▲▲ 新CSS粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这段新CSS粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* 格式助手按钮的容器 */
 .format-helpers {
     display: flex;
@@ -1855,7 +1855,7 @@ body {
     margin-bottom: 15px; /* 与下方的文本框拉开距离 */
     flex-wrap: wrap; /* 如果按钮太多可以换行 */
 }
- 
+
 /* 单个格式助手按钮的样式 */
 .format-btn {
     background-color: #e9ecef;
@@ -1868,15 +1868,15 @@ body {
     cursor: pointer;
     transition: background-color 0.2s;
 }
- 
+
 .format-btn:hover {
     background-color: #dcdfe3;
 }
- 
+
 /* ▲▲▲ 新CSS粘贴结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 请将这段新CSS粘贴到 <style> 的末尾 ▼▼▼ */
- 
+
 /* “…”按钮的样式 */
 .post-actions-btn {
     margin-left: auto; /* 关键：让它自动靠到最右边 */
@@ -1891,7 +1891,7 @@ body {
 .post-actions-btn:hover {
     background-color: #f0f0f0;
 }
- 
+
 /* 动态编辑模态框的样式 (它将复用现有的操作菜单样式) */
 #post-actions-modal .custom-modal-footer button {
     width: 100%;
@@ -1908,9 +1908,9 @@ body {
     border-radius: 8px;
     background-color: #f0f0f0;
 }
- 
+
 /* ▲▲▲ 新CSS粘贴结束 ▲▲▲ */
- 
+
 /* 统一重置转账卡片内所有文字的特效和颜色 */
 #chat-messages .transfer-card .transfer-title,
 #chat-messages .transfer-card .transfer-amount,
@@ -1918,25 +1918,25 @@ body {
     text-shadow: none !important; /* 强制移除任何发光或阴影效果 */
     color: white !important;      /* 强制锁定文字颜色为白色 */
 }
- 
+
 /* 分别锁定各自的字体大小和字重，防止被篡改 */
 #chat-messages .transfer-card .transfer-title {
     font-size: 16px !important;
     font-weight: 600 !important;
 }
- 
+
 #chat-messages .transfer-card .transfer-amount {
     font-size: 28px !important;
     font-weight: bold !important;
 }
- 
+
 #chat-messages .transfer-card .transfer-note {
     font-size: 13px !important;
     opacity: 0.9 !important;
 }
- 
+
 /* ▼▼▼ 请用下面这【一整块】全新的自适应代码，替换掉所有旧的头像相关样式 ▼▼▼ */
- 
+
 /* 1. 头像容器的【默认/无框】状态 */
 .avatar-group {
     width: 34px;      /* 默认宽度，和头像图片一样宽 */
@@ -1944,12 +1944,12 @@ body {
     position: relative;
     transition: width 0.2s ease; /* 添加一个平滑的宽度变化动画 */
 }
- 
+
 /* 2. 当【有框】时，头像容器自动变宽 */
 .avatar-group.has-frame {
     width: 42px; /* 变得更宽，为更大的头像图片和框留出空间 */
 }
- 
+
 /* 3. 普通头像（无框时）的样式 */
 .message-bubble .avatar {
     width: 34px;
@@ -1957,7 +1957,7 @@ body {
     border-radius: 20%;
     object-fit: cover;
 }
- 
+
 /* 4. 带框头像的容器【默认】大小 */
 .avatar-with-frame {
     position: relative;
@@ -1966,13 +1966,13 @@ body {
     margin: 0 auto;
     transition: all 0.2s ease; /* 为大小变化添加动画 */
 }
- 
+
 /* 5. 当【有框】时，带框头像的容器自动【变大】，解决您说的“图小框大”问题！ */
 .avatar-group.has-frame .avatar-with-frame {
     width: 42px; /* 图片容器变大 */
     height: 42px;
 }
- 
+
 /* 6. 头像图片本身，永远撑满它的容器 */
 .avatar-with-frame .avatar-img {
     position: absolute;
@@ -1984,7 +1984,7 @@ body {
     object-fit: cover;
     z-index: 1;
 }
- 
+
 /* 7. 头像框，永远基于它的父容器居中 */
 .avatar-with-frame .avatar-frame {
     position: absolute;
@@ -1995,11 +1995,9 @@ body {
     z-index: 2;
     pointer-events: none;
 }
-/* 强制闭合头像样式块 */
-}
- 
+
 /* ▲▲▲ 替换结束 ▲▲▲ */
- 
+
 /* ▼▼▼ 这是新增的样式，用于修正所有头部标题的居中问题 ▼▼▼ */
 .header > span:nth-child(2),
 #chat-header-title {
@@ -2014,7 +2012,7 @@ body {
     text-overflow: ellipsis;
 }
 /* ▲▲▲ 粘贴结束 ▲▲▲ */
- 
+
     </style>
 </head>
 <body>
@@ -2038,7 +2036,7 @@ body {
                         <div class="app-icon" onclick="showScreen('world-book-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/7ZMsY3gP/IMG-7057.jpg" alt="世界书"></div><span class="label">世界书</span></div>
                         <div class="app-icon" onclick="showScreen('chat-list-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/Bv2qvwmL/IMG-7063.jpg" alt="QQ"></div><span class="label">QQ</span></div>
                         <div class="app-icon" onclick="showScreen('icon-settings-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/zv89CkX6/icon-default.png" alt="图标设置"></div><span class="label">图标</span></div>
- 
+
                     </div>
                     <!-- 第二行：放3个图标 -->
                     <div class="app-row">
@@ -2050,8 +2048,8 @@ body {
                         </div>
                     </div>                     </div>
             </div>
- 
- 
+
+
           
             <div id="world-book-screen" class="screen"><div class="header"><span class="back-btn" onclick="showScreen('home-screen')">‹</span><span>世界书</span><span class="action-btn" id="add-world-book-btn">+</span></div><div id="world-book-list"></div></div>
             <div id="world-book-editor-screen" class="screen">
@@ -2071,9 +2069,9 @@ body {
                     </div>
                 </div>
             </div>
- 
+
             <div id="api-settings-screen" class="screen"><div class="header"><span class="back-btn" onclick="showScreen('home-screen')">‹</span><span>API 设置</span><span style="width: 30px;"></span></div><div class="form-container"><p style="font-size: 14px; color: #666; background-color: #f0f0f0; padding: 10px; border-radius: 8px;">提示: 若要使用“发送图片”功能, 请务必选择支持Vision(视觉)的模型, 如<code style="background-color: #e0e0e0; padding: 2px 4px; border-radius: 4px;">gpt-4o</code>或<code style="background-color: #e0e0e0; padding: 2px 4px; border-radius: 4px;">gpt-4-vision-preview</code>。</p><div class="form-group"><label for="proxy-url">反代地址 (不需要添加/v1噢~)</label><input type="text" id="proxy-url" placeholder="例如: https://api.openai.com"></div><div class="form-group"><label for="api-key">密钥 (API Key)</label><input type="password" id="api-key" placeholder="sk-..."></div><div class="form-group"><label for="model-select">模型</label><select id="model-select"></select></div><button class="form-button" id="fetch-models-btn">拉取模型</button>
- 
+
 <!-- ▼▼▼ 将这段代码粘贴到 API 设置页面的“保存设置”按钮上方 ▼▼▼ -->
 <hr style="margin:20px 0; opacity:.3">
 <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
@@ -2086,7 +2084,7 @@ body {
     <input type="checkbox" id="background-activity-switch" style="width: auto; height: 20px;">
 </div>
 <!-- ▲▲▲ 粘贴结束 ▲▲▲ -->
- 
+
 <!-- ▼▼▼ 将这段代码粘贴到“启用后台角色活动”开关的下方 ▼▼▼ -->
 <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
     <label for="background-interval-input" style="margin-bottom: 0;">
@@ -2098,15 +2096,15 @@ body {
     <input type="number" id="background-interval-input" min="30" value="60" style="width: 80px; text-align: center;">
 </div>
 <!-- ▲▲▲ 粘贴结束 ▲▲▲ -->
- 
+
 <button class="form-button" id="save-api-settings-btn">保存设置</button>
 			<hr style="margin:20px 0; opacity:.3">
- 
+
 			<button class="form-button" id="export-data-btn">导出数据</button>
- 
+
 <!-- ① 普通按钮，和“导出”一个 class -->
 <button class="form-button" id="import-btn">导入备份文件</button>
- 
+
 <!-- ② 真正的文件选择器，完全隐藏 -->
 <input id="import-data-input" type="file" accept="application/json" hidden>
 </div></div>
@@ -2122,14 +2120,14 @@ body {
             <span class="action-btn" id="add-chat-btn">+</span>
         </div>
     </div>
- 
+
     <!-- 消息列表视图 -->
     <div id="messages-view" class="chat-list-view active">
         <div id="chat-list">
             <!-- JS会在这里生成聊天列表 -->
         </div>
     </div>
- 
+
     <!-- 动态界面视图 -->
     <div id="qzone-screen" class="chat-list-view">
         <div class="qzone-header">
@@ -2158,7 +2156,7 @@ body {
             <div id="qzone-posts-list"></div>
         </div>
     </div>
- 
+
     <!-- 收藏界面视图 -->
     <div id="favorites-view" class="chat-list-view">
     <div class="header"> 
@@ -2167,22 +2165,22 @@ body {
         <!-- 新增的编辑按钮 -->
         <span class="action-btn" id="favorites-edit-btn">编辑</span>
     </div>
- 
+
         <!-- 【新增】搜索栏容器 -->
         <div class="search-bar-container">
             <input type="search" id="favorites-search-input" placeholder="搜索收藏的标题、内容或作者...">
             <button id="favorites-search-clear-btn" class="search-clear-btn" style="display: none;">×</button>
         </div>
- 
+
         <div id="favorites-list" class="list-container">
             <!-- 收藏内容将由JS动态生成在这里 -->
         </div>
- 
+
 <!-- 新增：收藏页底部操作栏 -->
 <div id="favorites-action-bar" style="display: none;">
     <button id="favorites-delete-selected-btn" class="action-bar-btn">删除 (0)</button>
 </div>
- 
+
     </div>
     
     <!-- 底部导航栏 -->
@@ -2197,10 +2195,10 @@ body {
             <span>收藏</span>
         </div>
     </div>
- 
+
 </div>
 <!-- ▲▲▲ 替换区域结束 ▲▲▲ -->
- 
+
 <!-- ▼▼▼ 请将这段新的 HTML 粘贴到 id="chat-list-screen" 的 div 之后 ▼▼▼ -->
 <div id="album-screen" class="screen">
     <!-- 1. 页面头部，包含返回按钮和标题 -->
@@ -2218,7 +2216,7 @@ body {
     </div>
 </div>
 <!-- ▲▲▲ 新的 HTML 粘贴结束 ▲▲▲ -->
- 
+
 <!-- ▼▼▼ 请将这段新的 HTML 粘贴到 id="album-screen" 的 div 之后 ▼▼▼ -->
 <div id="album-photos-screen" class="screen">
     <!-- 1. 页面头部 -->
@@ -2233,7 +2231,7 @@ body {
         <div id="photos-grid-page">
             <!-- 照片列表将由 JS 动态生成在这里 -->
         </div>
- 
+
 <!-- ▼▼▼ 请将这段新的 HTML 粘贴到所有模态框的末尾 ▼▼▼ -->
 <div id="photo-viewer-modal" class="modal">
     <!-- 1. 关闭按钮 -->
@@ -2251,11 +2249,11 @@ body {
     <button id="photo-viewer-next-btn" class="nav-arrow">›</button>
 </div>
 <!-- ▲▲▲ 新的 HTML 粘贴结束 ▲▲▲ -->
- 
+
     </div>
 </div>
 <!-- ▲▲▲ 新的 HTML 粘贴结束 ▲▲▲ -->
- 
+
 <!-- ▼▼▼ 粘贴到 #album-photos-screen 的 div 之后 ▼▼▼ -->
 <input type="file" id="album-photo-input" accept="image/*" multiple hidden>
             
@@ -2279,9 +2277,9 @@ body {
             </div>
         </div>
     </div> <!-- ★★★ 关键修正：Header 在这里正确闭合了 ★★★ -->
- 
+
     <div id="chat-messages"><div id="typing-indicator">对方正在输入...</div></div>
- 
+
     <div id="chat-input-area">
         <div id="chat-input-actions-top">
             <button id="open-sticker-panel-btn" class="chat-action-icon-btn action-button" title="表情面板">+</button>
@@ -2298,7 +2296,7 @@ body {
             </div>
         </div>
     </div>
- 
+
     <div id="sticker-panel">
         <div id="sticker-panel-header">
             <span class="panel-btn" id="close-sticker-panel-btn">取消</span>
@@ -2345,7 +2343,7 @@ body {
     </div>
     <input type="file" id="local-song-upload-input" accept="audio/*" multiple style="display: none;">
 </div>
- 
+
             <div id="wallpaper-screen" class="screen"><div class="header"><span class="back-btn" onclick="showScreen('home-screen')">‹</span><span>壁纸设置</span><span style="width: 30px;"></span></div><div class="form-container"><div id="wallpaper-preview">点击下方上传</div><button class="form-button" onclick="document.getElementById('wallpaper-upload-input').click();">上传壁纸</button><input type="file" id="wallpaper-upload-input" accept="image/*"><button class="form-button" id="save-wallpaper-btn">保存并应用</button></div></div>
 <div id="icon-settings-screen" class="screen">
     <div class="header">
@@ -2384,7 +2382,7 @@ body {
         <button class="form-button form-button-secondary" id="reset-icon-btn">恢复默认</button>
     </div>
 </div>
- 
+
 <div id="font-settings-screen" class="screen">
     <div class="header">
         <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
@@ -2396,7 +2394,7 @@ body {
             <label for="font-url-input">字体文件URL (.ttf, .otf, .woff等)</label>
             <input type="text" id="font-url-input" placeholder="https://..../font.ttf">
         </div>
- 
+
         <div class="form-group">
             <label>实时预览</label>
             <div id="font-preview" style="padding: 20px; border: 1px solid var(--border-color); border-radius: 8px; background-color: #f9f9f9;">
@@ -2404,7 +2402,7 @@ body {
                 <p style="margin: 0;">这是字体预览效果，12345。</p>
             </div>
         </div>
- 
+
         <button class="form-button" id="save-font-btn">保存并应用</button>
         <button class="form-button form-button-secondary" id="reset-font-btn">恢复默认字体</button>
     </div>
@@ -2413,7 +2411,7 @@ body {
     </div>
   
     <div id="chat-settings-modal" class="modal"><div class="modal-content"><div class="modal-header"><span>聊天设置</span></div><div class="modal-body"><div class="form-group" id="chat-name-group"><label for="chat-name-input">备注名 / 群名</label><input type="text" id="chat-name-input"></div>
- 
+
     <!-- ▼▼▼ 请将这段新代码粘贴到“备注名”输入框的 form-group 之后 ▼▼▼ -->
     <div class="form-group" id="assign-group-section" style="display: none;"> <!-- 默认隐藏，只对单聊显示 -->
         <label for="assign-group-select">好友分组</label>
@@ -2425,7 +2423,7 @@ body {
         </div>
     </div>
     <!-- ▲▲▲ 新代码粘贴结束 ▲▲▲ -->
- 
+
 <div class="form-group" id="my-group-nickname-group"><label for="my-group-nickname-input">我的群昵称</label><input type="text" id="my-group-nickname-input"></div><div class="form-group" id="group-avatar-group"><label>群头像</label><div class="avatar-upload"><img id="group-avatar-preview"><button onclick="document.getElementById('group-avatar-input').click()">上传群头像</button><input type="file" id="group-avatar-input" accept="image/*"></div></div>
             <div class="form-group" id="world-book-link-group">
                 <label>关联世界书 (可多选)</label>
@@ -2439,14 +2437,14 @@ body {
                 </div>
             </div>
             <div class="form-group" id="ai-persona-group"><label for="ai-persona">对方人设 (AI Persona)</label><textarea id="ai-persona" rows="3"></textarea></div><div class="form-group" id="ai-avatar-group"><label>对方头像</label><div class="avatar-upload"><img id="ai-avatar-preview"><button onclick="document.getElementById('ai-avatar-input').click()">上传对方头像</button><button class="change-frame-btn" data-type="ai">更换头像框</button><input type="file" id="ai-avatar-input" accept="image/*"></div></div><div class="form-group" id="my-persona-group"><label for="my-persona">我的人设 (My Persona)</label><textarea id="my-persona" rows="3"></textarea></div><div class="form-group" id="my-avatar-group"><label>我的头像</label><div class="avatar-upload"><img id="my-avatar-preview"><button onclick="document.getElementById('my-avatar-input').click()">上传我的头像</button><button class="change-frame-btn" data-type="my">更换头像框</button><button id="open-persona-library-btn">预设</button><input type="file" id="my-avatar-input" accept="image/*"></div></div><div class="form-group" id="group-members-group"><label>群成员人设</label><div id="group-members-settings"></div></div><div class="form-group"><label for="max-memory">上下文记忆条数</label><input type="number" id="max-memory" value="10"></div><div class="form-group"><label>聊天气泡主题 <button id="reset-theme-btn" type="button">重置</button></label><div class="theme-selector"><label><input type="radio" name="theme-select" value="default" id="theme-default"> 默认</label><label><input type="radio" name="theme-select" value="pink_blue"> 粉蓝</label><label><input type="radio" name="theme-select" value="blue_white"> 蓝白</label><label><input type="radio" name="theme-select" value="purple_yellow"> 紫黄</label><label><input type="radio" name="theme-select" value="black_white"> 黑白</label><label><input type="radio" name="theme-select" value="yellow_white"> 黄白</label><label><input type="radio" name="theme-select" value="red_black"> 红黑</label><label><input type="radio" name="theme-select" value="blue_yellow"> 蓝黄</label><label><input type="radio" name="theme-select" value="pink_yellow"> 粉黄</label><label><input type="radio" name="theme-select" value="pink_purple"> 粉紫</label><label><input type="radio" name="theme-select" value="gray_white"> 灰白</label><label><input type="radio" name="theme-select" value="blue_green"> 蓝绿</label><label><input type="radio" name="theme-select" value="pink_white"> 粉白</label><label><input type="radio" name="theme-select" value="pink_black"> 粉黑</label><label><input type="radio" name="theme-select" value="pink_green"> 粉绿</label><label><input type="radio" name="theme-select" value="green_black"> 绿黑</label></div></div>
- 
+
 <!-- ▼▼▼ 请将这段新代码粘贴到“聊天气泡主题”的 form-group 之后 ▼▼▼ -->
 <div class="form-group">
     <label for="font-size-slider">聊天字体大小 <span id="font-size-value">13px</span></label>
     <input type="range" id="font-size-slider" min="12" max="20" step="1" value="13" style="width: 100%; margin-top: 8px;">
 </div>
 <!-- ▲▲▲ 新代码粘贴结束 ▲▲▲ -->
- 
+
 <!-- ▼▼▼ 请将这段新代码粘贴到“聊天字体大小”的 form-group 之后 ▼▼▼ -->
 <div class="form-group">
     <label for="custom-css-input">
@@ -2461,7 +2459,7 @@ body {
 }"></textarea>
 </div>
 <!-- ▲▲▲ 新代码粘贴结束 ▲▲▲ -->
- 
+
 <!-- ▼▼▼ 请将这段新代码粘贴到自定义CSS输入框的 form-group 之后 ▼▼▼ -->
 <div class="form-group">
     <label>实时预览</label>
@@ -2470,7 +2468,7 @@ body {
     </div>
 </div>
 <!-- ▲▲▲ 新代码粘贴结束 ▲▲▲ -->
- 
+
             <div class="form-group">
                 <label>聊天背景</label>
                 <div class="bg-upload-container">
@@ -2485,7 +2483,7 @@ body {
     <div id="persona-library-modal" class="modal"><div class="modal-content"><div class="modal-header"><span>我的人设库</span><button id="add-persona-preset-btn" class="action-button">添加</button></div><div class="modal-body"><div id="persona-library-grid"></div></div><div class="modal-footer"><button class="cancel" id="close-persona-library-btn">关闭</button></div></div></div>
     
     <div id="persona-editor-modal" class="modal"><div class="modal-content"><div class="modal-header"><span id="persona-editor-title">添加人设预设</span></div><div class="modal-body"><div class="form-group"><label>预设头像</label><div class="avatar-upload"><img id="preset-avatar-preview"><button onclick="document.getElementById('preset-avatar-input').click()">上传头像</button><input type="file" id="preset-avatar-input" accept="image/*"></div></div><div class="form-group"><label for="preset-persona-input">预设人设</label><textarea id="preset-persona-input" rows="4" placeholder="在此输入这个人设的详细设定..."></textarea></div></div><div class="modal-footer"><button class="cancel" id="cancel-persona-editor-btn">取消</button><button class="save" id="save-persona-preset-btn">保存</button></div></div></div>
- 
+
     <div id="member-settings-modal" class="modal"><div class="modal-content"><div class="modal-header"><span>编辑群成员</span></div><div class="modal-body">
     <div class="form-group"><label for="member-name-input">名字</label><input type="text" id="member-name-input"></div>
     <div class="form-group"><label for="member-persona-input">人设</label><textarea id="member-persona-input" rows="4"></textarea></div>
@@ -2512,7 +2510,7 @@ body {
             </div>
         </div>
     </div>
- 
+
     <div id="transfer-modal">
         <div class="transfer-content">
             <div class="transfer-header">给Ta一个惊喜！</div>
@@ -2530,14 +2528,14 @@ body {
             </div>
         </div>
     </div>
- 
+
  <div id="battery-alert-modal">
     <div class="battery-alert-content">
         <img id="battery-alert-image" src="">
         <p id="battery-alert-text"></p>
     </div>
 </div>
- 
+
 <!-- 头像框选择模态框 (这是新添加的) -->
     <div id="avatar-frame-modal" class="modal">
         <div class="modal-content">
@@ -2566,9 +2564,9 @@ body {
             </div>
         </div>
     </div>
- 
+
     <audio id="audio-player" style="display:none;"></audio>
- 
+
 <!-- ▼▼▼ 用下面这段【完整】的模态框代码，替换掉你现有的 id="create-post-modal" 的整个 div ▼▼▼ -->
 <div id="create-post-modal" class="modal">
     <div class="modal-content" style="height: auto; max-height: 90%;">
@@ -2580,19 +2578,19 @@ body {
             <div class="form-group">
                 <textarea id="post-public-text" rows="3" placeholder="分享新鲜事...（非必填的公开文字）"></textarea>
             </div>
- 
+
             <!-- === 模式切换开关 (新增) === -->
             <div class="post-mode-switcher">
                 <button id="switch-to-image-mode" class="mode-btn active">上传图片</button>
                 <button id="switch-to-text-image-mode" class="mode-btn">使用文字图</button>
             </div>
- 
+
 <!-- ▼▼▼ 【修正后】的可见范围设置 ▼▼▼ -->
 <div class="form-group">
     <label>可见范围</label>
     <div id="post-visibility-options" style="display: flex; gap: 15px; margin-bottom: 10px;">
         <label><input type="radio" name="visibility" value="public" checked> 公开</label>
- 
+
         <label><input type="radio" name="visibility" value="include"> 指定分组可见</label>
     </div>
     <div id="post-visibility-groups" style="display: none; max-height: 120px; overflow-y: auto; background: #f9f9f9; padding: 10px; border-radius: 8px;">
@@ -2600,7 +2598,7 @@ body {
     </div>
 </div>
 <!-- ▲▲▲ 修正结束 ▲▲▲ -->
- 
+
             <!-- === 图片模式区域 === -->
             <div id="image-mode-content" class="post-mode-content active">
                 <div class="form-group">
@@ -2619,7 +2617,7 @@ body {
                     <input type="text" id="post-image-description" placeholder="简单描述图片内容，帮助AI理解">
                 </div>
             </div>
- 
+
             <!-- === 文字图模式区域 (新增) === -->
             <div id="text-image-mode-content" class="post-mode-content">
                 <div class="form-group">
@@ -2627,7 +2625,7 @@ body {
                     <textarea id="post-hidden-text" rows="4" placeholder="在这里写下图片描述..."></textarea>
                 </div>
             </div>
- 
+
         </div>
         <div class="modal-footer">
             <button class="cancel" id="cancel-create-post-btn">取消</button>
@@ -2636,7 +2634,7 @@ body {
     </div>
 </div>
 <!-- ▲▲▲ 替换结束 ▲▲▲ -->
- 
+
 <!-- ▼▼▼ 请将这个新的模态框HTML粘贴到所有其他模态框之后 ▼▼▼ -->
 <div id="group-management-modal" class="modal">
     <div class="modal-content" style="height: 60%;">
@@ -2662,7 +2660,7 @@ body {
     </div>
 </div>
 <!-- ▲▲▲ 新代码粘贴结束 ▲▲▲ -->
- 
+
 <!-- ▼▼▼ 请将这段新HTML粘贴到所有模态框的末尾 ▼▼▼ -->
 <div id="message-actions-modal" class="modal">
     <div id="custom-modal" style="width: 250px;">
@@ -2677,7 +2675,7 @@ body {
     </div>
 </div>
 <!-- ▲▲▲ 新HTML粘贴结束 ▲▲▲ -->
- 
+
 <!-- ▼▼▼ 请将这段新HTML粘贴到所有模态框的末尾 ▼▼▼ -->
 <div id="post-actions-modal" class="modal">
     <div id="custom-modal" style="width: 250px;">
@@ -2689,10 +2687,10 @@ body {
     </div>
 </div>
 <!-- ▲▲▲ 新HTML粘贴结束 ▲▲▲ -->
- 
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
- 
+
         // ===================================================================
         // 1. 所有变量和常量定义
         // ===================================================================
@@ -2709,23 +2707,23 @@ body {
         let editingFrameForMember = false;
         let editingWorldBookId = null;
         let editingPersonaPresetId = null;
- 
+
 let activeMessageTimestamp = null;
 let activePostId = null; // <-- 新增：用于存储当前操作的动态ID
- 
+
         let photoViewerState = {
             isOpen: false,
             photos: [], // 存储当前相册的所有照片URL
             currentIndex: -1, // 当前正在查看的照片索引
         };
- 
+
         let unreadPostsCount = 0;
- 
+
         let isFavoritesSelectionMode = false;
         let selectedFavorites = new Set()
- 
+
 let simulationIntervalId = null;
- 
+
 const frameModal = document.getElementById('avatar-frame-modal');
 const aiFrameTab = document.getElementById('ai-frame-tab');
 const myFrameTab = document.getElementById('my-frame-tab');
@@ -2733,7 +2731,7 @@ const aiFrameContent = document.getElementById('ai-frame-content');
 const myFrameContent = document.getElementById('my-frame-content');
 const aiFrameGrid = document.getElementById('ai-frame-grid');
 const myFrameGrid = document.getElementById('my-frame-grid');
- 
+
         const defaultAvatar = 'https://i.postimg.cc/PxZrFFFL/o-o-1.jpg';
         const defaultMyGroupAvatar = 'https://i.postimg.cc/cLPP10Vm/4.jpg';
         const defaultGroupMemberAvatar = 'https://i.postimg.cc/VkQfgzGJ/1.jpg';
@@ -2771,8 +2769,8 @@ const myFrameGrid = document.getElementById('my-frame-grid');
   { id: 'frame_13', url: 'https://i.postimg.cc/hP9JpdfT/IMG-7023.gif', name: '13' },
     { id: 'frame_14', url: 'https://i.postimg.cc/wTKyXVT9/IMG-7024.gif', name: '14' },
   { id: 'frame_14', url: 'https://i.postimg.cc/ZqjKXPSv/IMG-7025.gif', name: '14' },
- 
- 
+
+
   { id: 'frame_14', url: 'https://i.postimg.cc/gj3Tmqz5/mmexport1751030241029.gif', name: '14' },
   { id: 'frame_13', url: 'https://i.postimg.cc/4yCXW52F/mmexport1751030908335.gif', name: '13' },
     { id: 'frame_14', url: 'https://i.postimg.cc/VkXngG72/mmexport1751031208329.gif', name: '14' },
@@ -2851,24 +2849,24 @@ const myFrameGrid = document.getElementById('my-frame-grid');
         const dynamicFontStyle = document.createElement('style');
         dynamicFontStyle.id = 'dynamic-font-style';
         document.head.appendChild(dynamicFontStyle);
- 
+
         const modalOverlay = document.getElementById('custom-modal-overlay');
         const modalTitle = document.getElementById('custom-modal-title');
         const modalBody = document.getElementById('custom-modal-body');
         const modalConfirmBtn = document.getElementById('custom-modal-confirm');
         const modalCancelBtn = document.getElementById('custom-modal-cancel');
         let modalResolve;
- 
+
         function showCustomModal() { 
             modalOverlay.classList.add('visible'); 
         }
- 
+
         function hideCustomModal() { 
             modalOverlay.classList.remove('visible'); 
             modalConfirmBtn.classList.remove('btn-danger'); 
             if (modalResolve) modalResolve(null); 
         }
- 
+
         function showCustomConfirm(title, message, options = {}) {
             return new Promise(resolve => {
                 modalResolve = resolve;
@@ -2882,7 +2880,7 @@ const myFrameGrid = document.getElementById('my-frame-grid');
                 showCustomModal();
             });
         }
- 
+
         function showCustomAlert(title, message) {
             return new Promise(resolve => {
                 modalResolve = resolve;
@@ -2899,7 +2897,7 @@ const myFrameGrid = document.getElementById('my-frame-grid');
                 showCustomModal();
             });
         }
- 
+
 // ▼▼▼ 请用这个【功能增强版】替换旧的 showCustomPrompt 函数 ▼▼▼
 function showCustomPrompt(title, placeholder, initialValue = '', type = 'text', extraHtml = '') {
     return new Promise(resolve => {
@@ -2914,7 +2912,7 @@ function showCustomPrompt(title, placeholder, initialValue = '', type = 'text', 
         // 【核心修改】将额外的HTML和输入框组合在一起
         modalBody.innerHTML = extraHtml + inputHtml;
         const input = document.getElementById(inputId);
- 
+
         // 【核心修改】为格式助手按钮绑定事件
         modalBody.querySelectorAll('.format-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -2939,11 +2937,11 @@ function showCustomPrompt(title, placeholder, initialValue = '', type = 'text', 
     });
 }
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
         // ===================================================================
         // 2. 数据库结构定义
         // ===================================================================
- 
+
 // ▼▼▼ 请用这个新版本替换旧的 db.version().stores() ▼▼▼
 db.version(17).stores({ 
     chats: '&id, isGroup, groupId', // <-- 增加 groupId 索引，方便查询
@@ -2961,11 +2959,11 @@ db.version(17).stores({
     qzoneGroups: '++id, name' // <-- 【新增】分组表
 });
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
         // ===================================================================
         // 3. 所有功能函数定义
         // ===================================================================
- 
+
         function showScreen(screenId) {
             if (screenId === 'chat-list-screen') {
                 window.renderChatListProxy(); 
@@ -2984,7 +2982,7 @@ db.version(17).stores({
             }
         }
         window.updateListenTogetherIconProxy = () => {};
- 
+
         function switchToChatListView(viewId) {
             const chatListScreen = document.getElementById('chat-list-screen');
             const views = {
@@ -2994,18 +2992,18 @@ db.version(17).stores({
             };
             const mainHeader = document.getElementById('main-chat-list-header');
             const mainBottomNav = document.getElementById('chat-list-bottom-nav'); // 获取主导航栏
- 
+
             if (isFavoritesSelectionMode) {
                 document.getElementById('favorites-edit-btn').click(); 
             }
- 
+
             // 隐藏所有视图
             Object.values(views).forEach(v => v.classList.remove('active'));
             // 显示目标视图
             if (views[viewId]) {
                 views[viewId].classList.add('active');
             }
- 
+
             // 更新底部导航栏高亮
             document.querySelectorAll('#chat-list-bottom-nav .nav-item').forEach(item => {
                 item.classList.toggle('active', item.dataset.view === viewId);
@@ -3020,7 +3018,7 @@ db.version(17).stores({
                 mainBottomNav.style.display = 'none';
             }
             // ▲▲▲ 修正结束 ▲▲▲
- 
+
             // 根据视图ID执行特定的渲染/更新逻辑
             switch (viewId) {
                 case 'qzone-screen':
@@ -3048,13 +3046,13 @@ db.version(17).stores({
             }
         }
         window.renderQzoneScreenProxy = renderQzoneScreen;
- 
+
         async function saveQzoneSettings() {
             if (db && state.qzoneSettings) {
                 await db.qzoneSettings.put(state.qzoneSettings);
             }
         }
- 
+
         function formatPostTimestamp(timestamp) {
             if (!timestamp) return '';
             const now = new Date();
@@ -3076,38 +3074,38 @@ db.version(17).stores({
                 return `${year}-${month}-${day} ${hours}:${minutes}`;
             }
         }
- 
+
         async function renderQzonePosts() {
             const postsListEl = document.getElementById('qzone-posts-list');
             if (!postsListEl) return;
- 
+
             const [posts, favorites] = await Promise.all([
                 db.qzonePosts.orderBy('timestamp').reverse().toArray(),
                 db.favorites.where('type').equals('qzone_post').toArray() // 获取所有已收藏的动态
             ]);
- 
+
             // 创建一个已收藏帖子ID的集合，方便快速查找
             const favoritedPostIds = new Set(favorites.map(fav => fav.content.id));
             
             postsListEl.innerHTML = '';
- 
+
             if (posts.length === 0) {
                 postsListEl.innerHTML = '<p style="text-align:center; color: var(--text-secondary); padding: 30px 0;">这里空空如也，快来发布第一条说说吧！</p>';
                 return;
             }
- 
+
             const userSettings = state.qzoneSettings;
- 
+
             posts.forEach(post => {
                 const postContainer = document.createElement('div');
                 postContainer.className = 'qzone-post-container';
                 postContainer.dataset.postId = post.id;
- 
+
                 const postEl = document.createElement('div');
                 postEl.className = 'qzone-post-item';
- 
+
                 let authorAvatar = '', authorNickname = '', commentAvatar = userSettings.avatar; 
- 
+
                 if (post.authorId === 'user') {
                     authorAvatar = userSettings.avatar;
                     authorNickname = userSettings.nickname;
@@ -3122,7 +3120,7 @@ db.version(17).stores({
                 
                 let contentHtml = '';
                 const publicTextHtml = post.publicText ? `<div class="post-content">${post.publicText.replace(/\n/g, '<br>')}</div>` : '';
- 
+
                 if (post.type === 'shuoshuo') {
                     contentHtml = `<div class="post-content" style="margin-bottom: 10px;">${post.content.replace(/\n/g, '<br>')}</div>`;
                 } 
@@ -3132,7 +3130,7 @@ db.version(17).stores({
                 else if (post.type === 'text_image') {
                     contentHtml = publicTextHtml ? `${publicTextHtml}<div style="margin-top:10px;"><img src="https://i.postimg.cc/KYr2qRCK/1.jpg" class="chat-image" style="cursor: pointer;" data-hidden-text="${post.hiddenContent}"></div>` : `<img src="https://i.postimg.cc/KYr2qRCK/1.jpg" class="chat-image" style="cursor: pointer;" data-hidden-text="${post.hiddenContent}">`;
                 }
- 
+
                 let likesHtml = '';
                 if (post.likes && post.likes.length > 0) {
                     likesHtml = `<div class="post-likes-section"><svg class="like-icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><span>${post.likes.join('、')} 觉得很赞</span></div>`;
@@ -3146,19 +3144,19 @@ db.version(17).stores({
                     });
                     commentsHtml += '</div>';
                 }
- 
+
                 // 检查点赞和收藏状态
                 const userNickname = state.qzoneSettings.nickname;
                 const isLikedByUser = post.likes && post.likes.includes(userNickname);
                 const isFavoritedByUser = favoritedPostIds.has(post.id); // 使用Set快速查找
- 
+
                 postEl.innerHTML = `
                     <div class="post-header"><img src="${authorAvatar}" class="post-avatar"><div class="post-info"><span class="post-nickname">${authorNickname}</span><span class="post-timestamp">${formatPostTimestamp(post.timestamp)}</span></div>
- 
+
         <!-- 【新增】动态操作按钮 -->
         <div class="post-actions-btn">…</div>
     </div>
- 
+
                     <div class="post-main-content">${contentHtml}</div>
                     <div class="post-feedback-icons">
                         <span class="action-icon like ${isLikedByUser ? 'active' : ''}"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></span>
@@ -3224,30 +3222,30 @@ db.version(17).stores({
         }
              
 // ▼▼▼ 请用下面这个【更新后的】函数，完整替换掉你代码中旧的 displayFilteredFavorites 函数 ▼▼▼
- 
+
 function displayFilteredFavorites(items) {
     const listEl = document.getElementById('favorites-list');
     listEl.innerHTML = '';
- 
+
     if (items.length === 0) {
         const searchTerm = document.getElementById('favorites-search-input').value;
         const message = searchTerm ? '未找到相关收藏' : '你的收藏夹是空的，<br>快去动态或聊天中收藏喜欢的内容吧！';
         listEl.innerHTML = `<p style="text-align:center; color: var(--text-secondary); padding: 50px 0;">${message}</p>`;
         return;
     }
- 
+
     for (const item of items) {
         const card = document.createElement('div');
         card.className = 'favorite-item-card';
         card.dataset.favid = item.id;
- 
+
         let headerHtml = '', contentHtml = '', sourceText = '', footerHtml = '';
- 
+
         if (item.type === 'qzone_post') {
             const post = item.content;
             sourceText = '来自动态';
             let authorAvatar = defaultAvatar, authorNickname = '未知用户';
- 
+
             if (post.authorId === 'user') {
                 authorAvatar = state.qzoneSettings.avatar;
                 authorNickname = state.qzoneSettings.nickname;
@@ -3255,7 +3253,7 @@ function displayFilteredFavorites(items) {
                 authorAvatar = state.chats[post.authorId].settings.aiAvatar;
                 authorNickname = state.chats[post.authorId].name;
             }
- 
+
             headerHtml = `<img src="${authorAvatar}" class="avatar"><div class="info"><div class="name">${authorNickname}</div></div>`;
             
             const publicTextHtml = post.publicText ? `<div class="post-content">${post.publicText.replace(/\n/g, '<br>')}</div>` : '';
@@ -3266,7 +3264,7 @@ function displayFilteredFavorites(items) {
             } else if (post.type === 'text_image') {
                 contentHtml = publicTextHtml ? `${publicTextHtml}<div style="margin-top:10px;"><img src="https://i.postimg.cc/KYr2qRCK/1.jpg" class="chat-image" style="cursor: pointer;" data-hidden-text="${post.hiddenContent}"></div>` : `<img src="https://i.postimg.cc/KYr2qRCK/1.jpg" class="chat-image" style="cursor: pointer;" data-hidden-text="${post.hiddenContent}">`;
             }
- 
+
             // ▼▼▼ 新增/修改的代码开始 ▼▼▼
             
             // 1. 构造点赞区域的HTML
@@ -3280,7 +3278,7 @@ function displayFilteredFavorites(items) {
                         <span>${post.likes.join('、')} 觉得很赞</span>
                     </div>`;
             }
- 
+
             // 2. 构造评论区域的HTML
             let commentsHtml = '';
             // 检查 post 对象中是否存在 comments 数组并且不为空
@@ -3296,21 +3294,21 @@ function displayFilteredFavorites(items) {
                 });
                 commentsHtml += '</div>';
             }
- 
+
             // 3. 将点赞和评论的HTML组合到 footerHtml 中
             footerHtml = `${likesHtml}${commentsHtml}`;
             
             // ▲▲▲ 新增/修改的代码结束 ▲▲▲
- 
+
         } else if (item.type === 'chat_message') {
             const msg = item.content;
             const chat = state.chats[item.chatId];
             if (!chat) continue; 
- 
+
             sourceText = `来自与 ${chat.name} 的聊天`;
             const isUser = msg.role === 'user';
             let senderName, senderAvatar;
- 
+
             if (isUser) {
                 senderName = chat.isGroup ? (chat.settings.myNickname || '我') : '我';
                 senderAvatar = chat.settings.myAvatar || (chat.isGroup ? defaultMyGroupAvatar : defaultAvatar);
@@ -3324,7 +3322,7 @@ function displayFilteredFavorites(items) {
                     senderAvatar = chat.settings.aiAvatar || defaultAvatar;
                 }
             }
- 
+
             headerHtml = `<img src="${senderAvatar}" class="avatar"><div class="info"><div class="name">${senderName}</div></div>`;
             
             if (typeof msg.content === 'string' && STICKER_REGEX.test(msg.content)) {
@@ -3332,8 +3330,7 @@ function displayFilteredFavorites(items) {
             } else if (Array.isArray(msg.content) && msg.content[0]?.type === 'image_url') {
                 contentHtml = `<img src="${msg.content[0].image_url.url}" class="chat-image">`;
             } else {
-                const displayContent = msg.originalContent || msg.content;
-                contentHtml = String(displayContent || '').replace(/\n/g, '<br>');
+                contentHtml = String(msg.content || '').replace(/\n/g, '<br>');
             }
         }
         
@@ -3346,9 +3343,9 @@ function displayFilteredFavorites(items) {
         listEl.appendChild(card);
     }
 }
- 
+
 // ▲▲▲ 替换区域结束 ▲▲▲
- 
+
         /**
          * 【重构后的函数】: 负责准备数据并触发渲染
          */
@@ -3361,13 +3358,13 @@ function displayFilteredFavorites(items) {
             const clearBtn = document.getElementById('favorites-search-clear-btn');
             searchInput.value = '';
             clearBtn.style.display = 'none';
- 
+
             // 3. 显示所有收藏项
             displayFilteredFavorites(allFavoriteItems);
         }
- 
+
         // ▲▲▲ 粘贴结束 ▲▲▲
- 
+
         function resetCreatePostModal() {
             document.getElementById('post-public-text').value = '';
             document.getElementById('post-image-preview').src = '';
@@ -3378,7 +3375,7 @@ function displayFilteredFavorites(items) {
             document.getElementById('post-hidden-text').value = '';
             document.getElementById('switch-to-image-mode').click();
         }
- 
+
 // ▼▼▼ 用这个【超级加料版】的函数，完整替换掉旧的 exportBackup ▼▼▼
 async function exportBackup() {
     try {
@@ -3386,7 +3383,7 @@ async function exportBackup() {
             version: 1, // 为未来可能的格式升级做准备
             timestamp: Date.now()
         };
- 
+
         // 使用 Promise.all 并行获取所有表的数据
         const [
             chats, worldBooks, userStickers, apiConfig, globalSettings,
@@ -3406,7 +3403,7 @@ async function exportBackup() {
             db.qzonePhotos.toArray(),
             db.favorites.toArray()
         ]);
- 
+
         // 将所有数据整合到一个对象中
         Object.assign(backupData, {
             chats, worldBooks, userStickers, apiConfig, globalSettings,
@@ -3428,38 +3425,38 @@ async function exportBackup() {
         URL.revokeObjectURL(url);
         
         await showCustomAlert('导出成功', '已成功导出所有数据！');
- 
+
     } catch (error) {
         console.error("导出数据时出错:", error);
         await showCustomAlert('导出失败', `发生了一个错误: ${error.message}`);
     }
 }
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
 // ▼▼▼ 用这个【安全可靠版】的函数，完整替换掉旧的 importBackup ▼▼▼
 async function importBackup(file) {
     if (!file) return;
- 
+
     // 【安全第一】导入前必须让用户确认，因为这是毁灭性的覆盖操作！
     const confirmed = await showCustomConfirm(
         '严重警告！',
         '导入备份将完全覆盖您当前的所有数据，包括聊天、动态、设置等。此操作不可撤销！您确定要继续吗？',
         { confirmButtonClass: 'btn-danger' }
     );
- 
+
     if (!confirmed) return; // 如果用户取消，则中止操作
- 
+
     try {
         const text = await file.text();
         const data = JSON.parse(text);
- 
+
         // 开始一个数据库事务，批量操作，速度更快更安全
         await db.transaction('rw', db.tables, async () => {
             // 1. 清空所有旧数据
             for (const table of db.tables) {
                 await table.clear();
             }
- 
+
             // 2. 导入新数据
             // 导入数组形式的表
             if (Array.isArray(data.chats)) await db.chats.bulkPut(data.chats);
@@ -3470,28 +3467,28 @@ async function importBackup(file) {
             if (Array.isArray(data.qzoneAlbums)) await db.qzoneAlbums.bulkPut(data.qzoneAlbums);
             if (Array.isArray(data.qzonePhotos)) await db.qzonePhotos.bulkPut(data.qzonePhotos);
             if (Array.isArray(data.favorites)) await db.favorites.bulkPut(data.favorites);
- 
+
             // 导入对象形式的表 (单条记录)
             if (data.apiConfig) await db.apiConfig.put(data.apiConfig);
             if (data.globalSettings) await db.globalSettings.put(data.globalSettings);
             if (data.musicLibrary) await db.musicLibrary.put(data.musicLibrary);
             if (data.qzoneSettings) await db.qzoneSettings.put(data.qzoneSettings);
         });
- 
+
         await showCustomAlert('导入成功', '所有数据已成功恢复！应用即将刷新以应用所有更改。');
         
         // 为了确保所有状态都正确加载，最简单可靠的方法是刷新页面
         setTimeout(() => {
             window.location.reload();
         }, 1500);
- 
+
     } catch (error) {
         console.error("导入数据时出错:", error);
         await showCustomAlert('导入失败', `文件格式不正确或数据已损坏: ${error.message}`);
     }
 }
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
         function applyCustomFont(fontUrl, isPreviewOnly = false) {
             if (!fontUrl) {
                 dynamicFontStyle.innerHTML = '';
@@ -3519,7 +3516,7 @@ async function importBackup(file) {
                     }`;
             }
         }
- 
+
         async function resetToDefaultFont() {
             dynamicFontStyle.innerHTML = ''; 
             state.globalSettings.fontUrl = '';
@@ -3528,7 +3525,7 @@ async function importBackup(file) {
             document.getElementById('font-preview').style.fontFamily = '';
             alert('已恢复默认字体。');
         }
- 
+
 async function loadAllDataFromDB() {
     // ▼▼▼ 【核心修改在这里】 ▼▼▼
     const [
@@ -3553,7 +3550,7 @@ async function loadAllDataFromDB() {
         db.favorites.orderBy('timestamp').reverse().toArray() // 确保这一行在 Promise.all 的数组参数内
     ]);
     // ▲▲▲ 【修改结束】 ▲▲▲
- 
+
     state.chats = chatsArr.reduce((acc, chat) => {
         if (!chat.musicData) chat.musicData = { totalTime: 0 };
         if (chat.settings && chat.settings.linkedWorldBookId && !chat.settings.linkedWorldBookIds) {
@@ -3577,24 +3574,24 @@ state.globalSettings = globalSettings || {
     musicState.playlist = musicLib?.playlist || [];
     state.personaPresets = personaPresets || [];
     state.qzoneSettings = qzoneSettings || { id: 'main', nickname: '{{user}}', avatar: 'https://files.catbox.moe/q6z5fc.jpeg', banner: 'https://files.catbox.moe/r5heyt.gif' };
- 
+
     // ▼▼▼ 【确保这一行在 Promise.all 之后，并使用解构赋值得到的 initialFavorites】 ▼▼▼
     allFavoriteItems = initialFavorites || [];
     // ▲▲▲ 【修改结束】 ▲▲▲
 }
- 
+
         async function saveGlobalPlaylist() { await db.musicLibrary.put({ id: 'main', playlist: musicState.playlist }); }
- 
+
         function formatTimestamp(timestamp) { if (!timestamp) return ''; const date = new Date(timestamp); const hours = String(date.getHours()).padStart(2, '0'); const minutes = String(date.getMinutes()).padStart(2, '0'); return `${hours}:${minutes}`; }
- 
+
         function showNotification(chatId, messageContent) { clearTimeout(notificationTimeout); const chat = state.chats[chatId]; if (!chat) return; const bar = document.getElementById('notification-bar'); document.getElementById('notification-avatar').src = chat.settings.aiAvatar || chat.settings.groupAvatar || defaultAvatar; document.getElementById('notification-content').querySelector('.name').textContent = chat.name; document.getElementById('notification-content').querySelector('.message').textContent = messageContent; const newBar = bar.cloneNode(true); bar.parentNode.replaceChild(newBar, bar); newBar.addEventListener('click', () => { openChat(chatId); newBar.classList.remove('visible'); }); newBar.classList.add('visible'); notificationTimeout = setTimeout(() => { newBar.classList.remove('visible'); }, 4000); }
- 
+
         function updateClock() { const now = new Date(); const timeString = now.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }); const dateString = now.toLocaleDateString('zh-CN', { weekday: 'long', month: 'long', day: 'numeric' }); document.getElementById('main-time').textContent = timeString; document.getElementById('status-bar-time').textContent = timeString; 
 document.getElementById('main-date').textContent = dateString; }
- 
+
         function parseAiResponse(content) {
             const trimmedContent = content.trim();
- 
+
             // 1. 尝试作为完整的JSON数组解析 (最理想情况)
             if (trimmedContent.startsWith('[') && trimmedContent.endsWith(']')) {
                 try {
@@ -3604,7 +3601,7 @@ document.getElementById('main-date').textContent = dateString; }
                     // 解析失败，继续尝试其他方法
                 }
             }
- 
+
             // 2. 如果失败，尝试作为单个JSON对象解析 (处理AI“偷懒”的情况)
             if (trimmedContent.startsWith('{') && trimmedContent.endsWith('}')) {
                 try {
@@ -3626,7 +3623,7 @@ document.getElementById('main-date').textContent = dateString; }
             } catch (e) {
                 // 提取失败
             }
- 
+
             // 4. 如果以上全部失败，则视为纯文本处理
             const lines = content.split('\n').map(l => l.trim()).filter(l => l.length > 0 && !l.startsWith('```'));
             if (lines.length > 0) return lines;
@@ -3634,34 +3631,34 @@ document.getElementById('main-date').textContent = dateString; }
             // 5. 最终的最终，返回原始文本
             return [content];
         }
- 
+
         function renderApiSettings() { document.getElementById('proxy-url').value = state.apiConfig.proxyUrl || ''; document.getElementById('api-key').value = state.apiConfig.apiKey || ''; 
     // ▼▼▼ 新增这行 ▼▼▼
     document.getElementById('background-activity-switch').checked = state.globalSettings.enableBackgroundActivity || false;
- 
+
     // ▼▼▼ 新增这行 ▼▼▼
     document.getElementById('background-interval-input').value = state.globalSettings.backgroundActivityInterval || 60;
 }
         window.renderApiSettingsProxy = renderApiSettings;
- 
+
 // ▼▼▼ 请用这个【全新版本】的函数，完整替换掉你旧的 renderChatList ▼▼▼
 async function renderChatList() {
     const chatListEl = document.getElementById('chat-list');
     chatListEl.innerHTML = '';
- 
+
     // 1. 像以前一样，获取所有聊天并按最新消息时间排序
     const allChats = Object.values(state.chats).sort((a, b) => (b.history.slice(-1)[0]?.timestamp || 0) - (a.history.slice(-1)[0]?.timestamp || 0));
     
     // 2. 获取所有分组
     const allGroups = await db.qzoneGroups.toArray();
- 
+
     if (allChats.length === 0) {
         chatListEl.innerHTML = '<p style="text-align:center; color: #8a8a8a; margin-top: 50px;">点击右上角 "+" 或群组图标添加聊天</p>';
         return;
     }
- 
+
     // --- 【核心修正开始】---
- 
+
     // 3. 为每个分组找到其内部最新的消息时间戳
     allGroups.forEach(group => {
         // 从已排序的 allChats 中找到本组的第一个（也就是最新的）聊天
@@ -3669,19 +3666,19 @@ async function renderChatList() {
         // 如果找到了，就用它的时间戳；如果该分组暂时没有聊天或聊天没有历史记录，就用0
         group.latestTimestamp = latestChatInGroup ? (latestChatInGroup.history.slice(-1)[0]?.timestamp || 0) : 0;
     });
- 
+
     // 4. 根据这个最新的时间戳来对“分组本身”进行排序
     allGroups.sort((a, b) => b.latestTimestamp - a.latestTimestamp);
- 
+
     // --- 【核心修正结束】---
- 
+
     // 5. 现在，我们按照排好序的分组来渲染
     allGroups.forEach(group => {
         // 从总列表里过滤出属于这个（已排序）分组的好友
         const groupChats = allChats.filter(chat => !chat.isGroup && chat.groupId === group.id);
         // 如果这个分组是空的（可能所有好友都被删了），就跳过
         if (groupChats.length === 0) return;
- 
+
         const groupContainer = document.createElement('div');
         groupContainer.className = 'chat-group-container';
         groupContainer.innerHTML = `
@@ -3699,7 +3696,7 @@ async function renderChatList() {
         });
         chatListEl.appendChild(groupContainer);
     });
- 
+
     // 6. 最后，渲染所有群聊和未分组的好友
     // 他们的顺序因为 allChats 的初始排序，天然就是正确的
     const ungroupedOrGroupChats = allChats.filter(chat => chat.isGroup || (!chat.isGroup && !chat.groupId));
@@ -3707,7 +3704,7 @@ async function renderChatList() {
         const item = createChatListItem(chat);
         chatListEl.appendChild(item);
     });
- 
+
     // 为所有分组标题添加折叠事件
     document.querySelectorAll('.chat-group-header').forEach(header => {
         header.addEventListener('click', () => {
@@ -3717,7 +3714,7 @@ async function renderChatList() {
     });
 }
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
 // 辅助函数，用于创建单个聊天列表项 (避免代码重复)
 function createChatListItem(chat) {
     const lastMsgObj = chat.history.filter(msg => !msg.isHidden).slice(-1)[0] || {};
@@ -3728,11 +3725,11 @@ function createChatListItem(chat) {
     else if (typeof lastMsgObj.content === 'string' && STICKER_REGEX.test(lastMsgObj.content)) { lastMsgDisplay = lastMsgObj.meaning ? `[表情: ${lastMsgObj.meaning}]` : '[表情]'; }
     else if (Array.isArray(lastMsgObj.content)) { lastMsgDisplay = `[图片]`; }
     else { lastMsgDisplay = String(lastMsgObj.content || '...').substring(0, 20); }
- 
+
     if (chat.isGroup && lastMsgObj.senderName) {
         lastMsgDisplay = `${lastMsgObj.senderName}: ${lastMsgDisplay}`;
     }
- 
+
     const item = document.createElement('div');
     item.className = 'chat-list-item';
     item.dataset.chatId = chat.id;
@@ -3761,13 +3758,13 @@ function createChatListItem(chat) {
     return item;
 }
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
 function renderChatInterface(chatId) {
     const chat = state.chats[chatId];
     if (!chat) return;
     exitSelectionMode();
     const messagesContainer = document.getElementById('chat-messages');
- 
+
     // ▼▼▼ 核心修改 ▼▼▼
     // 1. 设置主题
     messagesContainer.dataset.theme = chat.settings.theme || 'default';
@@ -3775,7 +3772,7 @@ function renderChatInterface(chatId) {
     const fontSize = chat.settings.fontSize || 13;
     messagesContainer.style.setProperty('--chat-font-size', `${fontSize}px`);
     // ▲▲▲ 核心修改结束 ▲▲▲
- 
+
     // ▼▼▼ 修改这行 ▼▼▼
     applyScopedCss(chat.settings.customCss || '', '#chat-messages', 'custom-bubble-style');
     // ▲▲▲ 修改结束 ▲▲▲
@@ -3800,23 +3797,23 @@ function renderChatInterface(chatId) {
     messagesContainer.appendChild(typingIndicator);
     setTimeout(() => messagesContainer.scrollTop = messagesContainer.scrollHeight, 0);
 }
- 
+
         function prependLoadMoreButton(container) { const button = document.createElement('button'); button.id = 'load-more-btn'; button.textContent = '加载更早的记录'; button.addEventListener('click', loadMoreMessages); container.prepend(button); }
- 
+
         function loadMoreMessages() { const messagesContainer = document.getElementById('chat-messages'); const chat = state.chats[state.activeChatId]; if (!chat) return; const loadMoreBtn = document.getElementById('load-more-btn'); if (loadMoreBtn) loadMoreBtn.remove(); const totalMessages = chat.history.length; const nextSliceStart = totalMessages - currentRenderedCount - MESSAGE_RENDER_WINDOW; const nextSliceEnd = totalMessages - currentRenderedCount; const messagesToPrepend = chat.history.slice(Math.max(0, nextSliceStart), nextSliceEnd); const oldScrollHeight = messagesContainer.scrollHeight; messagesToPrepend.reverse().forEach(msg => prependMessage(msg, chat)); currentRenderedCount += messagesToPrepend.length; const newScrollHeight = messagesContainer.scrollHeight; messagesContainer.scrollTop += (newScrollHeight - oldScrollHeight); if (totalMessages > currentRenderedCount) { prependLoadMoreButton(messagesContainer); } }
- 
+
         function renderWallpaperScreen() { const preview = document.getElementById('wallpaper-preview'); const bg = newWallpaperBase64 || state.globalSettings.wallpaper; if (bg && bg.startsWith('data:image')) { preview.style.backgroundImage = `url(${bg})`; preview.textContent = ''; } else if(bg) { preview.style.backgroundImage = bg; preview.textContent = '当前为渐变色'; } }
         window.renderWallpaperScreenProxy = renderWallpaperScreen;
- 
+
         function applyGlobalWallpaper() { const homeScreen = document.getElementById('home-screen'); const wallpaper = state.globalSettings.wallpaper; if (wallpaper && wallpaper.startsWith('data:image')) homeScreen.style.backgroundImage = `url(${wallpaper})`; else if (wallpaper) homeScreen.style.backgroundImage = wallpaper; }
- 
+
         function renderWorldBookScreen() { const listEl = document.getElementById('world-book-list'); listEl.innerHTML = ''; if (state.worldBooks.length === 0) { listEl.innerHTML = '<p style="text-align:center; color: #8a8a8a; margin-top: 50px;">点击右上角 "+" 创建你的第一本世界书</p>'; return; } state.worldBooks.forEach(book => { const item = document.createElement('div'); item.className = 'list-item'; item.dataset.bookId = book.id; item.innerHTML = `<div class="item-title">${book.name}</div><div class="item-content">${(book.content || '暂无内容...').substring(0, 50)}</div>`; item.addEventListener('click', () => openWorldBookEditor(book.id)); addLongPressListener(item, async () => { const confirmed = await showCustomConfirm('删除世界书', `确定要删除《${book.name}》吗？此操作不可撤销。`, { confirmButtonClass: 'btn-danger' }); if (confirmed) { await db.worldBooks.delete(book.id); state.worldBooks = state.worldBooks.filter(wb => wb.id !== book.id); renderWorldBookScreen(); } }); listEl.appendChild(item); }); }
         window.renderWorldBookScreenProxy = renderWorldBookScreen;
- 
+
         function openWorldBookEditor(bookId) { editingWorldBookId = bookId; const book = state.worldBooks.find(wb => wb.id === bookId); if (!book) return; document.getElementById('world-book-editor-title').textContent = book.name; document.getElementById('world-book-name-input').value = book.name; document.getElementById('world-book-content-input').value = book.content; showScreen('world-book-editor-screen'); }
- 
-        function renderStickerPanel() { const grid = document.getElementById('sticker-grid'); grid.innerHTML = ''; if (state.userStickers.length === 0) { grid.innerHTML = '<p style="text-align:center; color: var(--text-secondary); grid-column: 1 / -1;">大人请点击右上角“添加”或“上传”来添加你的第一个表情吧！</p>'; return; } state.userStickers.forEach(sticker => { const item = document.createElement('div'); item.className = 'sticker-item'; item.style.backgroundImage = `url(${sticker.url})`; item.title = sticker.name; item.addEventListener('click', () => sendSticker(sticker)); addLongPressListener(item, () => { if (isSelectionMode) return; const existingDeleteBtn = item.querySelector('.delete-btn'); if (existingDeleteBtn) return; const deleteBtn = document.createElement('div'); deleteBtn.className = 'delete-btn'; deleteBtn.innerHTML = '×'; deleteBtn.onclick = async (e) => { e.stopPropagation(); const confirmed = await showCustomConfirm('删除表情', `确定要删除表情 "${sticker.name}" 吗？`, { confirmButtonClass: 'btn-danger' }); if (confirmed) { await db.userStickers.delete(sticker.id); state.userStickers = state.userStickers.filter(s => s.id !== sticker.id); renderStickerPanel(); } }; item.appendChild(deleteBtn); deleteBtn.style.display = 'block'; setTimeout(() => item.addEventListener('mouseleave', () => deleteBtn.remove(), { once: true }), 3000); }); grid.appendChild(item); }); }
- 
+
+        function renderStickerPanel() { const grid = document.getElementById('sticker-grid'); grid.innerHTML = ''; if (state.userStickers.length === 0) { grid.innerHTML = '<p style="text-align:center; color: var(--text-secondary); grid-column: 1 / -1;">大人请点击右上角“添加”或“上传”来添加你的第一个表情吧！</p>'; return; } state.userStickers.forEach(sticker => { const item = document.createElement('div'); item.className = 'sticker-item'; item.style.backgroundImage = `url(${sticker.url})`; item.title = sticker.name; item.addEventListener('click', () => sendSticker(sticker)); addLongPressListener(item, () => { if (isSelectionMode) return; const existingDeleteBtn = item.querySelector('.delete-btn'); if (existingDeleteBtn) return; const deleteBtn = document.createElement('div'); deleteBtn.className = 'delete-btn'; deleteBtn.innerHTML = '&times;'; deleteBtn.onclick = async (e) => { e.stopPropagation(); const confirmed = await showCustomConfirm('删除表情', `确定要删除表情 "${sticker.name}" 吗？`, { confirmButtonClass: 'btn-danger' }); if (confirmed) { await db.userStickers.delete(sticker.id); state.userStickers = state.userStickers.filter(s => s.id !== sticker.id); renderStickerPanel(); } }; item.appendChild(deleteBtn); deleteBtn.style.display = 'block'; setTimeout(() => item.addEventListener('mouseleave', () => deleteBtn.remove(), { once: true }), 3000); }); grid.appendChild(item); }); }
+
 /* ▼▼▼ 请用这个【全新的、带智能判断的】函数，完整替换旧的 createMessageElement ▼▼▼ */
 function createMessageElement(msg, chat) {
     if (msg.isHidden) {
@@ -3831,15 +3828,15 @@ function createMessageElement(msg, chat) {
         senderNameDiv.textContent = msg.senderName || '未知成员';
         wrapper.appendChild(senderNameDiv);
     }
- 
+
     const bubble = document.createElement('div');
     bubble.className = `message-bubble ${isUser ? 'user' : 'ai'}`;
     bubble.dataset.timestamp = msg.timestamp;
- 
+
     const timestampEl = document.createElement('span');
     timestampEl.className = 'timestamp';
     timestampEl.textContent = formatTimestamp(msg.timestamp);
- 
+
     let avatarSrc, avatarFrameSrc = '';
     if (chat.isGroup) {
         if (isUser) {
@@ -3859,12 +3856,12 @@ function createMessageElement(msg, chat) {
             avatarFrameSrc = chat.settings.aiAvatarFrame || '';
         }
     }
- 
+
     // --- 核心修改从这里开始 ---
- 
+
     // 1. 判断是否有头像框，并生成一个CSS类名
     const hasFrameClass = avatarFrameSrc ? 'has-frame' : '';
- 
+
     let avatarHtml;
     if (avatarFrameSrc) {
         // 如果有框，就渲染带框的结构
@@ -3878,14 +3875,20 @@ function createMessageElement(msg, chat) {
         // 如果没框，就渲染普通的图片
         avatarHtml = `<img src="${avatarSrc}" class="avatar">`;
     }
- 
+
     // 2. 将 hasFrameClass 添加到 avatar-group 的 class 列表中
     const avatarGroupHtml = `<div class="avatar-group ${hasFrameClass}">${avatarHtml}</div>`;
- 
+
     // --- 核心修改结束 ---
- 
- 
-    let contentHtml;
+
+
+let contentHtml;
+if (msg.stickers && msg.stickers.length > 0) { 
+// 先渲染中文说明 
+contentHtml = `<div class="text-content">${msg.content || ''}</div>`; 
+// 再渲染所有表情包 
+msg.stickers.forEach(url => { contentHtml += `<img src="${url}" alt="Sticker" class="sticker-image" style="margin: 5px 0;">`; }); } 
+else if (msg.type === 'user_photo' || msg.type === 'ai_image') { // 原有图片处理逻辑... } else if (typeof msg.content === 'string' && STICKER_REGEX.test(msg.content)) { // 原有单个表情包处理逻辑... }
     if (msg.type === 'user_photo' || msg.type === 'ai_image') {
         bubble.classList.add('is-ai-image');
         const altText = msg.type === 'user_photo' ? "用户描述的照片" : "AI生成的图片";
@@ -3907,40 +3910,40 @@ function createMessageElement(msg, chat) {
     } else if (Array.isArray(msg.content) && msg.content[0]?.type === 'image_url') {
         bubble.classList.add('has-image');
         const imageUrl = msg.content[0].image_url.url;
-        contentHtml = `<img src="${imageUrl}" class="chat-image" alt="User uploaded image">`;
+        contentHtml = `<img src="${imageUrl}" class="chat-image" alt="User uploaded 
     } else {
         contentHtml = String(msg.content || '').replace(/\n/g, '<br>');
     }
- 
+
     bubble.innerHTML = `
         ${avatarGroupHtml}
         <div class="content">${contentHtml}</div>
     `;
- 
+
     wrapper.appendChild(bubble);
     wrapper.appendChild(timestampEl);
- 
+
     addLongPressListener(wrapper, () => showMessageActions(msg.timestamp));
     bubble.addEventListener('click', () => { if (isSelectionMode) toggleMessageSelection(msg.timestamp); });
- 
+
     return wrapper;
 }
 /* ▲▲▲ 替换结束 ▲▲▲ */
- 
+
         function prependMessage(msg, chat) { const messagesContainer = document.getElementById('chat-messages'); const messageEl = createMessageElement(msg, chat); 
- 
+
     if (!messageEl) return; // <--- 新增这行，同样的处理
- 
+
 const loadMoreBtn = document.getElementById('load-more-btn'); if (loadMoreBtn) { messagesContainer.insertBefore(messageEl, loadMoreBtn.nextSibling); } else { messagesContainer.prepend(messageEl); } }
- 
+
         function appendMessage(msg, chat, isInitialLoad = false) { const messagesContainer = document.getElementById('chat-messages'); const messageEl = createMessageElement(msg, chat);
- 
+
     if (!messageEl) return; // <--- 新增这行，如果没创建出元素，就直接返回
- 
+
  const typingIndicator = document.getElementById('typing-indicator'); messagesContainer.insertBefore(messageEl, typingIndicator); if (!isInitialLoad) { messagesContainer.scrollTop = messagesContainer.scrollHeight; currentRenderedCount++; } }
- 
+
         function openChat(chatId) { state.activeChatId = chatId; renderChatInterface(chatId); showScreen('chat-interface-screen'); }
- 
+
 // ▼▼▼ 请用这个【超级智能版】，完整替换掉旧的 triggerAiResponse 函数 ▼▼▼
 async function triggerAiResponse() {
     if (!state.activeChatId) return;
@@ -3990,23 +3993,28 @@ async function triggerAiResponse() {
             else if (msg.type === 'voice_message') content = `[${sender} 发送了一条语音，内容是：'${msg.content}']`;
             else if (msg.type === 'transfer') content = `[${msg.senderName}向${msg.receiverName}转账 ${msg.amount}元, 备注: ${msg.note}]`;
             else if (msg.meaning) content = `${sender}: [发送了一个表情，意思是: '${msg.meaning}']`;
+// 新增：处理包含中文说明和表情包URL的消息
+            else if (msg.stickers && msg.stickers.length > 0) {
+    // 拼接中文说明和所有表情包URL，格式为“发送者: 中文说明 [表情包1; 表情包2; ...]”
+    content = `${sender}: ${msg.content || ''} [包含表情包: ${msg.stickers.join('; ')}]`;
+}
             else if (Array.isArray(msg.content)) content = [...msg.content, { type: 'text', text: `${sender}:` }];
             else content = `${sender}: ${msg.content}`;
             return { role: 'user', content: content };
         });
     } else {
         systemPrompt = `你现在扮演一个名为"${chat.name}"的角色。
- 
+
 # 当前情景信息
 - **当前时间是：${currentTime}**。
 ${worldBookContent}${musicContext}
- 
+
 # 你的角色设定：
 ${chat.settings.aiPersona}
- 
+
 # 对话者的角色设定：
 ${chat.settings.myPersona}
- 
+
 # 你的任务：
 1.  严格保持你的人设进行对话。
 2.  你的回复必须是一个JSON数组格式的字符串，每个元素是一条消息。
@@ -4016,7 +4024,7 @@ ${chat.settings.myPersona}
 6.  不要说任何与角色无关的话，不要解释自己是AI。
 7.  当用户说今天你们做了什么事时，顺着ta的话说即可，就当做你们真的做了这件事。
 8.  当用户发送图片时，请自然地对图片内容做出反应。当历史记录中出现 "[用户发来一条语音消息，内容是：'xxx']" 或 "[你收到了一张用户描述的照片，照片内容是：'xxx']" 时，你要理解其内容并作出相应回复，表现出你是“听”到或“看”到了。
- 
+
 # 如何理解与使用表情包 (重要！):
 - **理解用户表情**: 当用户发送形如 "[用户发送了一个表情，意思是：'xxx']" 的消息时，你要理解其含义并作出回应。
 - **使用你的表情**: 当你想表达强烈或特殊的情-绪时，你可以直接发送一个表情包，表情包的格式为一条独立的消息。
@@ -4024,7 +4032,7 @@ ${chat.settings.myPersona}
 表情包的格式读取人设或世界书中的格式，若未提及则不发，不允许凭空捏造表情包。
 ${aiImageInstructions}
 ${aiVoiceInstructions}
- 
+
 # 【重要】发布动态的能力 (模拟自主行为):
 -   除了聊天，你还有一个“动态”空间可以分享心情、想法或小故事。这会让用户觉得你是一个有独立生活的真实存在。
 -   **触发机制**: 在每次回复中，你有大约 **50%** 的概率决定发布一条或多条动态。**你不需要在聊天中提及你要发动态**，这个行为应该是“在后台”独立发生的。
@@ -4034,7 +4042,7 @@ ${aiVoiceInstructions}
     -   **文字图动态**: \\\`{"type": "qzone_post", "postType": "text_image", "publicText": "(可选的公开文字)", "hiddenContent": "这里是点击图片后才能看到的隐藏文字内容..."}\\\`
 -   **内容灵感**: 动态内容可以源于你们的对话，也可以是你人设中独立的思考、观察或经历。例如，如果你们聊到了猫，你可以发一条关于猫的动态。如果用户让你感到开心，你可以发一条表达喜悦心情的动态。
 -   **注意**: 这个动态对象**不会**在聊天界面显示为消息，它只是一个给系统的指令。请自然地生成聊天回复，然后在数组最后悄悄加上这个动态对象（如果决定发的话）。
- 
+
 # 【重要】评论与点赞动态 (模拟社交行为) - v2.0 智能版
 -   你现在可以“刷”动态了，这能让你显得更真实。在每次回复中，你都有一定概率（约40%）去评论或点赞你感兴趣的动态。
 -   **【核心规则：作者识别】**: 当你决定评论时，你**必须**首先查看我们提供给你的“最近的动态列表”，并确认那条动态的【作者】是谁。
@@ -4045,7 +4053,7 @@ ${aiVoiceInstructions}
 -   **【指令格式】**:
     -   评论: \`{"type": "qzone_comment", "postId": 要评论的帖子ID, "commentText": "你的评论内容"}\`
     -   点赞: \`{"type": "qzone_like", "postId": 要点赞的帖子ID}\`
- 
+
 # JSON输出格式示例 (包含所有可能性):
 [
     "很高兴认识你呀，在干嘛呢？", 
@@ -4056,7 +4064,7 @@ ${aiVoiceInstructions}
     {"type": "qzone_comment", "postId": 12345, "commentText": "@角色A 这张照片拍得真好看！"},
     {"type": "qzone_like", "postId": 54321}
 ]
- 
+
 现在，请根据以上的规则和下面的对话历史，继续进行对话。`;
         messagesPayload = historySlice.map(msg => {
             if (msg.type === 'user_photo') return { role: 'user', content: `[你收到了一张用户描述的照片，照片内容是：'${msg.content}']` };
@@ -4074,7 +4082,7 @@ ${aiVoiceInstructions}
             return null;
         }).filter(Boolean);
     }
- 
+
     try {
         const recentPosts = await db.qzonePosts.orderBy('timestamp').reverse().limit(5).toArray();
         const aiChat = state.chats[chatId];
@@ -4235,88 +4243,88 @@ ${aiVoiceInstructions}
     }
 } 
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
         async function sendSticker(sticker) { if (!state.activeChatId) return; const chat = state.chats[state.activeChatId]; const msg = { role: 'user', content: sticker.url, meaning: sticker.name, timestamp: Date.now() }; chat.history.push(msg); await db.chats.put(chat); appendMessage(msg, chat); renderChatList(); document.getElementById('sticker-panel').classList.remove('visible'); }
- 
+
         async function sendUserTransfer() { if (!state.activeChatId) return; const amountInput = document.getElementById('transfer-amount'); const noteInput = document.getElementById('transfer-note'); const amount = parseFloat(amountInput.value); const note = noteInput.value.trim(); if (isNaN(amount) || amount < 0 || amount > 9999) { alert('请输入有效的金额 (0 到 9999 之间)！'); return; } const chat = state.chats[state.activeChatId]; const senderName = chat.isGroup ? (chat.settings.myNickname || '我') : '我'; const receiverName = chat.isGroup ? '群聊' : chat.name; const msg = { role: 'user', type: 'transfer', amount: amount, note: note, senderName, receiverName, timestamp: Date.now() }; chat.history.push(msg); await db.chats.put(chat); appendMessage(msg, chat); renderChatList(); document.getElementById('transfer-modal').classList.remove('visible'); amountInput.value = ''; noteInput.value = ''; }
- 
+
         function enterSelectionMode(initialMsgTimestamp) { if (isSelectionMode) return; isSelectionMode = true; document.getElementById('chat-interface-screen').classList.add('selection-mode'); toggleMessageSelection(initialMsgTimestamp); }
- 
+
         function exitSelectionMode() { if (!isSelectionMode) return; isSelectionMode = false; document.getElementById('chat-interface-screen').classList.remove('selection-mode'); selectedMessages.forEach(ts => { const bubble = document.querySelector(`.message-bubble[data-timestamp="${ts}"]`); if (bubble) bubble.classList.remove('selected'); }); selectedMessages.clear(); }
- 
+
         function toggleMessageSelection(timestamp) { const bubble = document.querySelector(`.message-bubble[data-timestamp="${timestamp}"]`); if (!bubble) return; if (selectedMessages.has(timestamp)) { selectedMessages.delete(timestamp); bubble.classList.remove('selected'); } else { selectedMessages.add(timestamp); bubble.classList.add('selected'); } document.getElementById('selection-count').textContent = `已选 ${selectedMessages.size} 条`; if (selectedMessages.size === 0) exitSelectionMode(); }
- 
+
         function addLongPressListener(element, callback) { let pressTimer; const startPress = (e) => { if(isSelectionMode) return; e.preventDefault(); pressTimer = window.setTimeout(() => callback(e), 500); }; const cancelPress = () => clearTimeout(pressTimer); element.addEventListener('mousedown', startPress); element.addEventListener('mouseup', cancelPress); element.addEventListener('mouseleave', cancelPress); element.addEventListener('touchstart', startPress, { passive: true }); element.addEventListener('touchend', cancelPress); element.addEventListener('touchmove', cancelPress); }
- 
+
         async function handleListenTogetherClick() { const targetChatId = state.activeChatId; if (!targetChatId) return; if (!musicState.isActive) { startListenTogetherSession(targetChatId); return; } if (musicState.activeChatId === targetChatId) { document.getElementById('music-player-overlay').classList.add('visible'); } else { const oldChatName = state.chats[musicState.activeChatId]?.name || '未知'; const newChatName = state.chats[targetChatId]?.name || '当前'; const confirmed = await showCustomConfirm('切换听歌对象', `您正和「${oldChatName}」听歌。要结束并开始和「${newChatName}」的新会话吗？`, { confirmButtonClass: 'btn-danger' }); if (confirmed) { await endListenTogetherSession(true); await new Promise(resolve => setTimeout(resolve, 50)); startListenTogetherSession(targetChatId); } } }
- 
+
         async function startListenTogetherSession(chatId) { const chat = state.chats[chatId]; if (!chat) return; musicState.totalElapsedTime = chat.musicData.totalTime || 0; musicState.isActive = true; musicState.activeChatId = chatId; if (musicState.playlist.length > 0) { musicState.currentIndex = 0; } else { musicState.currentIndex = -1; } if(musicState.timerId) clearInterval(musicState.timerId); musicState.timerId = setInterval(() => { if (musicState.isPlaying) { musicState.totalElapsedTime++; updateElapsedTimeDisplay(); } }, 1000); updatePlayerUI(); updatePlaylistUI(); document.getElementById('music-player-overlay').classList.add('visible'); }
- 
+
         async function endListenTogetherSession(saveState = true) { if (!musicState.isActive) return; const oldChatId = musicState.activeChatId; if (musicState.timerId) clearInterval(musicState.timerId); if (musicState.isPlaying) audioPlayer.pause(); if (saveState && oldChatId && state.chats[oldChatId]) { const chat = state.chats[oldChatId]; chat.musicData.totalTime = musicState.totalElapsedTime; await db.chats.put(chat); } musicState.isActive = false; musicState.activeChatId = null; musicState.totalElapsedTime = 0; musicState.timerId = null; document.getElementById('music-player-overlay').classList.remove('visible'); document.getElementById('music-playlist-panel').classList.remove('visible'); updateListenTogetherIcon(oldChatId, true); }
- 
+
         function returnToChat() { document.getElementById('music-player-overlay').classList.remove('visible'); document.getElementById('music-playlist-panel').classList.remove('visible'); }
- 
+
         function updateListenTogetherIcon(chatId, forceReset = false) { const iconImg = document.querySelector('#listen-together-btn img'); if(!iconImg) return; if(forceReset || !musicState.isActive || musicState.activeChatId !== chatId) { iconImg.src = 'https://i.postimg.cc/8kYShvrJ/90-UI-2.png'; iconImg.className = ''; return; } iconImg.src = 'https://i.postimg.cc/vBN7GnQ9/3-FC8-D1596-C5-CFB200-FCB1-D8-C3-A37-A370.png'; iconImg.classList.add('rotating'); if (musicState.isPlaying) iconImg.classList.remove('paused'); else iconImg.classList.add('paused'); }
         window.updateListenTogetherIconProxy = updateListenTogetherIcon;
- 
+
         function updatePlayerUI() { updateListenTogetherIcon(musicState.activeChatId); updateElapsedTimeDisplay(); const titleEl = document.getElementById('music-player-song-title'); const artistEl = document.getElementById('music-player-artist'); const playPauseBtn = document.getElementById('music-play-pause-btn'); if (musicState.currentIndex > -1 && musicState.playlist.length > 0) { const track = musicState.playlist[musicState.currentIndex]; titleEl.textContent = track.name; artistEl.textContent = track.artist; } else { titleEl.textContent = '请添加歌曲'; artistEl.textContent = '...'; } playPauseBtn.textContent = musicState.isPlaying ? '❚❚' : '▶'; }
- 
+
         function updateElapsedTimeDisplay() { const hours = (musicState.totalElapsedTime / 3600).toFixed(1); document.getElementById('music-time-counter').textContent = `已经一起听了${hours}小时`; }
- 
-        function updatePlaylistUI() { const playlistBody = document.getElementById('playlist-body'); playlistBody.innerHTML = ''; if (musicState.playlist.length === 0) { playlistBody.innerHTML = '<p style="text-align:center; padding: 20px; color: #888;">播放列表是空的~</p>'; return; } musicState.playlist.forEach((track, index) => { const item = document.createElement('div'); item.className = 'playlist-item'; if(index === musicState.currentIndex) item.classList.add('playing'); item.innerHTML = `<div class="playlist-item-info"><div class="title">${track.name}</div><div class="artist">${track.artist}</div></div><span class="delete-track-btn" data-index="${index}">×</span>`; item.querySelector('.playlist-item-info').addEventListener('click', () => playSong(index)); item.querySelector('.delete-track-btn').addEventListener('click', async (e) => { e.stopPropagation(); const confirmed = await showCustomConfirm('删除歌曲', `确定要从播放列表中删除《${track.name}》吗？`); if(confirmed) deleteTrack(index); }); playlistBody.appendChild(item); }); }
- 
+
+        function updatePlaylistUI() { const playlistBody = document.getElementById('playlist-body'); playlistBody.innerHTML = ''; if (musicState.playlist.length === 0) { playlistBody.innerHTML = '<p style="text-align:center; padding: 20px; color: #888;">播放列表是空的~</p>'; return; } musicState.playlist.forEach((track, index) => { const item = document.createElement('div'); item.className = 'playlist-item'; if(index === musicState.currentIndex) item.classList.add('playing'); item.innerHTML = `<div class="playlist-item-info"><div class="title">${track.name}</div><div class="artist">${track.artist}</div></div><span class="delete-track-btn" data-index="${index}">&times;</span>`; item.querySelector('.playlist-item-info').addEventListener('click', () => playSong(index)); item.querySelector('.delete-track-btn').addEventListener('click', async (e) => { e.stopPropagation(); const confirmed = await showCustomConfirm('删除歌曲', `确定要从播放列表中删除《${track.name}》吗？`); if(confirmed) deleteTrack(index); }); playlistBody.appendChild(item); }); }
+
         function playSong(index) { if (index < 0 || index >= musicState.playlist.length) return; musicState.currentIndex = index; const track = musicState.playlist[index]; if (track.isLocal && track.src instanceof Blob) { audioPlayer.src = URL.createObjectURL(track.src); } else if (!track.isLocal) { audioPlayer.src = track.src; } else { console.error('本地歌曲源错误:', track); return; } audioPlayer.play(); updatePlaylistUI(); updatePlayerUI(); }
- 
+
         function togglePlayPause() { if (audioPlayer.paused) { if (musicState.currentIndex === -1 && musicState.playlist.length > 0) { playSong(0); } else if (musicState.currentIndex > -1) { audioPlayer.play(); } } else { audioPlayer.pause(); } }
- 
+
         function playNext() { if (musicState.playlist.length === 0) return; let nextIndex; switch(musicState.playMode) { case 'random': nextIndex = Math.floor(Math.random() * musicState.playlist.length); break; case 'single': playSong(musicState.currentIndex); return; case 'order': default: nextIndex = (musicState.currentIndex + 1) % musicState.playlist.length; break; } playSong(nextIndex); }
- 
+
         function playPrev() { if (musicState.playlist.length === 0) return; const newIndex = (musicState.currentIndex - 1 + musicState.playlist.length) % musicState.playlist.length; playSong(newIndex); }
- 
+
         function changePlayMode() { const modes = ['order', 'random', 'single']; const currentModeIndex = modes.indexOf(musicState.playMode); musicState.playMode = modes[(currentModeIndex + 1) % modes.length]; document.getElementById('music-mode-btn').textContent = {'order': '顺序', 'random': '随机', 'single': '单曲'}[musicState.playMode]; }
- 
+
         async function addSongFromURL() { const url = await showCustomPrompt("添加网络歌曲", "请输入歌曲的URL", "", "url"); if (!url) return; const name = await showCustomPrompt("歌曲信息", "请输入歌名"); if (!name) return; const artist = await showCustomPrompt("歌曲信息", "请输入歌手名"); if (!artist) return; musicState.playlist.push({ name, artist, src: url, isLocal: false }); await saveGlobalPlaylist(); updatePlaylistUI(); if(musicState.currentIndex === -1) { musicState.currentIndex = musicState.playlist.length - 1; updatePlayerUI(); } }
- 
+
         async function addSongFromLocal(event) { const files = event.target.files; if (!files.length) return; for (const file of files) { const name = await showCustomPrompt("歌曲信息", "请输入歌名", ""); if (name === null) continue; const artist = await showCustomPrompt("歌曲信息", "请输入歌手名", ""); if (artist === null) continue; musicState.playlist.push({ name, artist, src: file, isLocal: true }); } await saveGlobalPlaylist(); updatePlaylistUI(); if (musicState.currentIndex === -1 && musicState.playlist.length > 0) { musicState.currentIndex = 0; updatePlayerUI(); } event.target.value = null; }
- 
+
         async function deleteTrack(index) { if (index < 0 || index >= musicState.playlist.length) return; const track = musicState.playlist[index]; const wasPlaying = musicState.isPlaying && musicState.currentIndex === index; if (track.isLocal && audioPlayer.src.startsWith('blob:') && musicState.currentIndex === index) URL.revokeObjectURL(audioPlayer.src); musicState.playlist.splice(index, 1); await saveGlobalPlaylist(); if (musicState.playlist.length === 0) { if (musicState.isPlaying) audioPlayer.pause(); audioPlayer.src = ''; musicState.currentIndex = -1; musicState.isPlaying = false; } else { if (wasPlaying) { playNext(); } else { if (musicState.currentIndex >= index) musicState.currentIndex = Math.max(0, musicState.currentIndex - 1); } } updatePlayerUI(); updatePlaylistUI(); }
- 
+
         const personaLibraryModal = document.getElementById('persona-library-modal');
         const personaEditorModal = document.getElementById('persona-editor-modal');
         const presetActionsModal = document.getElementById('preset-actions-modal');
- 
+
         function openPersonaLibrary() { renderPersonaLibrary(); personaLibraryModal.classList.add('visible'); }
- 
+
         function closePersonaLibrary() { personaLibraryModal.classList.remove('visible'); }
- 
+
         function renderPersonaLibrary() { const grid = document.getElementById('persona-library-grid'); grid.innerHTML = ''; if (state.personaPresets.length === 0) { grid.innerHTML = '<p style="color: var(--text-secondary); grid-column: 1 / -1; text-align: center; margin-top: 20px;">空空如也~ 点击右上角"添加"来创建你的第一个人设预设吧！</p>'; return; } state.personaPresets.forEach(preset => { const item = document.createElement('div'); item.className = 'persona-preset-item'; item.style.backgroundImage = `url(${preset.avatar})`; item.dataset.presetId = preset.id; item.addEventListener('click', () => applyPersonaPreset(preset.id)); addLongPressListener(item, () => showPresetActions(preset.id)); grid.appendChild(item); }); }
- 
+
         function showPresetActions(presetId) { editingPersonaPresetId = presetId; presetActionsModal.classList.add('visible'); }
- 
+
         function hidePresetActions() { presetActionsModal.classList.remove('visible'); editingPersonaPresetId = null; }
- 
+
         function applyPersonaPreset(presetId) { const preset = state.personaPresets.find(p => p.id === presetId); if (preset) { document.getElementById('my-avatar-preview').src = preset.avatar; document.getElementById('my-persona').value = preset.persona; } closePersonaLibrary(); }
- 
+
         function openPersonaEditorForCreate() { editingPersonaPresetId = null; document.getElementById('persona-editor-title').textContent = '添加人设预设'; document.getElementById('preset-avatar-preview').src = defaultAvatar; document.getElementById('preset-persona-input').value = ''; personaEditorModal.classList.add('visible'); }
- 
+
         function openPersonaEditorForEdit() { const preset = state.personaPresets.find(p => p.id === editingPersonaPresetId); if (!preset) return; document.getElementById('persona-editor-title').textContent = '编辑人设预设'; document.getElementById('preset-avatar-preview').src = preset.avatar; document.getElementById('preset-persona-input').value = preset.persona; presetActionsModal.classList.remove('visible'); personaEditorModal.classList.add('visible'); }
- 
+
         async function deletePersonaPreset() { const confirmed = await showCustomConfirm('删除预设', '确定要删除这个人设预设吗？此操作不可恢复。', { confirmButtonClass: 'btn-danger' }); if (confirmed && editingPersonaPresetId) { await db.personaPresets.delete(editingPersonaPresetId); state.personaPresets = state.personaPresets.filter(p => p.id !== editingPersonaPresetId); hidePresetActions(); renderPersonaLibrary(); } }
- 
+
         function closePersonaEditor() { personaEditorModal.classList.remove('visible'); editingPersonaPresetId = null; }
- 
+
         async function savePersonaPreset() { const avatar = document.getElementById('preset-avatar-preview').src; const persona = document.getElementById('preset-persona-input').value.trim(); if (avatar === defaultAvatar && !persona) { alert("头像和人设不能都为空哦！"); return; } if (editingPersonaPresetId) { const preset = state.personaPresets.find(p => p.id === editingPersonaPresetId); if (preset) { preset.avatar = avatar; preset.persona = persona; await db.personaPresets.put(preset); } } else { const newPreset = { id: 'preset_' + Date.now(), avatar: avatar, persona: persona }; await db.personaPresets.add(newPreset); state.personaPresets.push(newPreset); } renderPersonaLibrary(); closePersonaEditor(); }
- 
+
         const batteryAlertModal = document.getElementById('battery-alert-modal');
- 
+
         function showBatteryAlert(imageUrl, text) { clearTimeout(batteryAlertTimeout); document.getElementById('battery-alert-image').src = imageUrl; document.getElementById('battery-alert-text').textContent = text; batteryAlertModal.classList.add('visible'); const closeAlert = () => { batteryAlertModal.classList.remove('visible'); batteryAlertModal.removeEventListener('click', closeAlert); }; batteryAlertModal.addEventListener('click', closeAlert); batteryAlertTimeout = setTimeout(closeAlert, 2000); }
- 
+
         function updateBatteryDisplay(battery) { const batteryContainer = document.getElementById('status-bar-battery'); const batteryLevelEl = batteryContainer.querySelector('.battery-level'); const batteryTextEl = batteryContainer.querySelector('.battery-text'); const level = Math.floor(battery.level * 100); batteryLevelEl.style.width = `${level}%`; batteryTextEl.textContent = `${level}%`; if (battery.charging) { batteryContainer.classList.add('charging'); } else { batteryContainer.classList.remove('charging'); } }
- 
+
         function handleBatteryChange(battery) { updateBatteryDisplay(battery); const level = battery.level; if (!battery.charging) { if (level <= 0.4 && lastKnownBatteryLevel > 0.4 && !alertFlags.hasShown40) { showBatteryAlert('https://i.postimg.cc/T2yKJ0DV/40.jpg', '有点饿了，可以去找充电器惹'); alertFlags.hasShown40 = true; } if (level <= 0.2 && lastKnownBatteryLevel > 0.2 && !alertFlags.hasShown20) { showBatteryAlert('https://i.postimg.cc/qB9zbKs9/20.jpg', '赶紧的充电，要饿死了'); alertFlags.hasShown20 = true; } if (level <= 0.1 && lastKnownBatteryLevel > 0.1 && !alertFlags.hasShown10) { showBatteryAlert('https://i.postimg.cc/ThMMVfW4/10.jpg', '已阵亡，还有30秒爆炸'); alertFlags.hasShown10 = true; } } if (level > 0.4) alertFlags.hasShown40 = false; if (level > 0.2) alertFlags.hasShown20 = false; if (level > 0.1) alertFlags.hasShown10 = false; lastKnownBatteryLevel = level; }
- 
+
         async function initBatteryManager() { if ('getBattery' in navigator) { try { const battery = await navigator.getBattery(); lastKnownBatteryLevel = battery.level; handleBatteryChange(battery); battery.addEventListener('levelchange', () => handleBatteryChange(battery)); battery.addEventListener('chargingchange', () => { handleBatteryChange(battery); if (battery.charging) { showBatteryAlert('https://i.postimg.cc/3NDQ0dWG/image.jpg', '窝爱泥，电量吃饱饱'); } }); } catch (err) { console.error("无法获取电池信息:", err); document.querySelector('.battery-text').textContent = 'ᗜωᗜ'; } } else { console.log("浏览器不支持电池状态API。"); document.querySelector('.battery-text').textContent = 'ᗜωᗜ'; } }
- 
+
         function openFrameSelectorModal(type = 'chat') {
             if (!state.activeChatId) return;
             const chat = state.chats[state.activeChatId];
@@ -4333,18 +4341,18 @@ ${aiVoiceInstructions}
             }
             frameModal.classList.add('visible');
         }
- 
+
         function populateFrameGrids(isForMember = false, memberAvatar = null, memberFrame = null) {
             const chat = state.chats[state.activeChatId];
             aiFrameGrid.innerHTML = '';
             myFrameGrid.innerHTML = '';
- 
+
             document.querySelector('.frame-tabs').style.display = isForMember ? 'none' : 'flex';
             aiFrameContent.style.display = 'block';
             myFrameContent.style.display = 'none';
             aiFrameTab.classList.add('active');
             myFrameTab.classList.remove('active');
- 
+
             if (isForMember) {
                 avatarFrames.forEach(frame => {
                     const item = createFrameItem(frame, 'my', memberAvatar);
@@ -4366,7 +4374,7 @@ ${aiVoiceInstructions}
                 });
             }
         }
- 
+
         function createFrameItem(frame, type, previewAvatarSrc) {
             const item = document.createElement('div');
             item.className = 'frame-item';
@@ -4384,7 +4392,7 @@ ${aiVoiceInstructions}
             });
             return item;
         }
- 
+
         async function saveSelectedFrames() {
             if (!state.activeChatId) return;
             const chat = state.chats[state.activeChatId];
@@ -4403,7 +4411,7 @@ ${aiVoiceInstructions}
             alert('头像框已保存！');
             editingFrameForMember = false;
         }
- 
+
         async function renderAlbumList() {
             const albumGrid = document.getElementById('album-grid-page');
             if (!albumGrid) return;
@@ -4426,7 +4434,7 @@ ${aiVoiceInstructions}
                 albumItem.addEventListener('click', () => {
                     openAlbum(album.id);
                 });
- 
+
                 // ▼▼▼ 新增的核心代码就是这里 ▼▼▼
                 addLongPressListener(albumItem, async () => {
                     const confirmed = await showCustomConfirm(
@@ -4434,7 +4442,7 @@ ${aiVoiceInstructions}
                         `确定要删除相册《${album.name}》吗？此操作将同时删除相册内的所有照片，且无法恢复。`,
                         { confirmButtonClass: 'btn-danger' }
                     );
- 
+
                     if (confirmed) {
                         // 1. 从照片表中删除该相册下的所有照片
                         await db.qzonePhotos.where('albumId').equals(album.id).delete();
@@ -4449,17 +4457,17 @@ ${aiVoiceInstructions}
                     }
                 });
                 // ▲▲▲ 新增代码结束 ▲▲▲
- 
+
                 albumGrid.appendChild(albumItem);
             });
         }
- 
+
         async function openAlbum(albumId) {
             state.activeAlbumId = albumId;
             await renderAlbumPhotosScreen();
             showScreen('album-photos-screen');
         }
- 
+
         async function renderAlbumPhotosScreen() {
             if (!state.activeAlbumId) return;
             const photosGrid = document.getElementById('photos-grid-page');
@@ -4487,56 +4495,56 @@ ${aiVoiceInstructions}
                 });
             }
         }
- 
+
 // --- ↓↓↓ 从这里开始复制 ↓↓↓ ---
- 
+
 /**
  * 打开图片查看器
  * @param {string} clickedPhotoUrl - 用户点击的那张照片的URL
  */
 async function openPhotoViewer(clickedPhotoUrl) {
     if (!state.activeAlbumId) return;
- 
+
     // 1. 从数据库获取当前相册的所有照片
     const photosInAlbum = await db.qzonePhotos.where('albumId').equals(state.activeAlbumId).toArray();
     photoViewerState.photos = photosInAlbum.map(p => p.url);
- 
+
     // 2. 找到被点击照片的索引
     photoViewerState.currentIndex = photoViewerState.photos.findIndex(url => url === clickedPhotoUrl);
     if (photoViewerState.currentIndex === -1) return; // 如果找不到，则不打开
- 
+
     // 3. 显示模态框并渲染第一张图
     document.getElementById('photo-viewer-modal').classList.add('visible');
     renderPhotoViewer();
     photoViewerState.isOpen = true;
 }
- 
+
 /**
  * 根据当前状态渲染查看器内容（图片和按钮）
  */
 function renderPhotoViewer() {
     if (photoViewerState.currentIndex === -1) return;
- 
+
     const imageEl = document.getElementById('photo-viewer-image');
     const prevBtn = document.getElementById('photo-viewer-prev-btn');
     const nextBtn = document.getElementById('photo-viewer-next-btn');
     
     // 淡出效果
     imageEl.style.opacity = 0;
- 
+
     setTimeout(() => {
         // 更新图片源
         imageEl.src = photoViewerState.photos[photoViewerState.currentIndex];
         // 淡入效果
         imageEl.style.opacity = 1;
     }, 100); // 延迟一点点时间来触发CSS过渡
- 
+
     // 更新按钮状态：如果是第一张，禁用“上一张”按钮
     prevBtn.disabled = photoViewerState.currentIndex === 0;
     // 如果是最后一张，禁用“下一张”按钮
     nextBtn.disabled = photoViewerState.currentIndex === photoViewerState.photos.length - 1;
 }
- 
+
 /**
  * 显示下一张照片
  */
@@ -4546,7 +4554,7 @@ function showNextPhoto() {
         renderPhotoViewer();
     }
 }
- 
+
 /**
  * 显示上一张照片
  */
@@ -4556,7 +4564,7 @@ function showPrevPhoto() {
         renderPhotoViewer();
     }
 }
- 
+
 /**
  * 关闭图片查看器
  */
@@ -4568,7 +4576,7 @@ function closePhotoViewer() {
     // 清空图片，避免下次打开时闪现旧图
     document.getElementById('photo-viewer-image').src = '';
 }
- 
+
 // --- ↑↑↑ 复制到这里结束 ↑↑↑ ---
         // ▼▼▼ 请将这个新函数粘贴到你的JS功能函数定义区 ▼▼▼
         
@@ -4579,13 +4587,13 @@ function closePhotoViewer() {
         function updateUnreadIndicator(count) {
             unreadPostsCount = count;
             localStorage.setItem('unreadPostsCount', count); // 持久化存储
- 
+
             // --- 更新底部导航栏的“动态”按钮 ---
             const navItem = document.querySelector('.nav-item[data-view="qzone-screen"]');
             
             const targetSpan = navItem.querySelector('span'); // 定位到文字 "动态"
             let indicator = navItem.querySelector('.unread-indicator');           
- 
+
             if (count > 0) {
                 if (!indicator) {
                     indicator = document.createElement('span');
@@ -4601,11 +4609,11 @@ function closePhotoViewer() {
                     indicator.style.display = 'none';
                 }
             }
- 
+
             // --- 更新聊天界面返回列表的按钮 ---
             const backBtn = document.getElementById('back-to-list-btn');
             let backBtnIndicator = backBtn.querySelector('.unread-indicator');
- 
+
             if (count > 0) {
                 if (!backBtnIndicator) {
                     backBtnIndicator = document.createElement('span');
@@ -4623,7 +4631,7 @@ function closePhotoViewer() {
         }
         
         // ▲▲▲ 新函数粘贴结束 ▲▲▲
- 
+
 // ▼▼▼ 将这两个新函数粘贴到你的JS功能函数定义区 ▼▼▼
 function startBackgroundSimulation() {
     if (simulationIntervalId) return;
@@ -4631,7 +4639,7 @@ function startBackgroundSimulation() {
     // 将旧的固定间隔 45000 替换为动态获取
     simulationIntervalId = setInterval(runBackgroundSimulationTick, intervalSeconds * 1000); 
 }
- 
+
 function stopBackgroundSimulation() {
     if (simulationIntervalId) {
         clearInterval(simulationIntervalId);
@@ -4639,9 +4647,9 @@ function stopBackgroundSimulation() {
     }
 }
 // ▲▲▲ 粘贴结束 ▲▲▲
- 
+
 // ▼▼▼ 将这两个新函数【完整地】粘贴到你的JS功能函数定义区 ▼▼-▼
- 
+
 /**
  * 这是模拟器的“心跳”，每次定时器触发时运行
  */
@@ -4652,14 +4660,14 @@ function runBackgroundSimulationTick() {
         stopBackgroundSimulation();
         return;
     }
- 
+
     // 1. 找出所有非激活状态的、非群聊的AI角色
     const inactiveChats = Object.values(state.chats).filter(chat => 
         !chat.isGroup && chat.id !== state.activeChatId
     );
- 
+
     if (inactiveChats.length === 0) return;
- 
+
     // 2. 遍历每个非激活角色，给他们一个行动的机会
     inactiveChats.forEach(chat => {
         // 设定一个概率，比如 20% 的几率行动，避免消息轰炸
@@ -4669,67 +4677,67 @@ function runBackgroundSimulationTick() {
         }
     });
 }
- 
- 
+
+
 // ▼▼▼ 请用这个【同样智能的】，完整替换掉旧的 triggerInactiveAiAction 函数 ▼▼▼
 async function triggerInactiveAiAction(chatId) {
     const chat = state.chats[chatId];
     if (!chat) return;
- 
+
     const { proxyUrl, apiKey, model } = state.apiConfig;
     if (!proxyUrl || !apiKey || !model) return;
- 
+
     const now = new Date();
     const currentTime = now.toLocaleTimeString('zh-CN', { hour: 'numeric', minute: 'numeric', hour12: true });
- 
+
     const systemPrompt = `
 你现在扮演一个名为"${chat.name}"的角色。
 # 你的角色设定：
 ${chat.settings.aiPersona}
- 
+
 # 你的任务：
 你已经有一段时间没有和用户（${state.qzoneSettings.nickname}）互动了。现在你有机会主动做点什么，来表现你的个性和独立生活。
 你有以下几种选择，请根据你的人设和当前心情【选择其中一项或者多项】执行：
- 
+
 1.  **主动发消息**：给用户发一条私信，可以是一个问候、分享一件趣事、或者开启一个你感兴趣的新话题。让用户感觉你想ta了。
 2.  **评论或点赞动态**：去“动态”区看看，如果有什么有趣的帖子，可以进行评论或点赞。
- 
+
 # 指令格式：
 你的回复【必须】是一个只包含一个对象的JSON数组。
 -   **发消息**: \`[{"role": "assistant", "content": "你想对用户说的话..."}]\`
 -   **评论**: \`[{"type": "qzone_comment", "postId": 要评论的帖子ID, "commentText": "你的评论内容"}]\`
 -   **点赞**: \`[{"type": "qzone_like", "postId": 要点赞的帖子ID}]\`
- 
+
 # 供你参考的信息：
 -   **当前时间**: ${currentTime}
 -   **你的对话历史**: (只包含最近的记忆，用于回顾你们上次聊了什么)
 -   **【增强版】最近的动态列表**: 这个列表会标注 **[你已点赞]** 或 **[你已评论]**。请**优先**与你**尚未互动过**的动态进行交流。
- 
+
 # 【重要】评论与点赞动态 (模拟社交行为) - v2.0 智能版
 -   **【核心规则：作者识别】**: 当你决定评论时，你**必须**首先查看我们提供给你的“最近的动态列表”，并确认那条动态的【作者】是谁。
 -   **【核心规则：正确互动】**: 你的评论内容**必须**针对该动态的作者。例如，如果作者是“角色A”，你的评论可以写成：“@角色A 这个也太好看了吧！”。你必须表现出你知道这条动态是谁发的。
 -   **【核心规则：防呆机制】**: **绝对禁止**在评论一个**非用户**发布的动态时，对用户说“你发的这个真好”或“这是你吗？”之类的话。这是严重的人设崩塌，必须避免！你只能与动态的真正作者互动。
- 
+
 现在，请根据以上信息，决定并执行你的操作。
 `;
- 
+
     const maxMemory = parseInt(chat.settings.maxMemory) || 10;
     const historySlice = chat.history.slice(-maxMemory);
     const messagesPayload = historySlice.map(msg => ({ role: msg.role, content: msg.content }));
- 
+
     try {
         const recentPosts = await db.qzonePosts.orderBy('timestamp').reverse().limit(5).toArray();
         const aiChat = state.chats[chatId];
         const aiGroupId = aiChat ? aiChat.groupId : null;
         const aiName = aiChat.name;
- 
+
         const visiblePosts = recentPosts.filter(post => {
             const postVisibleGroups = post.visibleGroupIds;
             if (!postVisibleGroups || postVisibleGroups.length === 0) return true;
             if (aiGroupId && postVisibleGroups.includes(aiGroupId)) return true;
             return false;
         });
- 
+
         if (visiblePosts.length > 0) {
             let postsContext = "\n\n# 最近的动态列表 (供你参考和评论):\n";
             for (const post of visiblePosts) {
@@ -4758,14 +4766,14 @@ ${chat.settings.aiPersona}
                 temperature: 0.9,
             })
         });
- 
+
         if (!response.ok) throw new Error('API request failed');
         const data = await response.json();
         const responseArray = parseAiResponse(data.choices[0].message.content);
         const action = responseArray[0];
- 
+
         if (!action) return;
- 
+
         if (action.type === 'qzone_comment') {
             const post = await db.qzonePosts.get(parseInt(action.postId));
             if (post) {
@@ -4795,15 +4803,15 @@ ${chat.settings.aiPersona}
             renderChatList();
             console.log(`角色 "${chat.name}" 主动发送了消息: ${aiMessage.content}`);
         }
- 
+
     } catch (error) {
         console.error(`角色 "${chat.name}" 的独立行动失败:`, error);
     }
 }
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
 // ▼▼▼ 请用这个【终极修正版】函数，完整替换掉你旧的 applyScopedCss 函数 ▼▼▼
- 
+
 /**
  * 将用户自定义的CSS安全地应用到指定的作用域
  * @param {string} cssString 用户输入的原始CSS字符串
@@ -4816,7 +4824,7 @@ function applyScopedCss(cssString, scopeId, styleTagId) {
         console.error(`Style tag with id "${styleTagId}" not found.`);
         return;
     }
- 
+
     if (!cssString || cssString.trim() === '') {
         styleTag.innerHTML = '';
         return;
@@ -4828,18 +4836,18 @@ function applyScopedCss(cssString, scopeId, styleTagId) {
     let scopedCss = '';
     // 移除注释，防止干扰
     cssString = cssString.replace(/\/\*[\s\S]*?\*\//g, '');
- 
+
     // 使用一个简单的解析器来处理 @ 规则和普通规则
     const cssBlocks = cssString.split('}');
     cssBlocks.forEach(block => {
         if (block.trim() === '') return;
- 
+
         const parts = block.split('{');
         if (parts.length < 2) return;
         
         let selectors = parts[0].trim();
         const rules = `{${parts.slice(1).join('{')}}`;
- 
+
         // 如果是 @ 规则 (如 @keyframes), 则保持原样
         if (selectors.startsWith('@')) {
             scopedCss += `${selectors} ${rules}}\n`;
@@ -4865,23 +4873,23 @@ function applyScopedCss(cssString, scopeId, styleTagId) {
     
     styleTag.innerHTML = scopedCss;
 }
- 
+
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
 // ▼▼▼ 请用这个【修正版】函数，完整替换掉旧的 updateSettingsPreview 函数 ▼▼▼
- 
+
 function updateSettingsPreview() {
     if (!state.activeChatId) return;
     const chat = state.chats[state.activeChatId];
     const previewArea = document.getElementById('settings-preview-area');
     if (!previewArea) return;
- 
+
     // 1. 获取当前设置的值
     const selectedTheme = document.querySelector('input[name="theme-select"]:checked')?.value || 'default';
     const fontSize = document.getElementById('font-size-slider').value;
     const customCss = document.getElementById('custom-css-input').value;
     const background = chat.settings.background; // 直接获取背景设置
- 
+
     // 2. 更新预览区的基本样式
     previewArea.dataset.theme = selectedTheme;
     previewArea.style.setProperty('--chat-font-size', `${fontSize}px`);
@@ -4895,16 +4903,16 @@ function updateSettingsPreview() {
         // 如果背景是颜色值或渐变（非图片），则直接应用
         previewArea.style.background = background || '#f0f2f5';
     }
- 
+
     // 3. 渲染模拟气泡
     previewArea.innerHTML = ''; 
- 
+
     // 创建“对方”的气泡
     // 注意：我们将一个虚拟的 timestamp 传入，以防有CSS依赖于它
     const aiMsg = { role: 'ai', content: '对方消息预览', timestamp: 1, senderName: chat.name };
     const aiBubble = createMessageElement(aiMsg, chat);
     if(aiBubble) previewArea.appendChild(aiBubble);
- 
+
     // 创建“我”的气泡
     const userMsg = { role: 'user', content: '我的消息预览', timestamp: 2 };
     const userBubble = createMessageElement(userMsg, chat);
@@ -4913,16 +4921,16 @@ function updateSettingsPreview() {
     // 4. 应用自定义CSS到预览区
     applyScopedCss(customCss, '#settings-preview-area', 'preview-bubble-style');
 }
- 
+
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
 // ▼▼▼ 请将这些【新函数】粘贴到JS功能函数定义区 ▼▼▼
- 
+
 async function openGroupManager() {
     await renderGroupList();
     document.getElementById('group-management-modal').classList.add('visible');
 }
- 
+
 async function renderGroupList() {
     const listEl = document.getElementById('existing-groups-list');
     const groups = await db.qzoneGroups.toArray();
@@ -4940,7 +4948,7 @@ async function renderGroupList() {
         listEl.appendChild(item);
     });
 }
- 
+
 // ▼▼▼ 请用这个【修正后】的函数，完整替换旧的 addNewGroup 函数 ▼▼▼
 async function addNewGroup() {
     const input = document.getElementById('new-group-name-input');
@@ -4949,7 +4957,7 @@ async function addNewGroup() {
         alert('分组名不能为空！');
         return;
     }
- 
+
     // 【核心修正】在添加前，先检查分组名是否已存在
     const existingGroup = await db.qzoneGroups.where('name').equals(name).first();
     if (existingGroup) {
@@ -4957,13 +4965,13 @@ async function addNewGroup() {
         return;
     }
     // 【修正结束】
- 
+
     await db.qzoneGroups.add({ name });
     input.value = '';
     await renderGroupList();
 }
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
 async function deleteGroup(groupId) {
     const confirmed = await showCustomConfirm('确认删除', '删除分组后，该组内的好友将变为“未分组”。确定要删除吗？', { confirmButtonClass: 'btn-danger' });
     if (confirmed) {
@@ -4978,11 +4986,11 @@ async function deleteGroup(groupId) {
         await renderGroupList();
     }
 }
- 
+
 // ▲▲▲ 新函数粘贴结束 ▲▲▲
- 
+
 // ▼▼▼ 请将这【一整块新函数】粘贴到JS功能函数定义区的末尾 ▼▼▼
- 
+
 /**
  * 当长按消息时，显示操作菜单
  * @param {number} timestamp - 被长按消息的时间戳
@@ -4994,7 +5002,7 @@ function showMessageActions(timestamp) {
     activeMessageTimestamp = timestamp;
     document.getElementById('message-actions-modal').classList.add('visible');
 }
- 
+
 /**
  * 隐藏消息操作菜单
  */
@@ -5002,21 +5010,21 @@ function hideMessageActions() {
     document.getElementById('message-actions-modal').classList.remove('visible');
     activeMessageTimestamp = null;
 }
- 
+
 // ▼▼▼ 请用这个【带格式助手的终极版】替换旧的 openMessageEditor 函数 ▼▼▼
 async function openMessageEditor() {
     if (!activeMessageTimestamp) return;
- 
+
     const timestampToEdit = activeMessageTimestamp;
     const chat = state.chats[state.activeChatId];
     const message = chat.history.find(m => m.timestamp === timestampToEdit);
     if (!message) return;
- 
+
     hideMessageActions(); 
- 
+
     let contentForEditing;
     const isSpecialType = message.type && ['voice_message', 'ai_image', 'transfer'].includes(message.type);
- 
+
     if (isSpecialType) {
         let fullMessageObject = { type: message.type };
         if (message.type === 'voice_message') fullMessageObject.content = message.content;
@@ -5031,14 +5039,14 @@ async function openMessageEditor() {
     } else {
         contentForEditing = message.content;
     }
- 
+
     // --- 【核心修改】在这里构建“格式助手”按钮的HTML ---
     const templates = {
         voice: { type: 'voice_message', content: '在这里输入语音内容' },
         image: { type: 'ai_image', description: '在这里输入图片描述' },
         transfer: { type: 'transfer', amount: 5.20, note: '一点心意' }
     };
- 
+
     // 使用 data-template 属性存储JSON模板字符串，注意要用单引号包裹
     const helpersHtml = `
         <div class="format-helpers">
@@ -5048,7 +5056,7 @@ async function openMessageEditor() {
         </div>
     `;
     // --- 【核心修改结束】---
- 
+
     const newContent = await showCustomPrompt(
         '编辑消息', 
         '在此修改，或点击上方按钮使用格式模板...', // 修改提示语
@@ -5056,13 +5064,13 @@ async function openMessageEditor() {
         'textarea',
         helpersHtml // 将按钮的HTML作为第5个参数传入
     );
- 
+
     if (newContent !== null) {
         await saveEditedMessage(timestampToEdit, newContent);
     }
 }
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
 /**
  * 复制消息的文本内容到剪贴板
  */
@@ -5071,14 +5079,14 @@ async function copyMessageContent() {
     const chat = state.chats[state.activeChatId];
     const message = chat.history.find(m => m.timestamp === activeMessageTimestamp);
     if (!message) return;
- 
+
     let textToCopy;
     if (typeof message.content === 'object') {
         textToCopy = JSON.stringify(message.content);
     } else {
         textToCopy = String(message.content);
     }
- 
+
     try {
         await navigator.clipboard.writeText(textToCopy);
         await showCustomAlert('复制成功', '消息内容已复制到剪贴板。');
@@ -5088,7 +5096,7 @@ async function copyMessageContent() {
     
     hideMessageActions();
 }
- 
+
 /**
  * 解析编辑后的文本，并返回一个标准化的消息片段对象
  * @param {string} text - 用户在编辑框中输入的文本
@@ -5096,7 +5104,7 @@ async function copyMessageContent() {
  */
 function parseEditedContent(text) {
     const trimmedText = text.trim();
- 
+
     // 1. 尝试解析为JSON对象（用于修复语音、转账等格式）
     if (trimmedText.startsWith('{') && trimmedText.endsWith('}')) {
         try {
@@ -5113,12 +5121,12 @@ function parseEditedContent(text) {
         // 对于编辑的表情，我们暂时无法知道其`meaning`，所以只存URL
         return { type: 'sticker', content: trimmedText };
     }
- 
+
     // 3. 否则，视为普通文本消息
     return { type: 'text', content: trimmedText };
 }
- 
- 
+
+
 // ▼▼▼ 请用这个【修正后】的函数，替换旧的 saveEditedMessage ▼▼▼
 /**
  * 保存编辑后的消息，更新数据库和UI
@@ -5127,19 +5135,19 @@ function parseEditedContent(text) {
  */
 async function saveEditedMessage(timestamp, newRawContent) {
     if (!timestamp) return; // 使用传入的时间戳进行判断
- 
+
     const chat = state.chats[state.activeChatId];
     const messageIndex = chat.history.findIndex(m => m.timestamp === timestamp);
     if (messageIndex === -1) return;
- 
+
     const parsedResult = parseEditedContent(newRawContent);
     const originalMessage = chat.history[messageIndex];
- 
+
     delete originalMessage.type;
     delete originalMessage.meaning;
     delete originalMessage.amount;
     delete originalMessage.note;
- 
+
     originalMessage.content = parsedResult.content || '';
     
     if (parsedResult.type && parsedResult.type !== 'text') {
@@ -5151,15 +5159,15 @@ async function saveEditedMessage(timestamp, newRawContent) {
     if (parsedResult.description) originalMessage.content = parsedResult.description;
     
     chat.history[messageIndex] = originalMessage;
- 
+
     await db.chats.put(chat);
     renderChatInterface(state.activeChatId);
     await showCustomAlert('成功', '消息已更新！');
 }
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
 // ▼▼▼ 请将这【一整块新函数】粘贴到JS功能函数定义区的末尾 ▼▼▼
- 
+
 /**
  * 当点击“…”时，显示动态操作菜单
  * @param {number} postId - 被操作的动态的ID
@@ -5168,7 +5176,7 @@ function showPostActions(postId) {
     activePostId = postId;
     document.getElementById('post-actions-modal').classList.add('visible');
 }
- 
+
 /**
  * 隐藏动态操作菜单
  */
@@ -5176,19 +5184,19 @@ function hidePostActions() {
     document.getElementById('post-actions-modal').classList.remove('visible');
     activePostId = null;
 }
- 
+
 /**
  * 打开动态编辑器
  */
 async function openPostEditor() {
     if (!activePostId) return;
- 
+
     const postIdToEdit = activePostId;
     const post = await db.qzonePosts.get(postIdToEdit);
     if (!post) return;
- 
+
     hidePostActions();
- 
+
     // 忠于原文：构建出最原始的文本形态供编辑
     let contentForEditing;
     if (post.type === 'shuoshuo') {
@@ -5222,7 +5230,7 @@ async function openPostEditor() {
             <button class="format-btn" data-template='${JSON.stringify(templates.text_image)}'>文字图</button>
         </div>
     `;
- 
+
     const newContent = await showCustomPrompt(
         '编辑动态',
         '在此修改内容...',
@@ -5243,12 +5251,12 @@ async function openPostEditor() {
             });
         }
     }, 100);
- 
+
     if (newContent !== null) {
         await saveEditedPost(postIdToEdit, newContent);
     }
 }
- 
+
 /**
  * 保存编辑后的动态
  * @param {number} postId - 要保存的动态ID
@@ -5257,7 +5265,7 @@ async function openPostEditor() {
 async function saveEditedPost(postId, newRawContent) {
     const post = await db.qzonePosts.get(postId);
     if (!post) return;
- 
+
     const trimmedContent = newRawContent.trim();
     
     // 尝试解析为JSON，如果失败，则认为是纯文本（说说）
@@ -5285,7 +5293,7 @@ async function saveEditedPost(postId, newRawContent) {
     await renderQzonePosts(); // 重新渲染列表
     await showCustomAlert('成功', '动态已更新！');
 }
- 
+
 /**
  * 复制动态内容
  */
@@ -5305,63 +5313,63 @@ async function copyPostContent() {
     
     hidePostActions();
 }
- 
+
         // ===================================================================
         // 4. 初始化函数 init()
         // ===================================================================
         async function init() {
- 
+
     // ▼▼▼ 新增代码 ▼▼▼
     const customBubbleStyleTag = document.createElement('style');
     customBubbleStyleTag.id = 'custom-bubble-style';
     document.head.appendChild(customBubbleStyleTag);
     // ▲▲▲ 新增结束 ▲▲▲
- 
+
     // ▼▼▼ 新增代码 ▼▼▼
     const previewBubbleStyleTag = document.createElement('style');
     previewBubbleStyleTag.id = 'preview-bubble-style';
     document.head.appendChild(previewBubbleStyleTag);
     // ▲▲▲ 新增结束 ▲▲▲
- 
+
             window.showScreen = showScreen;
             window.renderChatListProxy = renderChatList;
             window.renderApiSettingsProxy = renderApiSettings;
             window.renderWallpaperScreenProxy = renderWallpaperScreen;
             window.renderWorldBookScreenProxy = renderWorldBookScreen;
- 
+
             await loadAllDataFromDB();
- 
+
             // 初始化未读动态计数
             const storedCount = parseInt(localStorage.getItem('unreadPostsCount')) || 0;
             updateUnreadIndicator(storedCount);
             
             // ▲▲▲ 代码添加结束 ▲▲▲
- 
+
             if (state.globalSettings && state.globalSettings.fontUrl) {
                 applyCustomFont(state.globalSettings.fontUrl);
             }
- 
+
             updateClock();
             setInterval(updateClock, 1000 * 30);
             applyGlobalWallpaper();
             initBatteryManager(); 
- 
+
             // ==========================================================
             // --- 各种事件监听器 ---
             // ==========================================================
- 
+
             document.getElementById('custom-modal-cancel').addEventListener('click', hideCustomModal);
             document.getElementById('custom-modal-overlay').addEventListener('click', (e) => { if (e.target === modalOverlay) hideCustomModal(); });
             document.getElementById('export-data-btn').addEventListener('click', exportBackup);
             document.getElementById('import-btn').addEventListener('click', () => document.getElementById('import-data-input').click());
             document.getElementById('import-data-input').addEventListener('change', e => importBackup(e.target.files[0]));
             document.getElementById('back-to-list-btn').addEventListener('click', () => { 
- 
+
     // ▼▼▼ 修改这两行 ▼▼▼
     applyScopedCss('', '#chat-messages', 'custom-bubble-style'); // 清除真实聊天界面的自定义样式
     applyScopedCss('', '#settings-preview-area', 'preview-bubble-style'); // 清除预览区的自定义样式
     // ▲▲▲ 修改结束 ▲▲▲
- 
+
 exitSelectionMode(); state.activeChatId = null; showScreen('chat-list-screen'); });
             
             document.getElementById('add-chat-btn').addEventListener('click', async () => { const name = await showCustomPrompt('创建新聊天', '请输入Ta的名字'); if (name && name.trim()) { const newChatId = 'chat_' + Date.now(); 
@@ -5415,7 +5423,7 @@ state.chats[newChatId] = newGroupChat; await db.chats.put(newGroupChat); renderC
             document.getElementById('transfer-btn').addEventListener('click', () => document.getElementById('transfer-modal').classList.add('visible'));
             document.getElementById('transfer-cancel-btn').addEventListener('click', () => document.getElementById('transfer-modal').classList.remove('visible'));
             document.getElementById('transfer-confirm-btn').addEventListener('click', sendUserTransfer);
- 
+
             document.getElementById('listen-together-btn').addEventListener('click', handleListenTogetherClick);
             document.getElementById('music-exit-btn').addEventListener('click', () => endListenTogetherSession(true));
             document.getElementById('music-return-btn').addEventListener('click', returnToChat);
@@ -5431,67 +5439,27 @@ state.chats[newChatId] = newGroupChat; await db.chats.put(newGroupChat); renderC
             audioPlayer.addEventListener('ended', playNext);
             audioPlayer.addEventListener('pause', () => { if(musicState.isActive) { musicState.isPlaying = false; updatePlayerUI(); } });
             audioPlayer.addEventListener('play', () => { if(musicState.isActive) { musicState.isPlaying = true; updatePlayerUI(); } });
- 
+
             const chatInput = document.getElementById('chat-input');
-            document.getElementById('send-btn').addEventListener('click', async () => { 
-    const content = chatInput.value.trim(); 
-    if (!content || !state.activeChatId) return; 
-    const chat = state.chats[state.activeChatId]; 
-    
-    // 解析消息中的文本和表情URL
-    let processedContent = content;
-    let msgType = 'text';
-    
-    // 检测是否包含表情URL并提取说明文字
-    const urlRegex = /(https?:\/\/[^\s,]+)/g;
-    const hasUrls = urlRegex.test(content);
-    
-    if (hasUrls) {
-        // 构建AI友好的格式：说明文字 + [表情: URL]
-        processedContent = content.replace(urlRegex, (match) => {
-            // 查找该URL对应的表情名称
-            const sticker = state.userStickers.find(s => s.url === match);
-            return sticker ? `[表情: ${sticker.name} (${match})]` : `[图片: ${match}]`;
-        });
-        
-        // 同时保留原始内容用于显示
-        msgType = 'mixed';
-    }
-    
-    // 构建消息对象
-    const msg = { 
-        role: 'user', 
-        content: processedContent,
-        originalContent: content, // 保存原始内容用于显示
-        timestamp: Date.now() 
-    }; 
-    
-    chat.history.push(msg); 
-    await db.chats.put(chat); 
-    appendMessage(msg, chat); 
-    renderChatList(); 
-    chatInput.value = ''; 
-    chatInput.style.height = 'auto'; 
-    chatInput.focus(); 
-});
+            document.getElementById('send-btn').addEventListener('click', async () => { const rawContent = chatInput.value.trim(); if (!rawContent || !state.activeChatId) return; // 正则匹配URL（支持http/https和常见图片格式） const urlRegex = /https?:\/\/\S+\.(png|jpg|jpeg|gif|webp)/gi; const urls = rawContent.match(urlRegex) || []; // 提取所有表情包URL const text = rawContent.replace(urlRegex, '').trim(); // 提取中文说明 const chat = state.chats[state.activeChatId]; // 构造消息对象，包含文本说明和表情包URL const msg = { role: 'user', content: text, // 中文说明 stickers: urls, // 表情包URL列表 timestamp: Date.now() }; chat.history.push(msg); await db.chats.put(chat); appendMessage(msg, chat); renderChatList(); chatInput.value = ''; chatInput.style.height = 'auto'; chatInput.focus(); });
             document.getElementById('wait-reply-btn').addEventListener('click', triggerAiResponse);
             chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); document.getElementById('send-btn').click(); } });
             chatInput.addEventListener('input', () => { chatInput.style.height = 'auto'; chatInput.style.height = (chatInput.scrollHeight) + 'px'; });
- 
+
             document.getElementById('wallpaper-upload-input').addEventListener('change', async (event) => { const file = event.target.files[0]; if(file) { const dataUrl = await new Promise((res, rej) => { const reader = new FileReader(); reader.onload = () => res(reader.result); reader.onerror = () => rej(reader.error); reader.readAsDataURL(file); }); newWallpaperBase64 = dataUrl; renderWallpaperScreen(); } });
             document.getElementById('save-wallpaper-btn').addEventListener('click', async () => { if (newWallpaperBase64) { state.globalSettings.wallpaper = newWallpaperBase64; await db.globalSettings.put(state.globalSettings); applyGlobalWallpaper(); newWallpaperBase64 = null; alert('壁纸已保存并应用！'); showScreen('home-screen'); } else alert('请先上传一张新壁纸。'); });
             document.getElementById('save-api-settings-btn').addEventListener('click', async () => { state.apiConfig.proxyUrl = document.getElementById('proxy-url').value.trim(); state.apiConfig.apiKey = document.getElementById('api-key').value.trim(); state.apiConfig.model = document.getElementById('model-select').value; await db.apiConfig.put(state.apiConfig); 
- 
+
 // 在 'save-api-settings-btn' 的 click 事件监听器内部
 // await db.apiConfig.put(state.apiConfig); 这行之后
- 
+
 // ▼▼▼ 将之前那段保存后台活动设置的逻辑，替换为下面这个增强版 ▼▼▼
- 
+
 const backgroundSwitch = document.getElementById('background-activity-switch');
 const intervalInput = document.getElementById('background-interval-input');
 const newEnableState = backgroundSwitch.checked;
 const oldEnableState = state.globalSettings.enableBackgroundActivity || false;
- 
+
 // 只有在用户“从关到开”时，才弹出警告
 if (newEnableState && !oldEnableState) {
     const userConfirmed = confirm(
@@ -5502,17 +5470,17 @@ if (newEnableState && !oldEnableState) {
         "这会【在后台自动、定期地调用API】，即使您不进行任何操作。根据您的角色数量和检测间隔，这可能会导致您的API费用显著增加。\n\n" +
         "您确定要开启吗？"
     );
- 
+
     if (!userConfirmed) {
         backgroundSwitch.checked = false; // 用户取消，把开关拨回去
         return; // 阻止后续逻辑
     }
 }
- 
+
 state.globalSettings.enableBackgroundActivity = newEnableState;
 state.globalSettings.backgroundActivityInterval = parseInt(intervalInput.value) || 60;
 await db.globalSettings.put(state.globalSettings);
- 
+
 // 动态启动或停止模拟器
 stopBackgroundSimulation();
 if (state.globalSettings.enableBackgroundActivity) {
@@ -5522,12 +5490,12 @@ if (state.globalSettings.enableBackgroundActivity) {
     console.log("后台活动模拟已停止。");
 }
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
 alert('API设置已保存!'); });
             document.getElementById('fetch-models-btn').addEventListener('click', async () => { const url = document.getElementById('proxy-url').value.trim(); const key = document.getElementById('api-key').value.trim(); if (!url || !key) return alert('请先填写反代地址和密钥'); try { const response = await fetch(`${url}/v1/models`, { headers: { 'Authorization': `Bearer ${key}` } }); if (!response.ok) throw new Error('无法获取模型列表'); const data = await response.json(); const modelSelect = document.getElementById('model-select'); modelSelect.innerHTML = ''; data.data.forEach(model => { const option = document.createElement('option'); option.value = model.id; option.textContent = model.id; if(model.id === state.apiConfig.model) option.selected = true; modelSelect.appendChild(option); }); alert('模型列表已更新'); } catch (error) { alert(`拉取模型失败: ${error.message}`); } });
             document.getElementById('add-world-book-btn').addEventListener('click', async () => { const name = await showCustomPrompt('创建世界书', '请输入书名'); if (name && name.trim()) { const newBook = { id: 'wb_' + Date.now(), name: name.trim(), content: '' }; await db.worldBooks.add(newBook); state.worldBooks.push(newBook); renderWorldBookScreen(); openWorldBookEditor(newBook.id); } });
             document.getElementById('save-world-book-btn').addEventListener('click', async () => { if (!editingWorldBookId) return; const book = state.worldBooks.find(wb => wb.id === editingWorldBookId); if (book) { const newName = document.getElementById('world-book-name-input').value.trim(); if (!newName) { alert('书名不能为空！'); return; } book.name = newName; book.content = document.getElementById('world-book-content-input').value; await db.worldBooks.put(book); document.getElementById('world-book-editor-title').textContent = newName; editingWorldBookId = null; renderWorldBookScreen(); showScreen('world-book-screen'); } });
- 
+
             document.getElementById('chat-messages').addEventListener('click', (e) => { const aiImage = e.target.closest('.ai-generated-image'); if (aiImage) { const description = aiImage.dataset.description; if (description) showCustomAlert('照片描述', description); return; } const voiceMessage = e.target.closest('.voice-message-body'); if (voiceMessage) { const text = voiceMessage.dataset.text; if (text) showCustomAlert('语音内容', text); return; } });
             
             const chatSettingsModal = document.getElementById('chat-settings-modal');
@@ -5538,13 +5506,13 @@ alert('API设置已保存!'); });
             worldBookSelectBox.addEventListener('click', (e) => { e.stopPropagation(); worldBookCheckboxesContainer.classList.toggle('visible'); worldBookSelectBox.classList.toggle('expanded'); });
             document.getElementById('world-book-checkboxes-container').addEventListener('change', updateWorldBookSelectionDisplay);
             window.addEventListener('click', (e) => { if (!document.querySelector('.custom-multiselect').contains(e.target)) { worldBookCheckboxesContainer.classList.remove('visible'); worldBookSelectBox.classList.remove('expanded'); } });
- 
+
 // ▼▼▼ 请用这段【完整、全新的代码】替换旧的 chat-settings-btn 点击事件 ▼▼▼
 document.getElementById('chat-settings-btn').addEventListener('click', async () => {
     if (!state.activeChatId) return;
     const chat = state.chats[state.activeChatId];
     const isGroup = chat.isGroup;
- 
+
     // --- 统一显示/隐藏控件 ---
     document.getElementById('chat-name-group').style.display = 'block';
     document.getElementById('my-persona-group').style.display = 'block';
@@ -5573,7 +5541,7 @@ document.getElementById('chat-settings-btn').addEventListener('click', async () 
         bgPreview.style.display = 'none';
         removeBgBtn.style.display = 'none';
     }
- 
+
     if (isGroup) {
         document.getElementById('my-group-nickname-input').value = chat.settings.myNickname || '';
         document.getElementById('group-avatar-preview').src = chat.settings.groupAvatar || defaultGroupAvatar;
@@ -5611,7 +5579,7 @@ document.getElementById('chat-settings-btn').addEventListener('click', async () 
         });
     }
     updateWorldBookSelectionDisplay();
- 
+
     // 加载并更新所有预览相关控件
     const themeRadio = document.querySelector(`input[name="theme-select"][value="${chat.settings.theme || 'default'}"]`);
     if (themeRadio) themeRadio.checked = true;
@@ -5628,12 +5596,12 @@ document.getElementById('chat-settings-btn').addEventListener('click', async () 
             
             function renderGroupMemberSettings(members) { const container = document.getElementById('group-members-settings'); container.innerHTML = ''; members.forEach(member => { const div = document.createElement('div'); div.className = 'member-editor'; div.dataset.memberId = member.id; div.innerHTML = `<img src="${member.avatar}" alt="${member.name}"><div class="member-name">${member.name}</div>`; div.addEventListener('click', () => openMemberEditor(member.id)); container.appendChild(div); }); }
             function openMemberEditor(memberId) { editingMemberId = memberId; const chat = state.chats[state.activeChatId]; const member = chat.members.find(m => m.id === memberId); document.getElementById('member-name-input').value = member.name; document.getElementById('member-persona-input').value = member.persona; document.getElementById('member-avatar-preview').src = member.avatar; document.getElementById('member-settings-modal').classList.add('visible'); }
- 
+
             document.getElementById('cancel-member-settings-btn').addEventListener('click', () => { document.getElementById('member-settings-modal').classList.remove('visible'); editingMemberId = null; });
             document.getElementById('save-member-settings-btn').addEventListener('click', () => { if (!editingMemberId) return; const chat = state.chats[state.activeChatId]; const member = chat.members.find(m => m.id === editingMemberId); member.name = document.getElementById('member-name-input').value; member.persona = document.getElementById('member-persona-input').value; member.avatar = document.getElementById('member-avatar-preview').src; renderGroupMemberSettings(chat.members); document.getElementById('member-settings-modal').classList.remove('visible'); });
             document.getElementById('reset-theme-btn').addEventListener('click', () => { document.getElementById('theme-default').checked = true; });
             document.getElementById('cancel-chat-settings-btn').addEventListener('click', () => { chatSettingsModal.classList.remove('visible'); });
- 
+
 document.getElementById('save-chat-settings-btn').addEventListener('click', async () => {
     if (!state.activeChatId) return;
     const chat = state.chats[state.activeChatId];
@@ -5642,15 +5610,15 @@ document.getElementById('save-chat-settings-btn').addEventListener('click', asyn
     chat.name = newName;
     const selectedThemeRadio = document.querySelector('input[name="theme-select"]:checked');
     chat.settings.theme = selectedThemeRadio ? selectedThemeRadio.value : 'default';
- 
+
     chat.settings.fontSize = parseInt(document.getElementById('font-size-slider').value);
     chat.settings.customCss = document.getElementById('custom-css-input').value.trim();
- 
+
     chat.settings.myPersona = document.getElementById('my-persona').value;
     chat.settings.myAvatar = document.getElementById('my-avatar-preview').src;
     const checkedBooks = document.querySelectorAll('#world-book-checkboxes-container input[type="checkbox"]:checked');
     chat.settings.linkedWorldBookIds = Array.from(checkedBooks).map(cb => cb.value);
- 
+
     if (chat.isGroup) {
         chat.settings.myNickname = document.getElementById('my-group-nickname-input').value.trim();
         chat.settings.groupAvatar = document.getElementById('group-avatar-preview').src;
@@ -5660,10 +5628,10 @@ document.getElementById('save-chat-settings-btn').addEventListener('click', asyn
         const selectedGroupId = document.getElementById('assign-group-select').value;
         chat.groupId = selectedGroupId ? parseInt(selectedGroupId) : null;
     }
- 
+
     chat.settings.maxMemory = parseInt(document.getElementById('max-memory').value) || 10;
     await db.chats.put(chat);
- 
+
     applyScopedCss(chat.settings.customCss, '#chat-messages', 'custom-bubble-style');
     
     chatSettingsModal.classList.remove('visible');
@@ -5680,52 +5648,14 @@ document.getElementById('save-chat-settings-btn').addEventListener('click', asyn
             setupFileUpload('bg-input', (base64) => { if(state.activeChatId) { state.chats[state.activeChatId].settings.background = base64; const bgPreview = document.getElementById('bg-preview'); bgPreview.src = base64; bgPreview.style.display = 'block'; document.getElementById('remove-bg-btn').style.display = 'inline-block'; } });
             setupFileUpload('preset-avatar-input', (base64) => document.getElementById('preset-avatar-preview').src = base64);
             document.getElementById('remove-bg-btn').addEventListener('click', () => { if (state.activeChatId) { state.chats[state.activeChatId].settings.background = ''; const bgPreview = document.getElementById('bg-preview'); bgPreview.src = ''; bgPreview.style.display = 'none'; document.getElementById('remove-bg-btn').style.display = 'none'; } });
- 
+
             const stickerPanel = document.getElementById('sticker-panel');
             document.getElementById('open-sticker-panel-btn').addEventListener('click', () => { renderStickerPanel(); stickerPanel.classList.add('visible'); });
             document.getElementById('close-sticker-panel-btn').addEventListener('click', () => stickerPanel.classList.remove('visible'));
-            document.getElementById('add-sticker-btn').addEventListener('click', async () => { 
-    const urls = await showCustomPrompt(
-        "添加表情(URL)", 
-        "请输入表情包的图片URL，多个URL用逗号分隔"
-    ); 
-    if (!urls || !urls.trim()) return;
-    
-    // 分割多个URL
-    const urlList = urls.split(',').map(url => url.trim()).filter(url => url.startsWith('https'));
-    
-    if (urlList.length === 0) {
-        alert("请输入有效的URL (以https开头)");
-        return;
-    }
-    
-    // 为每个URL创建表情
-    for (const url of urlList) {
-        const name = await showCustomPrompt(
-            "命名表情", 
-            `请为这个表情命名 (URL: ${url.substring(0, 30)}...)`
-        ); 
-        if (name === null) continue; // 取消命名
-        if (!name.trim()) {
-            alert("表情名不能为空！");
-            continue;
-        }
-        
-        const newSticker = { 
-            id: 'sticker_' + Date.now() + Math.random().toString(36).substr(2, 5), 
-            url: url, 
-            name: name.trim() 
-        }; 
-        await db.userStickers.add(newSticker); 
-        state.userStickers.push(newSticker); 
-    }
-    
-    renderStickerPanel(); 
-    alert(`成功添加 ${urlList.length} 个表情！`);
-});
+            document.getElementById('add-sticker-btn').addEventListener('click', async () => { // 使用textarea让用户输入多个URL（每行一个） const urlsText = await showCustomPrompt( "批量添加表情(URL)", "请输入表情包的图片URL，每行一个", "", "textarea" // 关键：使用多行输入框 ); if (!urlsText) return; // 按换行分割URL并过滤空行 const urls = urlsText.trim().split('\n').filter(url => url.trim().startsWith('http')); if (urls.length === 0) { alert("请输入有效的URL (以http开头)"); return; } // 统一命名（或单独命名，这里简化为批量命名） const name = await showCustomPrompt("批量命名表情", "请为这批表情统一命名（例如：默认表情）"); if (!name || !name.trim()) { alert("表情名不能为空！"); return; } // 批量添加到数据库 const newStickers = urls.map((url, index) => ({ id: `sticker_${Date.now()}_${index}`, // 避免ID重复 url: url.trim(), name: `${name.trim()}_${index + 1}` // 区分序号 })); await db.userStickers.bulkAdd(newStickers); // 批量添加 state.userStickers.push(...newStickers); renderStickerPanel(); alert(`成功添加 ${newStickers.length} 个表情！`); });
             document.getElementById('upload-sticker-btn').addEventListener('click', () => document.getElementById('sticker-upload-input').click());
             document.getElementById('sticker-upload-input').addEventListener('change', async (event) => { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.readAsDataURL(file); reader.onload = async () => { const base64Url = reader.result; const name = await showCustomPrompt("命名表情", "请为这个表情命名 (例如：好耶、疑惑)"); if (name && name.trim()) { const newSticker = { id: 'sticker_' + Date.now(), url: base64Url, name: name.trim() }; await db.userStickers.add(newSticker); state.userStickers.push(newSticker); renderStickerPanel(); } else if (name !== null) alert("表情名不能为空！"); }; event.target.value = null; });
- 
+
             document.getElementById('upload-image-btn').addEventListener('click', () => document.getElementById('image-upload-input').click());
             document.getElementById('image-upload-input').addEventListener('change', async (event) => { const file = event.target.files[0]; if (!file || !state.activeChatId) return; const reader = new FileReader(); reader.onload = async (e) => { const base64Url = e.target.result; const chat = state.chats[state.activeChatId]; const msg = { role: 'user', content: [{ type: 'image_url', image_url: { url: base64Url } }], timestamp: Date.now() }; chat.history.push(msg); await db.chats.put(chat); appendMessage(msg, chat); renderChatList(); }; reader.readAsDataURL(file); event.target.value = null; });
             document.getElementById('voice-message-btn').addEventListener('click', async () => { if (!state.activeChatId) return; const text = await showCustomPrompt("发送语音", "请输入你想说的内容："); if (text && text.trim()) { const chat = state.chats[state.activeChatId]; const msg = { role: 'user', type: 'voice_message', content: text.trim(), timestamp: Date.now() }; chat.history.push(msg); await db.chats.put(chat); appendMessage(msg, chat); renderChatList(); } });
@@ -5742,9 +5672,9 @@ document.getElementById('save-chat-settings-btn').addEventListener('click', asyn
             
             document.getElementById('selection-cancel-btn').addEventListener('click', exitSelectionMode);
             document.getElementById('selection-delete-btn').addEventListener('click', async () => { if (selectedMessages.size === 0) return; const confirmed = await showCustomConfirm('删除消息', `确定要删除选中的 ${selectedMessages.size} 条消息吗？`, { confirmButtonClass: 'btn-danger' }); if (confirmed) { const chat = state.chats[state.activeChatId]; chat.history = chat.history.filter(msg => !selectedMessages.has(msg.timestamp)); await db.chats.put(chat); renderChatInterface(state.activeChatId); renderChatList(); } });
- 
+
 // ▼▼▼ 请将这段【失踪】的代码粘贴到你的JS代码中 ▼▼▼
- 
+
 // 为聊天设置里的“更换头像框”按钮添加点击事件
 document.getElementById('chat-settings-modal').addEventListener('click', (e) => {
     if (e.target.classList.contains('change-frame-btn')) {
@@ -5752,7 +5682,7 @@ document.getElementById('chat-settings-modal').addEventListener('click', (e) => 
         openFrameSelectorModal('chat');
     }
 });
- 
+
 // 为成员设置里的“更换头像框”按钮添加点击事件
 document.getElementById('member-settings-modal').addEventListener('click', (e) => {
     // 【修正】将 .contents 修改为 .contains
@@ -5761,9 +5691,9 @@ document.getElementById('member-settings-modal').addEventListener('click', (e) =
         openFrameSelectorModal('member');
     }
 });
- 
+
 // ▲▲▲ 粘贴结束 ▲▲▲
- 
+
             const fontUrlInput = document.getElementById('font-url-input');
             fontUrlInput.addEventListener('input', () => applyCustomFont(fontUrlInput.value.trim(), true));
             document.getElementById('save-font-btn').addEventListener('click', async () => {
@@ -5773,7 +5703,7 @@ document.getElementById('member-settings-modal').addEventListener('click', (e) =
                 state.globalSettings.fontUrl = newFontUrl;
                 await db.globalSettings.put(state.globalSettings);
                 alert('字体已保存并应用！');
- 
+
             });
             document.getElementById('reset-font-btn').addEventListener('click', resetToDefaultFont);
             // 图标设置相关逻辑
@@ -5924,7 +5854,7 @@ document.getElementById('member-settings-modal').addEventListener('click', (e) =
             document.getElementById('qzone-banner-container').addEventListener('click', () => document.getElementById('qzone-banner-input').click());
             document.getElementById('qzone-avatar-input').addEventListener('change', async (event) => { const file = event.target.files[0]; if (file) { const dataUrl = await new Promise(res => { const reader = new FileReader(); reader.onload = () => res(reader.result); reader.readAsDataURL(file); }); state.qzoneSettings.avatar = dataUrl; await saveQzoneSettings(); renderQzoneScreen(); } event.target.value = null; });
             document.getElementById('qzone-banner-input').addEventListener('change', async (event) => { const file = event.target.files[0]; if (file) { const dataUrl = await new Promise(res => { const reader = new FileReader(); reader.onload = () => res(reader.result); reader.readAsDataURL(file); }); state.qzoneSettings.banner = dataUrl; await saveQzoneSettings(); renderQzoneScreen(); } event.target.value = null; });
- 
+
 // ▼▼▼ 【修正后】的“说说”按钮事件 ▼▼▼
 document.getElementById('create-shuoshuo-btn').addEventListener('click', async () => {
     // 1. 重置并获取模态框
@@ -5958,7 +5888,7 @@ document.getElementById('create-shuoshuo-btn').addEventListener('click', async (
     }
     modal.classList.add('visible');
 });
- 
+
 // ▼▼▼ 【修正后】的“动态”（图片）按钮事件 ▼▼▼
 document.getElementById('create-post-btn').addEventListener('click', async () => {
     // 1. 重置并获取模态框
@@ -5977,7 +5907,7 @@ modal.querySelector('#text-image-mode-content').classList.remove('active');
     
     // 4. 恢复主输入框的默认提示语
     modal.querySelector('#post-public-text').placeholder = '分享新鲜事...（非必填的公开文字）';
- 
+
     // 5. 准备并显示模态框（与“说说”按钮的逻辑相同）
     const visibilityGroupsContainer = document.getElementById('post-visibility-groups');
     visibilityGroupsContainer.innerHTML = '';
@@ -5996,21 +5926,21 @@ modal.querySelector('#text-image-mode-content').classList.remove('active');
 });
             document.getElementById('open-album-btn').addEventListener('click', async () => { await renderAlbumList(); showScreen('album-screen'); });
             document.getElementById('album-back-btn').addEventListener('click', () => { showScreen('chat-list-screen'); switchToChatListView('qzone-screen'); });
- 
+
 // --- ↓↓↓ 从这里开始复制 ↓↓↓ ---
- 
+
 document.getElementById('album-photos-back-btn').addEventListener('click', () => {
     state.activeAlbumId = null;
     showScreen('album-screen');
 });
- 
+
 document.getElementById('album-upload-photo-btn').addEventListener('click', () => document.getElementById('album-photo-input').click());
- 
+
 document.getElementById('album-photo-input').addEventListener('change', async (event) => {
     if (!state.activeAlbumId) return;
     const files = event.target.files;
     if (!files.length) return;
- 
+
     const album = await db.qzoneAlbums.get(state.activeAlbumId);
     
     for (const file of files) {
@@ -6021,7 +5951,7 @@ document.getElementById('album-photo-input').addEventListener('change', async (e
         });
         await db.qzonePhotos.add({ albumId: state.activeAlbumId, url: dataUrl, createdAt: Date.now() });
     }
- 
+
     const photoCount = await db.qzonePhotos.where('albumId').equals(state.activeAlbumId).count();
     const updateData = { photoCount };
     
@@ -6029,7 +5959,7 @@ document.getElementById('album-photo-input').addEventListener('change', async (e
         const firstPhoto = await db.qzonePhotos.where('albumId').equals(state.activeAlbumId).first();
         if(firstPhoto) updateData.coverUrl = firstPhoto.url;
     }
- 
+
     await db.qzoneAlbums.update(state.activeAlbumId, updateData);
     await renderAlbumPhotosScreen();
     await renderAlbumList();
@@ -6037,15 +5967,15 @@ document.getElementById('album-photo-input').addEventListener('change', async (e
     event.target.value = null;
     alert('照片上传成功！');
 });
- 
+
 // --- ↑↑↑ 复制到这里结束 ↑↑↑ ---
- 
+
 // --- ↓↓↓ 从这里开始复制，完整替换掉旧的 photos-grid-page 监听器 ↓↓↓ ---
- 
+
 document.getElementById('photos-grid-page').addEventListener('click', async (e) => {
     const deleteBtn = e.target.closest('.photo-delete-btn');
     const photoThumb = e.target.closest('.photo-thumb');
- 
+
     if (deleteBtn) {
         e.stopPropagation(); // 阻止事件冒泡到图片上
         const photoId = parseInt(deleteBtn.dataset.photoId);
@@ -6054,13 +5984,13 @@ document.getElementById('photos-grid-page').addEventListener('click', async (e) 
             '确定要删除这张照片吗？此操作不可恢复。',
             { confirmButtonClass: 'btn-danger' }
         );
- 
+
         if (confirmed) {
             const deletedPhoto = await db.qzonePhotos.get(photoId);
             if (!deletedPhoto) return;
             
             await db.qzonePhotos.delete(photoId);
- 
+
             const album = await db.qzoneAlbums.get(state.activeAlbumId);
             const photoCount = (album.photoCount || 1) - 1;
             const updateData = { photoCount };
@@ -6081,16 +6011,16 @@ document.getElementById('photos-grid-page').addEventListener('click', async (e) 
         openPhotoViewer(photoThumb.src);
     }
 });
- 
+
 // 恢复图片查看器的控制事件
 document.getElementById('photo-viewer-close-btn').addEventListener('click', closePhotoViewer);
 document.getElementById('photo-viewer-next-btn').addEventListener('click', showNextPhoto);
 document.getElementById('photo-viewer-prev-btn').addEventListener('click', showPrevPhoto);
- 
+
 // 恢复键盘左右箭头和ESC键的功能
 document.addEventListener('keydown', (e) => {
     if (!photoViewerState.isOpen) return; 
- 
+
     if (e.key === 'ArrowRight') {
         showNextPhoto();
     } else if (e.key === 'ArrowLeft') {
@@ -6099,11 +6029,11 @@ document.addEventListener('keydown', (e) => {
         closePhotoViewer();
     }
 });
- 
+
 // --- ↑↑↑ 复制到这里结束 ↑↑↑ ---
          
 document.getElementById('create-album-btn-page').addEventListener('click', async () => { const albumName = await showCustomPrompt("创建新相册", "请输入相册名称"); if (albumName && albumName.trim()) { const newAlbum = { name: albumName.trim(), coverUrl: 'https://i.postimg.cc/pT2xKzPz/album-cover-placeholder.png', photoCount: 0, createdAt: Date.now() }; await db.qzoneAlbums.add(newAlbum); await renderAlbumList(); alert(`相册 "${albumName}" 创建成功！`); } else if (albumName !== null) { alert("相册名称不能为空！"); } });
- 
+
             document.getElementById('cancel-create-post-btn').addEventListener('click', () => document.getElementById('create-post-modal').classList.remove('visible'));
             document.getElementById('post-upload-local-btn').addEventListener('click', () => document.getElementById('post-local-image-input').click());
             document.getElementById('post-local-image-input').addEventListener('change', (event) => { const file = event.target.files[0]; if (file) { const reader = new FileReader(); reader.onload = (e) => { document.getElementById('post-image-preview').src = e.target.result; document.getElementById('post-image-preview-container').classList.add('visible'); document.getElementById('post-image-desc-group').style.display = 'block'; }; reader.readAsDataURL(file); } });
@@ -6115,7 +6045,7 @@ document.getElementById('create-album-btn-page').addEventListener('click', async
             const textImageModeContent = document.getElementById('text-image-mode-content');
             imageModeBtn.addEventListener('click', () => { imageModeBtn.classList.add('active'); textImageModeBtn.classList.remove('active'); imageModeContent.classList.add('active'); textImageModeContent.classList.remove('active'); });
             textImageModeBtn.addEventListener('click', () => { textImageModeBtn.classList.add('active'); imageModeBtn.classList.remove('active'); textImageModeContent.classList.add('active'); imageModeContent.classList.remove('active'); });
- 
+
 // ▼▼▼ 【最终修正版】的“发布”按钮事件，已修复权限漏洞 ▼▼▼
 document.getElementById('confirm-create-post-btn').addEventListener('click', async () => {
     const modal = document.getElementById('create-post-modal');
@@ -6128,7 +6058,7 @@ document.getElementById('confirm-create-post-btn').addEventListener('click', asy
     if (visibilityMode === 'include') {
         visibleGroupIds = Array.from(document.querySelectorAll('input[name="visibility_group"]:checked')).map(cb => parseInt(cb.value));
     }
- 
+
     let newPost = {};
     const basePostData = {
         timestamp: Date.now(),
@@ -6136,7 +6066,7 @@ document.getElementById('confirm-create-post-btn').addEventListener('click', asy
         // 【重要】在这里就把权限信息存好
         visibleGroupIds: visibleGroupIds,
     };
- 
+
     // --- 2. 根据模式构建不同的 post 对象 ---
     if (mode === 'shuoshuo') {
         const content = document.getElementById('post-public-text').value.trim();
@@ -6149,11 +6079,11 @@ document.getElementById('confirm-create-post-btn').addEventListener('click', asy
             type: 'shuoshuo',
             content: content,
         };
- 
+
     } else { // 处理 'complex' 模式 (图片/文字图)
         const publicText = document.getElementById('post-public-text').value.trim();
         const isImageModeActive = document.getElementById('image-mode-content').classList.contains('active');
- 
+
         if (isImageModeActive) {
             const imageUrl = document.getElementById('post-image-preview').src;
             const imageDescription = document.getElementById('post-image-description').value.trim();
@@ -6186,20 +6116,20 @@ document.getElementById('confirm-create-post-btn').addEventListener('click', asy
             };
         }
     }
- 
+
     // --- 3. 保存到数据库 ---
     const newPostId = await db.qzonePosts.add(newPost);
     let postSummary = newPost.content || newPost.publicText || newPost.imageDescription || newPost.hiddenContent || "（无文字内容）";
     postSummary = postSummary.substring(0, 50) + (postSummary.length > 50 ? '...' : '');
- 
+
     // --- 4. 【核心修正】带有权限检查的通知循环 ---
     for (const chatId in state.chats) {
         const chat = state.chats[chatId];
         if (chat.isGroup) continue; // 跳过群聊
- 
+
         let shouldNotify = false;
         const postVisibleGroups = newPost.visibleGroupIds;
- 
+
         // 判断条件1：如果动态是公开的 (没有设置任何可见分组)
         if (!postVisibleGroups || postVisibleGroups.length === 0) {
             shouldNotify = true;
@@ -6208,7 +6138,7 @@ document.getElementById('confirm-create-post-btn').addEventListener('click', asy
         else if (chat.groupId && postVisibleGroups.includes(chat.groupId)) {
             shouldNotify = true;
         }
- 
+
         // 只有满足条件的角色才会被通知
         if (shouldNotify) {
             const historyMessage = {
@@ -6222,12 +6152,12 @@ document.getElementById('confirm-create-post-btn').addEventListener('click', asy
         }
     }
     // --- 修正结束 ---
- 
+
     await renderQzonePosts();
     modal.classList.remove('visible');
     alert('动态发布成功！');
 });
- 
+
             const postsList = document.getElementById('qzone-posts-list');
             let swipeState = { isDragging: false, startX: 0, startY: 0, currentX: 0, activeContainer: null, swipeDirection: null, isClick: true };
             function resetAllSwipes(exceptThisOne = null) { document.querySelectorAll('.qzone-post-container').forEach(container => { if (container !== exceptThisOne) container.querySelector('.qzone-post-item').classList.remove('swiped'); }); }
@@ -6246,7 +6176,7 @@ const handleSwipeEnd = (e) => {
     
     const postItem = swipeState.activeContainer.querySelector('.qzone-post-item'); 
     postItem.style.transition = 'transform 0.3s ease'; 
- 
+
     // 【核心修复】从事件对象 e 中获取最终的X坐标，而不是依赖 state
     // 注意：touchend 事件需要用 changedTouches
     const finalX = e.type.includes('touchend') ? e.changedTouches[0].pageX : e.pageX;
@@ -6278,12 +6208,12 @@ const handleSwipeEnd = (e) => {
             postsList.addEventListener('touchstart', handleSwipeStart, { passive: false });
             postsList.addEventListener('touchmove', handleSwipeMove, { passive: false });
             postsList.addEventListener('touchend', handleSwipeEnd);
- 
+
 // ▼▼▼ BUG修复：修正了左滑删除的执行逻辑 ▼▼▼
 postsList.addEventListener('click', async (e) => {
     e.stopPropagation();
     const target = e.target;
- 
+
     // --- 处理“…”操作按钮 ---
     if (target.classList.contains('post-actions-btn')) {
         const container = target.closest('.qzone-post-container');
@@ -6292,7 +6222,7 @@ postsList.addEventListener('click', async (e) => {
         }
         return; 
     }
- 
+
     // --- 【核心修复】处理删除按钮 (左滑出现) ---
     if (target.closest('.qzone-post-delete-action')) {
         const container = target.closest('.qzone-post-container');
@@ -6300,10 +6230,10 @@ postsList.addEventListener('click', async (e) => {
         
         const postIdToDelete = parseInt(container.dataset.postId);
         if (isNaN(postIdToDelete)) return;
- 
+
         // 1. 直接在这里弹出确认框
         const confirmed = await showCustomConfirm('删除动态', '确定要永久删除这条动态吗？', { confirmButtonClass: 'btn-danger' });
- 
+
         // 2. 如果用户确认，直接执行删除逻辑
         if (confirmed) {
             // a. 播放删除动画
@@ -6326,7 +6256,7 @@ postsList.addEventListener('click', async (e) => {
                          await db.chats.put(chat);
                      }
                  }
- 
+
                  // 重新渲染动态列表并给出提示
                  await renderQzonePosts();
                  alert('动态已删除。');
@@ -6334,7 +6264,7 @@ postsList.addEventListener('click', async (e) => {
         }
         return; // 处理完毕，退出函数
     }
- 
+
     // --- 处理其他点击事件（点赞、评论、图片点击等）---
     if (target.tagName === 'IMG' && target.dataset.hiddenText) {
         const hiddenText = target.dataset.hiddenText;
@@ -6404,37 +6334,37 @@ postsList.addEventListener('click', async (e) => {
     }
 });
 // ▲▲▲ 修复结束 ▲▲▲
- 
+
             // ▼▼▼ 在 init() 函数的事件监听器区域，粘贴下面这两行 ▼▼▼
- 
+
             // 绑定动态页和收藏页的返回按钮
             document.getElementById('qzone-back-btn').addEventListener('click', () => switchToChatListView('messages-view'));
             document.getElementById('favorites-back-btn').addEventListener('click', () => switchToChatListView('messages-view'));
- 
+
             // ▲▲▲ 添加结束 ▲▲▲
- 
+
             // ▼▼▼ 在 init() 函数的事件监听器区域，检查并确保你有这段完整的代码 ▼▼▼
- 
+
             // 收藏页搜索功能
             const searchInput = document.getElementById('favorites-search-input');
             const searchClearBtn = document.getElementById('favorites-search-clear-btn');
- 
+
             searchInput.addEventListener('input', () => {
                 const searchTerm = searchInput.value.trim().toLowerCase();
                 
                 // 控制清除按钮的显示/隐藏
                 searchClearBtn.style.display = searchTerm ? 'block' : 'none';
- 
+
                 if (!searchTerm) {
                     displayFilteredFavorites(allFavoriteItems); // 如果搜索框为空，显示所有
                     return;
                 }
- 
+
                 // 筛选逻辑
                 const filteredItems = allFavoriteItems.filter(item => {
                     let contentToSearch = '';
                     let authorToSearch = '';
- 
+
                     if (item.type === 'qzone_post') {
                         const post = item.content;
                         contentToSearch += (post.publicText || '') + ' ' + (post.content || '');
@@ -6462,10 +6392,10 @@ postsList.addEventListener('click', async (e) => {
                     return contentToSearch.toLowerCase().includes(searchTerm) || 
                            authorToSearch.toLowerCase().includes(searchTerm);
                 });
- 
+
                 displayFilteredFavorites(filteredItems);
             });
- 
+
             // 清除按钮的点击事件
             searchClearBtn.addEventListener('click', () => {
                 searchInput.value = '';
@@ -6473,9 +6403,9 @@ postsList.addEventListener('click', async (e) => {
                 displayFilteredFavorites(allFavoriteItems);
                 searchInput.focus();
             });
- 
+
             // ▲▲▲ 代码检查结束 ▲▲▲
- 
+
             // ▼▼▼ 新增/修改的事件监听器 ▼▼▼
             
             // 为聊天界面的批量收藏按钮绑定事件
@@ -6484,10 +6414,10 @@ postsList.addEventListener('click', async (e) => {
                 if (selectedMessages.size === 0) return;
                 const chat = state.chats[state.activeChatId];
                 if (!chat) return;
- 
+
                 const favoritesToAdd = [];
                 const timestampsToFavorite = [...selectedMessages];
- 
+
                 for (const timestamp of timestampsToFavorite) {
                     // 【核心修正1】使用新的、高效的索引进行查询
                     const existing = await db.favorites.where('originalTimestamp').equals(timestamp).first();
@@ -6505,7 +6435,7 @@ postsList.addEventListener('click', async (e) => {
                         }
                     }
                 }
- 
+
                 if (favoritesToAdd.length > 0) {
                     await db.favorites.bulkAdd(favoritesToAdd);
                     allFavoriteItems = await db.favorites.orderBy('timestamp').reverse().toArray(); // 更新全局收藏缓存
@@ -6516,7 +6446,7 @@ postsList.addEventListener('click', async (e) => {
                 
                 exitSelectionMode();
             });
- 
+
             // 收藏页面的"编辑"按钮事件 (已修正)
             const favoritesEditBtn = document.getElementById('favorites-edit-btn');
             const favoritesView = document.getElementById('favorites-view');
@@ -6527,7 +6457,7 @@ postsList.addEventListener('click', async (e) => {
             favoritesEditBtn.addEventListener('click', () => {
                 isFavoritesSelectionMode = !isFavoritesSelectionMode;
                 favoritesView.classList.toggle('selection-mode', isFavoritesSelectionMode);
- 
+
                 if (isFavoritesSelectionMode) {
                     // --- 进入编辑模式 ---
                     favoritesEditBtn.textContent = '完成';
@@ -6540,20 +6470,20 @@ postsList.addEventListener('click', async (e) => {
                     favoritesActionBar.style.display = 'none'; // 隐藏删除操作栏
                     mainBottomNav.style.display = 'flex';  // ▼ 新增：恢复主导航栏
                     favoritesList.style.paddingBottom = ''; // ▼ 新增：恢复列表默认padding
- 
+
                     // 退出时清空所有选择
                     selectedFavorites.clear();
                     document.querySelectorAll('.favorite-item-card.selected').forEach(card => card.classList.remove('selected'));
                     document.getElementById('favorites-delete-selected-btn').textContent = `删除 (0)`;
                 }
             });
- 
+
 // ▼▼▼ 将它【完整替换】为下面这段修正后的代码 ▼▼▼
 // 收藏列表的点击选择事件 (事件委托)
 document.getElementById('favorites-list').addEventListener('click', (e) => {
     const target = e.target;
     const card = target.closest('.favorite-item-card');
- 
+
     // 【新增】处理文字图点击，这段逻辑要放在最前面，保证任何模式下都生效
     if (target.tagName === 'IMG' && target.dataset.hiddenText) {
         const hiddenText = target.dataset.hiddenText;
@@ -6563,13 +6493,13 @@ document.getElementById('favorites-list').addEventListener('click', (e) => {
     
     // 如果不在选择模式，则不执行后续的选择操作
     if (!isFavoritesSelectionMode) return;
- 
+
     // --- 以下是原有的选择逻辑，保持不变 ---
     if (!card) return;
- 
+
     const favId = parseInt(card.dataset.favid);
     if (isNaN(favId)) return;
- 
+
     // 切换选择状态
     if (selectedFavorites.has(favId)) {
         selectedFavorites.delete(favId);
@@ -6582,18 +6512,18 @@ document.getElementById('favorites-list').addEventListener('click', (e) => {
     // 更新底部删除按钮的计数
     document.getElementById('favorites-delete-selected-btn').textContent = `删除 (${selectedFavorites.size})`;
 });
- 
+
 // ▼▼▼ 将它【完整替换】为下面这段修正后的代码 ▼▼▼
 // 收藏页面批量删除按钮事件
 document.getElementById('favorites-delete-selected-btn').addEventListener('click', async () => {
     if (selectedFavorites.size === 0) return;
- 
+
     const confirmed = await showCustomConfirm(
         '确认删除', 
         `确定要从收藏夹中移除这 ${selectedFavorites.size} 条内容吗？`, 
         { confirmButtonClass: 'btn-danger' }
     );
- 
+
     if (confirmed) {
         const idsToDelete = [...selectedFavorites];
         await db.favorites.bulkDelete(idsToDelete);
@@ -6609,23 +6539,23 @@ document.getElementById('favorites-delete-selected-btn').addEventListener('click
         favoritesEditBtn.click(); // 模拟点击"完成"按钮来退出编辑模式
     }
 });
- 
+
 // ▼▼▼ 在 init() 函数末尾添加 ▼▼▼
 if (state.globalSettings.enableBackgroundActivity) {
     startBackgroundSimulation();
     console.log("后台活动模拟已自动启动。");
 }
 // ▲▲▲ 添加结束 ▲▲▲
- 
+
 // ▼▼▼ 【这是最终的正确代码】请粘贴这段代码到 init() 的事件监听器区域末尾 ▼▼▼
- 
+
 // --- 统一处理所有影响预览的控件的事件 ---
- 
+
 // 1. 监听主题选择
 document.querySelectorAll('input[name="theme-select"]').forEach(radio => {
     radio.addEventListener('change', updateSettingsPreview);
 });
- 
+
 // 2. 监听字体大小滑块
 const fontSizeSlider = document.getElementById('font-size-slider');
 fontSizeSlider.addEventListener('input', () => {
@@ -6634,24 +6564,24 @@ fontSizeSlider.addEventListener('input', () => {
     // b. 更新预览
     updateSettingsPreview();
 });
- 
+
 // 3. 监听自定义CSS输入框
 const customCssInputForPreview = document.getElementById('custom-css-input');
 customCssInputForPreview.addEventListener('input', updateSettingsPreview);
- 
+
 // 4. 监听重置按钮
 document.getElementById('reset-theme-btn').addEventListener('click', () => {
     document.getElementById('theme-default').checked = true;
     updateSettingsPreview();
 });
- 
+
 document.getElementById('reset-custom-css-btn').addEventListener('click', () => {
     document.getElementById('custom-css-input').value = '';
     updateSettingsPreview();
 });
- 
+
 // ▲▲▲ 粘贴结束 ▲▲▲
- 
+
 // ▼▼▼ 请将这段【新代码】粘贴到 init() 的事件监听器区域末尾 ▼▼▼
 document.querySelectorAll('input[name="visibility"]').forEach(radio => {
     radio.addEventListener('change', function() {
@@ -6664,7 +6594,7 @@ document.querySelectorAll('input[name="visibility"]').forEach(radio => {
     });
 });
 // ▲▲▲ 新代码粘贴结束 ▲▲▲
- 
+
 // ▼▼▼ 请将这段【新代码】粘贴到 init() 的事件监听器区域末尾 ▼▼▼
 document.getElementById('manage-groups-btn').addEventListener('click', openGroupManager);
 document.getElementById('close-group-manager-btn').addEventListener('click', () => {
@@ -6675,7 +6605,7 @@ document.getElementById('close-group-manager-btn').addEventListener('click', () 
        chatSettingsBtn.click(); // 再次点击以重新打开
     }
 });
- 
+
 document.getElementById('add-new-group-btn').addEventListener('click', addNewGroup);
 document.getElementById('existing-groups-list').addEventListener('click', (e) => {
     if (e.target.classList.contains('delete-group-btn')) {
@@ -6684,13 +6614,13 @@ document.getElementById('existing-groups-list').addEventListener('click', (e) =>
     }
 });
 // ▲▲▲ 新代码粘贴结束 ▲▲▲
- 
+
 // ▼▼▼ 请将这段【新代码】粘贴到 init() 的事件监听器区域末尾 ▼▼▼
 // 消息操作菜单的按钮事件
 document.getElementById('cancel-message-action-btn').addEventListener('click', hideMessageActions);
 document.getElementById('edit-message-btn').addEventListener('click', openMessageEditor);
 document.getElementById('copy-message-btn').addEventListener('click', copyMessageContent);
- 
+
 // ▼▼▼ 请用这段【修正后】的代码替换旧的 select-message-btn 事件监听器 ▼▼▼
 document.getElementById('select-message-btn').addEventListener('click', () => {
     // 【核心修复】在关闭菜单前，先捕获时间戳
@@ -6702,25 +6632,25 @@ document.getElementById('select-message-btn').addEventListener('click', () => {
     }
 });
 // ▲▲▲ 替换结束 ▲▲▲
- 
+
 // ▼▼▼ 在 init() 函数的事件监听器区域末尾添加 ▼▼▼
- 
+
 // 动态操作菜单的按钮事件
 document.getElementById('edit-post-btn').addEventListener('click', openPostEditor);
 document.getElementById('copy-post-btn').addEventListener('click', copyPostContent);
 document.getElementById('cancel-post-action-btn').addEventListener('click', hidePostActions);
- 
+
 // ▲▲▲ 添加结束 ▲▲▲
- 
+
 // ▼▼▼ 将这段【失踪】的事件监听代码，粘贴到 init() 函数的事件监听器区域末尾 ▼▼▼
- 
+
 // 头像框选择模态框的按钮事件
 document.getElementById('save-frame-settings-btn').addEventListener('click', saveSelectedFrames);
 document.getElementById('cancel-frame-settings-btn').addEventListener('click', () => {
     frameModal.classList.remove('visible');
     editingFrameForMember = false; // 确保重置状态
 });
- 
+
 // 头像框 Tab 切换事件
 aiFrameTab.addEventListener('click', () => {
     aiFrameTab.classList.add('active');
@@ -6734,15 +6664,15 @@ myFrameTab.addEventListener('click', () => {
     myFrameContent.style.display = 'block';
     aiFrameContent.style.display = 'none';
 });
- 
+
 // ▲▲▲ 修复代码粘贴结束 ▲▲▲
- 
+
         // ===================================================================
         // 5. 启动！
             
             showScreen('home-screen');
         }
- 
+
         init();
     });
 </script>
