@@ -6,7 +6,7 @@
     <title>EPhone</title>
     <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
     <style>
-        @font-face { font-family: 'bulangni'; src: url('https://files.catbox.moe/yzfk0h.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'bulangni'; src: url('https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxK.woff2') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
         :root { --screen-width: 350px; --screen-height: 650px; --secondary-bg: #ffffff; --border-color: #e0e0e0; --text-primary: #1f1f1f; --text-secondary: #8a8a8a; --accent-color: #007bff; }
         html { height: 100%; overflow: hidden; }
 
@@ -2035,7 +2035,7 @@ body {
                     <div class="app-row">
                         <div class="app-icon" onclick="showScreen('world-book-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/7ZMsY3gP/IMG-7057.jpg" alt="世界书"></div><span class="label">世界书</span></div>
                         <div class="app-icon" onclick="showScreen('chat-list-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/Bv2qvwmL/IMG-7063.jpg" alt="QQ"></div><span class="label">QQ</span></div>
-                        <div class="app-icon" onclick="showScreen('icon-settings-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/zv89CkX6/icon-default.png" alt="图标设置"></div><span class="label">图标</span></div>
+                        <div class="app-icon" onclick="showScreen('icon-settings-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/3rsnXS1J/IMG-7062.jpg" alt="图标设置"></div><span class="label">图标</span></div>
 
                     </div>
                     <!-- 第二行：放3个图标 -->
@@ -2137,12 +2137,12 @@ body {
         <div class="qzone-content">
             <div class="qzone-profile-header">
                 <div id="qzone-banner-container" class="qzone-banner-container">
-                    <img id="qzone-banner-img" src="https://files.catbox.moe/r5heyt.gif" alt="背景">
+                    <img id="qzone-banner-img" src="https://i.postimg.cc/7ZMsY3gP/IMG-7057.jpg" alt="背景">
                     <input type="file" id="qzone-banner-input" accept="image/*" hidden>
                 </div>
                 <div class="qzone-user-info">
                     <div id="qzone-avatar-container" class="qzone-avatar-container">
-                        <img id="qzone-avatar-img" src="https://files.catbox.moe/q6z5fc.jpeg" alt="头像">
+                        <img id="qzone-avatar-img" src="https://i.postimg.cc/Bv2qvwmL/IMG-7063.jpg" alt="头像">
                         <input type="file" id="qzone-avatar-input" accept="image/*" hidden>
                     </div>
                     <span id="qzone-nickname">{{user}}</span>
@@ -3573,7 +3573,7 @@ state.globalSettings = globalSettings || {
     state.worldBooks = worldBooks || [];
     musicState.playlist = musicLib?.playlist || [];
     state.personaPresets = personaPresets || [];
-    state.qzoneSettings = qzoneSettings || { id: 'main', nickname: '{{user}}', avatar: 'https://files.catbox.moe/q6z5fc.jpeg', banner: 'https://files.catbox.moe/r5heyt.gif' };
+    state.qzoneSettings = qzoneSettings || { id: 'main', nickname: '{{user}}', avatar: 'https://i.postimg.cc/Bv2qvwmL/IMG-7063.jpg', banner: 'https://i.postimg.cc/7ZMsY3gP/IMG-7057.jpg' };
 
     // ▼▼▼ 【确保这一行在 Promise.all 之后，并使用解构赋值得到的 initialFavorites】 ▼▼▼
     allFavoriteItems = initialFavorites || [];
@@ -5724,7 +5724,7 @@ document.getElementById('member-settings-modal').addEventListener('click', (e) =
                 'api-settings': 'https://i.postimg.cc/BbKNWHS0/IMG-6871.jpg',
                 'wallpaper': 'https://i.postimg.cc/rwrThPXn/IMG-7058.jpg',
                 'font': 'https://i.postimg.cc/3rsnXS1J/IMG-7062.jpg',
-                'icon': 'https://i.postimg.cc/zv89CkX6/icon-default.png'
+                'icon': 'https://i.postimg.cc/3rsnXS1J/IMG-7062.jpg'
             };
             
             // 加载选中图标的当前图片
