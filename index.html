@@ -3883,26 +3883,28 @@ function createMessageElement(msg, chat) {
 
 
 let contentHtml;
+// 处理多表情消息（修复 stickers 循环变量）
 if (msg.stickers && msg.stickers.length > 0) { 
-// 先渲染中文说明 
-contentHtml = `<div class="text-content">${msg.content || ''}</div>`; 
-// 再渲染所有表情包 
-msg.stickers.forEach(url => { contentHtml += `<img src="${url}" alt="Sticker" class="sticker-image" style="margin: 5px 0;">`; }); } 
-else if (msg.type === 'user_photo' || msg.type === 'ai_image') { // 原有图片处理逻辑... } else if (typeof msg.content === 'string' && STICKER_REGEX.test(msg.content)) { // 原有单个表情包处理逻辑... }
-    if (msg.type === 'user_photo' || msg.type === 'ai_image') {
-        bubble.classList.add('is-ai-image');
-        const altText = msg.type === 'user_photo' ? "用户描述的照片" : "AI生成的图片";
-        contentHtml = `<img src="https://i.postimg.cc/KYr2qRCK/1.jpg" class="ai-generated-image" alt="${altText}" data-description="${msg.content}">`;
+    // 先渲染中文说明 
+    contentHtml = `<div class="text-content">${msg.content || ''}</div>`; 
+    // 再渲染所有表情包（使用 sticker 对象的 url 属性）
+    msg.stickers.forEach(sticker => {  // 变量名改为 sticker（对象）
+        contentHtml += `<img src="${sticker.url}" alt="${sticker.description || 'Sticker'}" class="sticker-image" style="margin: 5px 0;">`; 
+    }); 
+    } else if (msg.type === 'user_photo' || msg.type === 'ai_image') {
+    bubble.classList.add('is-ai-image');
+    const altText = msg.type === 'user_photo' ? "用户描述的照片" : "AI生成的图片";
+    contentHtml = `<img src="https://i.postimg.cc/KYr2qRCK/1.jpg" class="ai-generated-image" alt="${altText}" data-description="${msg.content}">`;
     } else if (msg.type === 'voice_message') {
-        bubble.classList.add('is-voice-message');
-        const duration = Math.max(1, Math.round((msg.content || '').length / 5));
-        const durationFormatted = `0:${String(duration).padStart(2, '0')}''`;
-        const waveformHTML = '<div></div><div></div><div></div><div></div><div></div>';
-        contentHtml = `<div class="voice-message-body" data-text="${msg.content}"><div class="voice-waveform">${waveformHTML}</div><span class="voice-duration">${durationFormatted}</span></div>`;
+    bubble.classList.add('is-voice-message');
+    const duration = Math.max(1, Math.round((msg.content || '').length / 5));
+    const durationFormatted = `0:${String(duration).padStart(2, '0')}''`;
+    const waveformHTML = '<div></div><div></div><div></div><div></div><div></div>';
+    contentHtml = `<div class="voice-message-body" data-text="${msg.content}"><div class="voice-waveform">${waveformHTML}</div><span class="voice-duration">${durationFormatted}</span></div>`;
     } else if (msg.type === 'transfer') {
-        bubble.classList.add('is-transfer');
-        const titleText = isUser ? '转账给Ta' : '收到一笔转账';
-        const heartIcon = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="vertical-align: middle;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>`;
+    bubble.classList.add('is-transfer');
+    const titleText = isUser ? '转账给Ta' : '收到一笔转账';
+    const heartIcon = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="vertical-align: middle;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>`;
         contentHtml = `<div class="transfer-card"><div class="transfer-title">${heartIcon} ${titleText}</div><div class="transfer-amount">¥ ${Number(msg.amount).toFixed(2)}</div><div class="transfer-note">${msg.note || '对方没有留下备注哦~'}</div></div>`;
     } else if (typeof msg.content === 'string' && STICKER_REGEX.test(msg.content)) {
         bubble.classList.add('is-sticker');
